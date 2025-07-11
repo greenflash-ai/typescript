@@ -9,7 +9,7 @@ const client = new Greenflash({
 
 describe('resource conversions', () => {
   // skipped: tests are disabled for the time being
-  test.skip('log: only required params', async () => {
+  test('log: only required params', async () => {
     const responsePromise = client.conversions.log({
       action: 'purchase',
       externalUserId: 'user-123',
@@ -26,7 +26,7 @@ describe('resource conversions', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('log: required and optional params', async () => {
+  test('log: required and optional params', async () => {
     const response = await client.conversions.log({
       action: 'purchase',
       externalUserId: 'user-123',
