@@ -7,8 +7,8 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^greenflash-public-api$': '<rootDir>/src/index.ts',
-    '^greenflash-public-api/(.*)$': '<rootDir>/src/$1',
+    '^greenflash$': '<rootDir>/src/index.ts',
+    '^greenflash/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

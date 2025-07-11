@@ -25,7 +25,7 @@ export default tseslint.config(
         {
           patterns: [
             {
-              regex: '^greenflash-public-api(/.*)?',
+              regex: '^greenflash(/.*)?',
               message: 'Use a relative import, not a package import.',
             },
           ],

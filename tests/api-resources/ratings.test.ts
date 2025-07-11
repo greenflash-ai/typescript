@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Greenflash from 'greenflash-public-api';
+import Greenflash from 'greenflash';
 
 const client = new Greenflash({
   apiKey: 'My API Key',
