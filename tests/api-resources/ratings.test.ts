@@ -26,7 +26,7 @@ describe('resource ratings', () => {
       rating: 4,
       ratingMax: 5,
       ratingMin: 1,
-      conversationId: 'conv-0001',
+      conversationId: '123e4567-e89b-12d3-a456-426614174000',
       externalConversationId: 'externalConversationId',
       feedback: 'Helpful response!',
       messageId: 'msg-001',
