@@ -7,7 +7,12 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Ratings extends APIResource {
   /**
-   * Capture Conversation or Message Ratings
+   * The `/ratings` endpoint allows you to record user ratings for conversations or
+   * individual messages. This is useful for collecting feedback about the quality of
+   * responses or overall conversation experiences.
+   *
+   * You can rate either a specific message (using `messageId`) or an entire
+   * conversation (using either `conversationId` or `externalConversationId`).
    *
    * @example
    * ```ts
@@ -28,20 +33,48 @@ export class Ratings extends APIResource {
 }
 
 export interface RatingLogParams {
+  /**
+   * The rating value. Must be between ratingMin and ratingMax (inclusive).
+   */
   rating: number;
 
+  /**
+   * The maximum possible rating value (e.g., 5 for a 1-5 scale).
+   */
   ratingMax: number;
 
+  /**
+   * The minimum possible rating value (e.g., 1 for a 1-5 scale).
+   */
   ratingMin: number;
 
+  /**
+   * The internal ID of the conversation to rate. Either conversationId,
+   * externalConversationId, or messageId must be provided.
+   */
   conversationId?: string;
 
+  /**
+   * Your external identifier for the conversation to rate. Either conversationId,
+   * externalConversationId, or messageId must be provided.
+   */
   externalConversationId?: string;
 
+  /**
+   * Optional text feedback accompanying the rating.
+   */
   feedback?: string;
 
+  /**
+   * The ID of a specific message to rate. Either conversationId,
+   * externalConversationId, or messageId must be provided.
+   */
   messageId?: string;
 
+  /**
+   * The timestamp when the rating was given. If not provided, the current time will
+   * be used.
+   */
   ratedAt?: string;
 }
 
