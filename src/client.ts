@@ -16,14 +16,10 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { ConversionCreateParams, ConversionCreateResponse, Conversions } from './resources/conversions';
-import {
-  Identify,
-  IdentifyCreateOrUpdateProfileParams,
-  IdentifyCreateOrUpdateProfileResponse,
-} from './resources/identify';
-import { MessageCreateParams, MessageCreateResponse, Messages, SystemPrompt } from './resources/messages';
-import { GenericSuccess, RatingCreateParams, Ratings } from './resources/ratings';
+import { ConversionLogParams, ConversionLogResponse, Conversions } from './resources/conversions';
+import { Identify, IdentifyCreateOrUpdateParams, IdentifyCreateOrUpdateResponse } from './resources/identify';
+import { GenericSuccess, MessageCreateParams, MessageCreateResponse, Messages } from './resources/messages';
+import { RatingLogParams, Ratings } from './resources/ratings';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -41,12 +37,12 @@ export interface ClientOptions {
   /**
    * Defaults to process.env['GREENFLASH_PUBLIC_API_API_KEY'].
    */
-  apiKey?: string | undefined;
+  apiKey?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
    *
-   * Defaults to process.env['GREENFLASH_PUBLIC_API_BASE_URL'].
+   * Defaults to process.env['GREENFLASH_API_BASE_URL'].
    */
   baseURL?: string | null | undefined;
 
@@ -100,7 +96,7 @@ export interface ClientOptions {
   /**
    * Set the log level.
    *
-   * Defaults to process.env['GREENFLASH_PUBLIC_API_LOG'] or 'warn' if it isn't set.
+   * Defaults to process.env['GREENFLASH_API_LOG'] or 'warn' if it isn't set.
    */
   logLevel?: LogLevel | undefined;
 
@@ -113,10 +109,10 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Greenflash Public API API.
+ * API Client for interfacing with the Greenflash API API.
  */
-export class GreenflashPublicAPI {
-  apiKey: string;
+export class GreenflashAPI {
+  apiKey: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -131,10 +127,10 @@ export class GreenflashPublicAPI {
   private _options: ClientOptions;
 
   /**
-   * API Client for interfacing with the Greenflash Public API API.
+   * API Client for interfacing with the Greenflash API API.
    *
-   * @param {string | undefined} [opts.apiKey=process.env['GREENFLASH_PUBLIC_API_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['GREENFLASH_PUBLIC_API_BASE_URL'] ?? https://greenflash.ai/api/v1] - Override the default base URL for the API.
+   * @param {string | null | undefined} [opts.apiKey=process.env['GREENFLASH_PUBLIC_API_API_KEY'] ?? null]
+   * @param {string} [opts.baseURL=process.env['GREENFLASH_API_BASE_URL'] ?? https://greenflash.ai/api/v1] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -143,16 +139,10 @@ export class GreenflashPublicAPI {
    * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
    */
   constructor({
-    baseURL = readEnv('GREENFLASH_PUBLIC_API_BASE_URL'),
-    apiKey = readEnv('GREENFLASH_PUBLIC_API_API_KEY'),
+    baseURL = readEnv('GREENFLASH_API_BASE_URL'),
+    apiKey = readEnv('GREENFLASH_PUBLIC_API_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
-    if (apiKey === undefined) {
-      throw new Errors.GreenflashPublicAPIError(
-        "The GREENFLASH_PUBLIC_API_API_KEY environment variable is missing or empty; either provide it, or instantiate the GreenflashPublicAPI client with an apiKey option, like new GreenflashPublicAPI({ apiKey: 'My API Key' }).",
-      );
-    }
-
     const options: ClientOptions = {
       apiKey,
       ...opts,
@@ -160,14 +150,14 @@ export class GreenflashPublicAPI {
     };
 
     this.baseURL = options.baseURL!;
-    this.timeout = options.timeout ?? GreenflashPublicAPI.DEFAULT_TIMEOUT /* 1 minute */;
+    this.timeout = options.timeout ?? GreenflashAPI.DEFAULT_TIMEOUT /* 1 minute */;
     this.logger = options.logger ?? console;
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
     this.logLevel =
       parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('GREENFLASH_PUBLIC_API_LOG'), "process.env['GREENFLASH_PUBLIC_API_LOG']", this) ??
+      parseLogLevel(readEnv('GREENFLASH_API_LOG'), "process.env['GREENFLASH_API_LOG']", this) ??
       defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
@@ -210,10 +200,22 @@ export class GreenflashPublicAPI {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    return;
+    if (this.apiKey && values.get('authorization')) {
+      return;
+    }
+    if (nulls.has('authorization')) {
+      return;
+    }
+
+    throw new Error(
+      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted',
+    );
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
+    if (this.apiKey == null) {
+      return undefined;
+    }
     return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
   }
 
@@ -230,7 +232,7 @@ export class GreenflashPublicAPI {
         if (value === null) {
           return `${encodeURIComponent(key)}=`;
         }
-        throw new Errors.GreenflashPublicAPIError(
+        throw new Errors.GreenflashAPIError(
           `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
         );
       })
@@ -702,10 +704,10 @@ export class GreenflashPublicAPI {
     }
   }
 
-  static GreenflashPublicAPI = this;
+  static GreenflashAPI = this;
   static DEFAULT_TIMEOUT = 60000; // 1 minute
 
-  static GreenflashPublicAPIError = Errors.GreenflashPublicAPIError;
+  static GreenflashAPIError = Errors.GreenflashAPIError;
   static APIError = Errors.APIError;
   static APIConnectionError = Errors.APIConnectionError;
   static APIConnectionTimeoutError = Errors.APIConnectionTimeoutError;
@@ -726,35 +728,31 @@ export class GreenflashPublicAPI {
   ratings: API.Ratings = new API.Ratings(this);
   conversions: API.Conversions = new API.Conversions(this);
 }
-GreenflashPublicAPI.Messages = Messages;
-GreenflashPublicAPI.Identify = Identify;
-GreenflashPublicAPI.Ratings = Ratings;
-GreenflashPublicAPI.Conversions = Conversions;
-export declare namespace GreenflashPublicAPI {
+GreenflashAPI.Messages = Messages;
+GreenflashAPI.Identify = Identify;
+GreenflashAPI.Ratings = Ratings;
+GreenflashAPI.Conversions = Conversions;
+export declare namespace GreenflashAPI {
   export type RequestOptions = Opts.RequestOptions;
 
   export {
     Messages as Messages,
-    type SystemPrompt as SystemPrompt,
+    type GenericSuccess as GenericSuccess,
     type MessageCreateResponse as MessageCreateResponse,
     type MessageCreateParams as MessageCreateParams,
   };
 
   export {
     Identify as Identify,
-    type IdentifyCreateOrUpdateProfileResponse as IdentifyCreateOrUpdateProfileResponse,
-    type IdentifyCreateOrUpdateProfileParams as IdentifyCreateOrUpdateProfileParams,
+    type IdentifyCreateOrUpdateResponse as IdentifyCreateOrUpdateResponse,
+    type IdentifyCreateOrUpdateParams as IdentifyCreateOrUpdateParams,
   };
 
-  export {
-    Ratings as Ratings,
-    type GenericSuccess as GenericSuccess,
-    type RatingCreateParams as RatingCreateParams,
-  };
+  export { Ratings as Ratings, type RatingLogParams as RatingLogParams };
 
   export {
     Conversions as Conversions,
-    type ConversionCreateResponse as ConversionCreateResponse,
-    type ConversionCreateParams as ConversionCreateParams,
+    type ConversionLogResponse as ConversionLogResponse,
+    type ConversionLogParams as ConversionLogParams,
   };
 }

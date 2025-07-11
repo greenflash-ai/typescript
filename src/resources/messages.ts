@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as MessagesAPI from './messages';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -43,30 +42,14 @@ export class Messages extends APIResource {
   }
 }
 
-export interface SystemPrompt {
-  components?: Array<SystemPrompt.Component>;
+export interface GenericSuccess {
+  success: boolean;
 
-  externalTemplateId?: string;
+  conversationId?: string;
 
-  templateId?: string;
-}
+  systemPromptComponentIds?: Array<string>;
 
-export namespace SystemPrompt {
-  export interface Component {
-    content: string;
-
-    source: 'customer' | 'participant' | 'greenflash' | 'agent';
-
-    type: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
-
-    isDynamic?: boolean;
-
-    name?: string;
-
-    tags?: Array<string>;
-
-    version?: number;
-  }
+  systemPromptTemplateId?: string;
 }
 
 export interface MessageCreateResponse {
@@ -118,7 +101,7 @@ export interface MessageCreateParams {
 
   projectId?: string;
 
-  systemPrompt?: string | SystemPrompt;
+  systemPrompt?: string | MessageCreateParams.SystemPrompt;
 
   versionId?: string;
 }
@@ -135,7 +118,7 @@ export namespace MessageCreateParams {
 
     modelOverride?: string;
 
-    systemPromptOverride?: string | MessagesAPI.SystemPrompt;
+    systemPromptOverride?: string | Turn.SystemPrompt;
   }
 
   export namespace Turn {
@@ -156,12 +139,64 @@ export namespace MessageCreateParams {
 
       tokens?: number;
     }
+
+    export interface SystemPrompt {
+      components?: Array<SystemPrompt.Component>;
+
+      externalTemplateId?: string;
+
+      templateId?: string;
+    }
+
+    export namespace SystemPrompt {
+      export interface Component {
+        content: string;
+
+        source: 'customer' | 'participant' | 'greenflash' | 'agent';
+
+        type: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
+
+        isDynamic?: boolean;
+
+        name?: string;
+
+        tags?: Array<string>;
+
+        version?: number;
+      }
+    }
+  }
+
+  export interface SystemPrompt {
+    components?: Array<SystemPrompt.Component>;
+
+    externalTemplateId?: string;
+
+    templateId?: string;
+  }
+
+  export namespace SystemPrompt {
+    export interface Component {
+      content: string;
+
+      source: 'customer' | 'participant' | 'greenflash' | 'agent';
+
+      type: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
+
+      isDynamic?: boolean;
+
+      name?: string;
+
+      tags?: Array<string>;
+
+      version?: number;
+    }
   }
 }
 
 export declare namespace Messages {
   export {
-    type SystemPrompt as SystemPrompt,
+    type GenericSuccess as GenericSuccess,
     type MessageCreateResponse as MessageCreateResponse,
     type MessageCreateParams as MessageCreateParams,
   };

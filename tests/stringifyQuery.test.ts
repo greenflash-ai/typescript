@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { GreenflashPublicAPI } from 'greenflash-public-api';
+import { GreenflashAPI } from 'greenflash-public-api';
 
-const { stringifyQuery } = GreenflashPublicAPI.prototype as any;
+const { stringifyQuery } = GreenflashAPI.prototype as any;
 
 describe(stringifyQuery, () => {
   for (const [input, expected] of [
