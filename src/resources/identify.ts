@@ -6,7 +6,13 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Identify extends APIResource {
   /**
-   * Create or Update User Profiles
+   * The `/identify` endpoint allows you to create or update user profiles in the
+   * system. This endpoint is used to manage user identity information that can be
+   * referenced in other API calls using the `externalUserId`.
+   *
+   * When you call this endpoint with an `externalUserId` that already exists, the
+   * user profile will be updated. If the `externalUserId` doesn't exist yet, a new
+   * profile will be created.
    *
    * @example
    * ```ts
@@ -28,49 +34,105 @@ export class Identify extends APIResource {
 }
 
 export interface IdentifyCreateOrUpdateResponse {
+  /**
+   * The user profile that was created or updated.
+   */
   participant: IdentifyCreateOrUpdateResponse.Participant;
 
+  /**
+   * Indicates whether the API call was successful.
+   */
   success: boolean;
 }
 
 export namespace IdentifyCreateOrUpdateResponse {
+  /**
+   * The user profile that was created or updated.
+   */
   export interface Participant {
+    /**
+     * The internal ID of the participant.
+     */
     id: string;
 
+    /**
+     * Whether the participant's personal information is anonymized.
+     */
     anonymized: boolean;
 
+    /**
+     * When the participant was first created.
+     */
     createdAt: string;
 
     /**
-     * The external ID of the participant
+     * The external ID you provided (matches the externalUserId from the request).
      */
     externalId: string;
 
+    /**
+     * Additional metadata associated with the participant.
+     */
     metadata: { [key: string]: unknown };
 
+    /**
+     * The ID of the tenant this participant belongs to.
+     */
     tenantId: string;
 
+    /**
+     * When the participant was last updated.
+     */
     updatedAt: string;
 
+    /**
+     * The participant's email address.
+     */
     email?: string;
 
+    /**
+     * The participant's full name.
+     */
     name?: string;
 
+    /**
+     * The participant's phone number.
+     */
     phone?: string;
   }
 }
 
 export interface IdentifyCreateOrUpdateParams {
+  /**
+   * Your unique identifier for the user. This is used to reference the user in other
+   * API calls.
+   */
   externalUserId: string;
 
+  /**
+   * Whether the user's personal information should be anonymized. Defaults to false
+   * for new users.
+   */
   anonymized?: boolean;
 
+  /**
+   * The user's email address. Must be a valid email format.
+   */
   email?: string;
 
+  /**
+   * Additional metadata associated with the user as key-value pairs.
+   */
   metadata?: { [key: string]: unknown };
 
+  /**
+   * The user's full name.
+   */
   name?: string;
 
+  /**
+   * The user's phone number.
+   */
   phone?: string;
 }
 
