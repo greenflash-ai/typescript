@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as MessagesAPI from './messages';
+import * as RatingsAPI from './ratings';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -11,7 +11,7 @@ export class Conversions extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.conversions.log({
+   * const conversion = await client.conversions.create({
    *   action: 'purchase',
    *   externalUserId: 'user-123',
    *   value: '99.99',
@@ -25,16 +25,16 @@ export class Conversions extends APIResource {
    * });
    * ```
    */
-  log(body: ConversionLogParams, options?: RequestOptions): APIPromise<ConversionLogResponse> {
+  create(body: ConversionCreateParams, options?: RequestOptions): APIPromise<ConversionCreateResponse> {
     return this._client.post('/conversions', { body, ...options });
   }
 }
 
-export interface ConversionLogResponse extends MessagesAPI.GenericSuccess {
+export interface ConversionCreateResponse extends RatingsAPI.GenericSuccess {
   conversionId: string;
 }
 
-export interface ConversionLogParams {
+export interface ConversionCreateParams {
   action: string;
 
   externalUserId: string;
@@ -58,7 +58,7 @@ export interface ConversionLogParams {
 
 export declare namespace Conversions {
   export {
-    type ConversionLogResponse as ConversionLogResponse,
-    type ConversionLogParams as ConversionLogParams,
+    type ConversionCreateResponse as ConversionCreateResponse,
+    type ConversionCreateParams as ConversionCreateParams,
   };
 }

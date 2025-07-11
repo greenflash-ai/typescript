@@ -10,30 +10,31 @@ export class Identify extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.identify.createOrUpdate({
-   *   externalUserId: 'user-123',
-   *   email: 'alice@example.com',
-   *   metadata: { plan: 'premium' },
-   *   name: 'Alice Example',
-   *   phone: '+15551234567',
-   * });
+   * const response =
+   *   await client.identify.createOrUpdateProfile({
+   *     externalUserId: 'user-123',
+   *     email: 'alice@example.com',
+   *     metadata: { plan: 'premium' },
+   *     name: 'Alice Example',
+   *     phone: '+15551234567',
+   *   });
    * ```
    */
-  createOrUpdate(
-    body: IdentifyCreateOrUpdateParams,
+  createOrUpdateProfile(
+    body: IdentifyCreateOrUpdateProfileParams,
     options?: RequestOptions,
-  ): APIPromise<IdentifyCreateOrUpdateResponse> {
+  ): APIPromise<IdentifyCreateOrUpdateProfileResponse> {
     return this._client.post('/identify', { body, ...options });
   }
 }
 
-export interface IdentifyCreateOrUpdateResponse {
-  participant: IdentifyCreateOrUpdateResponse.Participant;
+export interface IdentifyCreateOrUpdateProfileResponse {
+  participant: IdentifyCreateOrUpdateProfileResponse.Participant;
 
   success: boolean;
 }
 
-export namespace IdentifyCreateOrUpdateResponse {
+export namespace IdentifyCreateOrUpdateProfileResponse {
   export interface Participant {
     id: string;
 
@@ -60,7 +61,7 @@ export namespace IdentifyCreateOrUpdateResponse {
   }
 }
 
-export interface IdentifyCreateOrUpdateParams {
+export interface IdentifyCreateOrUpdateProfileParams {
   externalUserId: string;
 
   anonymized?: boolean;
@@ -76,7 +77,7 @@ export interface IdentifyCreateOrUpdateParams {
 
 export declare namespace Identify {
   export {
-    type IdentifyCreateOrUpdateResponse as IdentifyCreateOrUpdateResponse,
-    type IdentifyCreateOrUpdateParams as IdentifyCreateOrUpdateParams,
+    type IdentifyCreateOrUpdateProfileResponse as IdentifyCreateOrUpdateProfileResponse,
+    type IdentifyCreateOrUpdateProfileParams as IdentifyCreateOrUpdateProfileParams,
   };
 }
