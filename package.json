@@ -1,6 +1,6 @@
 {
   "name": "greenflash-public-api",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "description": "The official TypeScript library for the Greenflash Public API API",
   "author": "Greenflash Public API <>",
   "types": "dist/index.d.ts",
