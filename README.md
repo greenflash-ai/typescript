@@ -1,10 +1,10 @@
-# Greenflash Public API TypeScript API Library
+# Greenflash API TypeScript API Library
 
 [![NPM version](<https://img.shields.io/npm/v/greenflash-public-api.svg?label=npm%20(stable)>)](https://npmjs.org/package/greenflash-public-api) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/greenflash-public-api)
 
-This library provides convenient access to the Greenflash Public API REST API from server-side TypeScript or JavaScript.
+This library provides convenient access to the Greenflash API REST API from server-side TypeScript or JavaScript.
 
-The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.greenflash.ai](https://docs.greenflash.ai). The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
@@ -23,9 +23,9 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import GreenflashPublicAPI from 'greenflash-public-api';
+import GreenflashAPI from 'greenflash-public-api';
 
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   apiKey: process.env['GREENFLASH_PUBLIC_API_API_KEY'], // This is the default and can be omitted
 });
 
@@ -51,13 +51,13 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import GreenflashPublicAPI from 'greenflash-public-api';
+import GreenflashAPI from 'greenflash-public-api';
 
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   apiKey: process.env['GREENFLASH_PUBLIC_API_API_KEY'], // This is the default and can be omitted
 });
 
-const params: GreenflashPublicAPI.MessageCreateParams = {
+const params: GreenflashAPI.MessageCreateParams = {
   externalUserId: 'user-123',
   turns: [
     {
@@ -69,7 +69,7 @@ const params: GreenflashPublicAPI.MessageCreateParams = {
     },
   ],
 };
-const message: GreenflashPublicAPI.MessageCreateResponse = await client.messages.create(params);
+const message: GreenflashAPI.MessageCreateResponse = await client.messages.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -96,7 +96,7 @@ const message = await client.messages
     ],
   })
   .catch(async (err) => {
-    if (err instanceof GreenflashPublicAPI.APIError) {
+    if (err instanceof GreenflashAPI.APIError) {
       console.log(err.status); // 400
       console.log(err.name); // BadRequestError
       console.log(err.headers); // {server: 'nginx', ...}
@@ -130,7 +130,7 @@ You can use the `maxRetries` option to configure or disable this:
 <!-- prettier-ignore -->
 ```js
 // Configure the default for all requests:
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   maxRetries: 0, // default is 2
 });
 
@@ -147,7 +147,7 @@ Requests time out after 1 minute by default. You can configure this with a `time
 <!-- prettier-ignore -->
 ```ts
 // Configure the default for all requests:
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   timeout: 20 * 1000, // 20 seconds (default is 1 minute)
 });
 
@@ -173,7 +173,7 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 
 <!-- prettier-ignore -->
 ```ts
-const client = new GreenflashPublicAPI();
+const client = new GreenflashAPI();
 
 const response = await client.messages
   .create({
@@ -220,13 +220,13 @@ console.log(message.conversationId);
 
 The log level can be configured in two ways:
 
-1. Via the `GREENFLASH_PUBLIC_API_LOG` environment variable
+1. Via the `GREENFLASH_API_LOG` environment variable
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import GreenflashPublicAPI from 'greenflash-public-api';
+import GreenflashAPI from 'greenflash-public-api';
 
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   logLevel: 'debug', // Show all log messages
 });
 ```
@@ -252,13 +252,13 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import GreenflashPublicAPI from 'greenflash-public-api';
+import GreenflashAPI from 'greenflash-public-api';
 import pino from 'pino';
 
 const logger = pino();
 
-const client = new GreenflashPublicAPI({
-  logger: logger.child({ name: 'GreenflashPublicAPI' }),
+const client = new GreenflashAPI({
+  logger: logger.child({ name: 'GreenflashAPI' }),
   logLevel: 'debug', // Send all messages to pino, allowing it to filter
 });
 ```
@@ -321,10 +321,10 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import GreenflashPublicAPI from 'greenflash-public-api';
+import GreenflashAPI from 'greenflash-public-api';
 import fetch from 'my-fetch';
 
-const client = new GreenflashPublicAPI({ fetch });
+const client = new GreenflashAPI({ fetch });
 ```
 
 ### Fetch options
@@ -332,9 +332,9 @@ const client = new GreenflashPublicAPI({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import GreenflashPublicAPI from 'greenflash-public-api';
+import GreenflashAPI from 'greenflash-public-api';
 
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   fetchOptions: {
     // `RequestInit` options
   },
@@ -349,11 +349,11 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import GreenflashPublicAPI from 'greenflash-public-api';
+import GreenflashAPI from 'greenflash-public-api';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   fetchOptions: {
     dispatcher: proxyAgent,
   },
@@ -363,9 +363,9 @@ const client = new GreenflashPublicAPI({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import GreenflashPublicAPI from 'greenflash-public-api';
+import GreenflashAPI from 'greenflash-public-api';
 
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   fetchOptions: {
     proxy: 'http://localhost:8888',
   },
@@ -375,10 +375,10 @@ const client = new GreenflashPublicAPI({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import GreenflashPublicAPI from 'npm:greenflash-public-api';
+import GreenflashAPI from 'npm:greenflash-public-api';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   fetchOptions: {
     client: httpClient,
   },

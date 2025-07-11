@@ -1,12 +1,12 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { GreenflashPublicAPI as default } from './client';
+export { GreenflashAPI as default } from './client';
 
 export { type Uploadable, toFile } from './core/uploads';
 export { APIPromise } from './core/api-promise';
-export { GreenflashPublicAPI, type ClientOptions } from './client';
+export { GreenflashAPI, type ClientOptions } from './client';
 export {
-  GreenflashPublicAPIError,
+  GreenflashAPIError,
   APIError,
   APIConnectionError,
   APIConnectionTimeoutError,

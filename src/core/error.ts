@@ -2,13 +2,13 @@
 
 import { castToError } from '../internal/errors';
 
-export class GreenflashPublicAPIError extends Error {}
+export class GreenflashAPIError extends Error {}
 
 export class APIError<
   TStatus extends number | undefined = number | undefined,
   THeaders extends Headers | undefined = Headers | undefined,
   TError extends Object | undefined = Object | undefined,
-> extends GreenflashPublicAPIError {
+> extends GreenflashAPIError {
   /** HTTP status for the response that caused the error */
   readonly status: TStatus;
   /** HTTP headers for the response that caused the error */
