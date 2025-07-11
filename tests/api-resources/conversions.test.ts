@@ -1,16 +1,16 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import GreenflashPublicAPI from 'greenflash-public-api';
+import GreenflashAPI from 'greenflash-public-api';
 
-const client = new GreenflashPublicAPI({
+const client = new GreenflashAPI({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource conversions', () => {
   // skipped: tests are disabled for the time being
-  test.skip('create: only required params', async () => {
-    const responsePromise = client.conversions.create({
+  test.skip('log: only required params', async () => {
+    const responsePromise = client.conversions.log({
       action: 'purchase',
       externalUserId: 'user-123',
       value: '99.99',
@@ -26,8 +26,8 @@ describe('resource conversions', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('create: required and optional params', async () => {
-    const response = await client.conversions.create({
+  test.skip('log: required and optional params', async () => {
+    const response = await client.conversions.log({
       action: 'purchase',
       externalUserId: 'user-123',
       value: '99.99',

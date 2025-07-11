@@ -10,31 +10,30 @@ export class Identify extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.identify.createOrUpdateProfile({
-   *     externalUserId: 'user-123',
-   *     email: 'alice@example.com',
-   *     metadata: { plan: 'premium' },
-   *     name: 'Alice Example',
-   *     phone: '+15551234567',
-   *   });
+   * const response = await client.identify.createOrUpdate({
+   *   externalUserId: 'user-123',
+   *   email: 'alice@example.com',
+   *   metadata: { plan: 'premium' },
+   *   name: 'Alice Example',
+   *   phone: '+15551234567',
+   * });
    * ```
    */
-  createOrUpdateProfile(
-    body: IdentifyCreateOrUpdateProfileParams,
+  createOrUpdate(
+    body: IdentifyCreateOrUpdateParams,
     options?: RequestOptions,
-  ): APIPromise<IdentifyCreateOrUpdateProfileResponse> {
+  ): APIPromise<IdentifyCreateOrUpdateResponse> {
     return this._client.post('/identify', { body, ...options });
   }
 }
 
-export interface IdentifyCreateOrUpdateProfileResponse {
-  participant: IdentifyCreateOrUpdateProfileResponse.Participant;
+export interface IdentifyCreateOrUpdateResponse {
+  participant: IdentifyCreateOrUpdateResponse.Participant;
 
   success: boolean;
 }
 
-export namespace IdentifyCreateOrUpdateProfileResponse {
+export namespace IdentifyCreateOrUpdateResponse {
   export interface Participant {
     id: string;
 
@@ -61,7 +60,7 @@ export namespace IdentifyCreateOrUpdateProfileResponse {
   }
 }
 
-export interface IdentifyCreateOrUpdateProfileParams {
+export interface IdentifyCreateOrUpdateParams {
   externalUserId: string;
 
   anonymized?: boolean;
@@ -77,7 +76,7 @@ export interface IdentifyCreateOrUpdateProfileParams {
 
 export declare namespace Identify {
   export {
-    type IdentifyCreateOrUpdateProfileResponse as IdentifyCreateOrUpdateProfileResponse,
-    type IdentifyCreateOrUpdateProfileParams as IdentifyCreateOrUpdateProfileParams,
+    type IdentifyCreateOrUpdateResponse as IdentifyCreateOrUpdateResponse,
+    type IdentifyCreateOrUpdateParams as IdentifyCreateOrUpdateParams,
   };
 }
