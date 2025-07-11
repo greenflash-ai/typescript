@@ -66,12 +66,12 @@ describe('resource messages', () => {
           systemPromptOverride: 'You are a helpful assistant.',
         },
       ],
-      conversationId: 'conversationId',
+      conversationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       externalConversationId: 'conv-456',
       metadata: { source: 'bar' },
       model: 'gpt-greenflash-1',
-      productId: 'prod-789',
-      projectId: 'proj-001',
+      productId: '123e4567-e89b-12d3-a456-426614174000',
+      projectId: '123e4567-e89b-12d3-a456-426614174000',
       systemPrompt: {
         components: [
           {
@@ -87,7 +87,7 @@ describe('resource messages', () => {
         externalTemplateId: 'externalTemplateId',
         templateId: 'tmpl-001',
       },
-      versionId: 'ver-001',
+      versionId: '123e4567-e89b-12d3-a456-426614174000',
     });
   });
 });
