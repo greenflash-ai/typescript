@@ -34,10 +34,9 @@ const message = await client.messages.create({
   turns: [
     {
       messages: [
-        { content: 'Hello!', contentType: 'text', messageIndex: 0, role: 'user' },
-        { content: 'Hi there!', contentType: 'text', messageIndex: 1, role: 'assistant' },
+        { content: 'Hello!', role: 'user' },
+        { content: 'Hi there!', role: 'assistant' },
       ],
-      turnIndex: 0,
     },
   ],
 });
@@ -62,10 +61,9 @@ const params: Greenflash.MessageCreateParams = {
   turns: [
     {
       messages: [
-        { content: 'Hello!', contentType: 'text', messageIndex: 0, role: 'user' },
-        { content: 'Hi there!', contentType: 'text', messageIndex: 1, role: 'assistant' },
+        { content: 'Hello!', role: 'user' },
+        { content: 'Hi there!', role: 'assistant' },
       ],
-      turnIndex: 0,
     },
   ],
 };
@@ -88,10 +86,9 @@ const message = await client.messages
     turns: [
       {
         messages: [
-          { content: 'Hello!', contentType: 'text', messageIndex: 0, role: 'user' },
-          { content: 'Hi there!', contentType: 'text', messageIndex: 1, role: 'assistant' },
+          { content: 'Hello!', role: 'user' },
+          { content: 'Hi there!', role: 'assistant' },
         ],
-        turnIndex: 0,
       },
     ],
   })
@@ -135,7 +132,7 @@ const client = new Greenflash({
 });
 
 // Or, configure per-request:
-await client.messages.create({ externalUserId: 'user-123', turns: [{ messages: [{ content: 'Hello!', contentType: 'text', messageIndex: 0, role: 'user' }, { content: 'Hi there!', contentType: 'text', messageIndex: 1, role: 'assistant' }], turnIndex: 0 }] }, {
+await client.messages.create({ externalUserId: 'user-123', turns: [{ messages: [{ content: 'Hello!', role: 'user' }, { content: 'Hi there!', role: 'assistant' }] }] }, {
   maxRetries: 5,
 });
 ```
@@ -152,7 +149,7 @@ const client = new Greenflash({
 });
 
 // Override per-request:
-await client.messages.create({ externalUserId: 'user-123', turns: [{ messages: [{ content: 'Hello!', contentType: 'text', messageIndex: 0, role: 'user' }, { content: 'Hi there!', contentType: 'text', messageIndex: 1, role: 'assistant' }], turnIndex: 0 }] }, {
+await client.messages.create({ externalUserId: 'user-123', turns: [{ messages: [{ content: 'Hello!', role: 'user' }, { content: 'Hi there!', role: 'assistant' }] }] }, {
   timeout: 5 * 1000,
 });
 ```
@@ -181,10 +178,9 @@ const response = await client.messages
     turns: [
       {
         messages: [
-          { content: 'Hello!', contentType: 'text', messageIndex: 0, role: 'user' },
-          { content: 'Hi there!', contentType: 'text', messageIndex: 1, role: 'assistant' },
+          { content: 'Hello!', role: 'user' },
+          { content: 'Hi there!', role: 'assistant' },
         ],
-        turnIndex: 0,
       },
     ],
   })
@@ -198,10 +194,9 @@ const { data: message, response: raw } = await client.messages
     turns: [
       {
         messages: [
-          { content: 'Hello!', contentType: 'text', messageIndex: 0, role: 'user' },
-          { content: 'Hi there!', contentType: 'text', messageIndex: 1, role: 'assistant' },
+          { content: 'Hello!', role: 'user' },
+          { content: 'Hi there!', role: 'assistant' },
         ],
-        turnIndex: 0,
       },
     ],
   })
