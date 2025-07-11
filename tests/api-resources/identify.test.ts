@@ -9,8 +9,8 @@ const client = new GreenflashPublicAPI({
 
 describe('resource identify', () => {
   // skipped: tests are disabled for the time being
-  test.skip('createOrUpdate: only required params', async () => {
-    const responsePromise = client.identify.createOrUpdate({ externalUserId: 'user-123' });
+  test.skip('createOrUpdateProfile: only required params', async () => {
+    const responsePromise = client.identify.createOrUpdateProfile({ externalUserId: 'user-123' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,8 +21,8 @@ describe('resource identify', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('createOrUpdate: required and optional params', async () => {
-    const response = await client.identify.createOrUpdate({
+  test.skip('createOrUpdateProfile: required and optional params', async () => {
+    const response = await client.identify.createOrUpdateProfile({
       externalUserId: 'user-123',
       anonymized: false,
       email: 'alice@example.com',

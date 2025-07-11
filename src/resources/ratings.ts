@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as MessagesAPI from './messages';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -11,7 +10,7 @@ export class Ratings extends APIResource {
    *
    * @example
    * ```ts
-   * const genericSuccess = await client.ratings.log({
+   * const genericSuccess = await client.ratings.create({
    *   rating: 4,
    *   ratingMax: 5,
    *   ratingMin: 1,
@@ -22,12 +21,22 @@ export class Ratings extends APIResource {
    * });
    * ```
    */
-  log(body: RatingLogParams, options?: RequestOptions): APIPromise<MessagesAPI.GenericSuccess> {
+  create(body: RatingCreateParams, options?: RequestOptions): APIPromise<GenericSuccess> {
     return this._client.post('/ratings', { body, ...options });
   }
 }
 
-export interface RatingLogParams {
+export interface GenericSuccess {
+  success: boolean;
+
+  conversationId?: string;
+
+  systemPromptComponentIds?: Array<string>;
+
+  systemPromptTemplateId?: string;
+}
+
+export interface RatingCreateParams {
   rating: number;
 
   ratingMax: number;
@@ -46,5 +55,5 @@ export interface RatingLogParams {
 }
 
 export declare namespace Ratings {
-  export { type RatingLogParams as RatingLogParams };
+  export { type GenericSuccess as GenericSuccess, type RatingCreateParams as RatingCreateParams };
 }
