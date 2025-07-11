@@ -1,11 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import type { GreenflashAPI } from '../client';
+import type { Greenflash } from '../client';
 
 export abstract class APIResource {
-  protected _client: GreenflashAPI;
+  protected _client: Greenflash;
 
-  constructor(client: GreenflashAPI) {
+  constructor(client: Greenflash) {
     this._client = client;
   }
 }
