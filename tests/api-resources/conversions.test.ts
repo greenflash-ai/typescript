@@ -1,8 +1,8 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import GreenflashAPI from 'greenflash-public-api';
+import Greenflash from 'greenflash-public-api';
 
-const client = new GreenflashAPI({
+const client = new Greenflash({
   apiKey: 'My API Key',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
