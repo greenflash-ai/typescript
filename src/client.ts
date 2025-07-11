@@ -18,8 +18,8 @@ import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { ConversionLogParams, ConversionLogResponse, Conversions } from './resources/conversions';
 import { Identify, IdentifyCreateOrUpdateParams, IdentifyCreateOrUpdateResponse } from './resources/identify';
-import { GenericSuccess, MessageCreateParams, MessageCreateResponse, Messages } from './resources/messages';
-import { RatingLogParams, Ratings } from './resources/ratings';
+import { MessageCreateParams, MessageCreateResponse, Messages, SystemPrompt } from './resources/messages';
+import { GenericSuccess, RatingLogParams, Ratings } from './resources/ratings';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -737,7 +737,7 @@ export declare namespace Greenflash {
 
   export {
     Messages as Messages,
-    type GenericSuccess as GenericSuccess,
+    type SystemPrompt as SystemPrompt,
     type MessageCreateResponse as MessageCreateResponse,
     type MessageCreateParams as MessageCreateParams,
   };
@@ -748,7 +748,11 @@ export declare namespace Greenflash {
     type IdentifyCreateOrUpdateParams as IdentifyCreateOrUpdateParams,
   };
 
-  export { Ratings as Ratings, type RatingLogParams as RatingLogParams };
+  export {
+    Ratings as Ratings,
+    type GenericSuccess as GenericSuccess,
+    type RatingLogParams as RatingLogParams,
+  };
 
   export {
     Conversions as Conversions,

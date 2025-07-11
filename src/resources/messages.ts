@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as MessagesAPI from './messages';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -53,11 +54,72 @@ export class Messages extends APIResource {
   }
 }
 
-export interface GenericSuccess {
+export interface SystemPrompt {
   /**
-   * Indicates whether the API call was successful.
+   * Array of component objects.
    */
-  success: boolean;
+  components?: Array<SystemPrompt.Component>;
+
+  /**
+   * Your own external identifier for the template.
+   */
+  externalTemplateId?: string;
+
+  /**
+   * The ID of the template.
+   */
+  templateId?: string;
+}
+
+export namespace SystemPrompt {
+  export interface Component {
+    /**
+     * The content of the component.
+     */
+    content: string;
+
+    /**
+     * The ID of the component.
+     */
+    componentId?: string;
+
+    /**
+     * Your own external identifier for the component.
+     */
+    externalComponentId?: string;
+
+    /**
+     * Whether the component is dynamic.
+     */
+    isDynamic?: boolean;
+
+    /**
+     * Name of the component.
+     */
+    name?: string;
+
+    /**
+     * Source of the component. One of: 'customer', 'participant', 'greenflash',
+     * 'agent'. Defaults to 'customer'.
+     */
+    source?: 'customer' | 'participant' | 'greenflash' | 'agent';
+
+    /**
+     * Array of string tags associated with the component.
+     */
+    tags?: Array<string>;
+
+    /**
+     * Type of the component. One of: 'system', 'endUser', 'userModified', 'rag',
+     * 'agent'. Defaults to 'system'.
+     */
+    type?: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
+
+    /**
+     * Version of the component.
+     */
+    version?: number;
+  }
 }
 
 export interface MessageCreateResponse {
@@ -155,7 +217,7 @@ export interface MessageCreateParams {
    * System prompt for the conversation. Can be a simple string or a template object
    * with components.
    */
-  systemPrompt?: string | MessageCreateParams.SystemPrompt;
+  systemPrompt?: string | SystemPrompt;
 
   /**
    * The ID of the product version.
@@ -188,7 +250,7 @@ export namespace MessageCreateParams {
     /**
      * Override the conversation-level system prompt for this specific turn.
      */
-    systemPromptOverride?: string | Turn.SystemPrompt;
+    systemPromptOverride?: string | MessagesAPI.SystemPrompt;
 
     /**
      * The index of the turn in the conversation sequence. Inferred based on the
@@ -242,148 +304,12 @@ export namespace MessageCreateParams {
        */
       tokens?: number;
     }
-
-    export interface SystemPrompt {
-      /**
-       * Array of component objects.
-       */
-      components?: Array<SystemPrompt.Component>;
-
-      /**
-       * Your own external identifier for the template.
-       */
-      externalTemplateId?: string;
-
-      /**
-       * The ID of the template.
-       */
-      templateId?: string;
-    }
-
-    export namespace SystemPrompt {
-      export interface Component {
-        /**
-         * The content of the component.
-         */
-        content: string;
-
-        /**
-         * The ID of the component.
-         */
-        componentId?: string;
-
-        /**
-         * Your own external identifier for the component.
-         */
-        externalComponentId?: string;
-
-        /**
-         * Whether the component is dynamic.
-         */
-        isDynamic?: boolean;
-
-        /**
-         * Name of the component.
-         */
-        name?: string;
-
-        /**
-         * Source of the component. One of: 'customer', 'participant', 'greenflash',
-         * 'agent'. Defaults to 'customer'.
-         */
-        source?: 'customer' | 'participant' | 'greenflash' | 'agent';
-
-        /**
-         * Array of string tags associated with the component.
-         */
-        tags?: Array<string>;
-
-        /**
-         * Type of the component. One of: 'system', 'endUser', 'userModified', 'rag',
-         * 'agent'. Defaults to 'system'.
-         */
-        type?: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
-
-        /**
-         * Version of the component.
-         */
-        version?: number;
-      }
-    }
-  }
-
-  export interface SystemPrompt {
-    /**
-     * Array of component objects.
-     */
-    components?: Array<SystemPrompt.Component>;
-
-    /**
-     * Your own external identifier for the template.
-     */
-    externalTemplateId?: string;
-
-    /**
-     * The ID of the template.
-     */
-    templateId?: string;
-  }
-
-  export namespace SystemPrompt {
-    export interface Component {
-      /**
-       * The content of the component.
-       */
-      content: string;
-
-      /**
-       * The ID of the component.
-       */
-      componentId?: string;
-
-      /**
-       * Your own external identifier for the component.
-       */
-      externalComponentId?: string;
-
-      /**
-       * Whether the component is dynamic.
-       */
-      isDynamic?: boolean;
-
-      /**
-       * Name of the component.
-       */
-      name?: string;
-
-      /**
-       * Source of the component. One of: 'customer', 'participant', 'greenflash',
-       * 'agent'. Defaults to 'customer'.
-       */
-      source?: 'customer' | 'participant' | 'greenflash' | 'agent';
-
-      /**
-       * Array of string tags associated with the component.
-       */
-      tags?: Array<string>;
-
-      /**
-       * Type of the component. One of: 'system', 'endUser', 'userModified', 'rag',
-       * 'agent'. Defaults to 'system'.
-       */
-      type?: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
-
-      /**
-       * Version of the component.
-       */
-      version?: number;
-    }
   }
 }
 
 export declare namespace Messages {
   export {
-    type GenericSuccess as GenericSuccess,
+    type SystemPrompt as SystemPrompt,
     type MessageCreateResponse as MessageCreateResponse,
     type MessageCreateParams as MessageCreateParams,
   };
