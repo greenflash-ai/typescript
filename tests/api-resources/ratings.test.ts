@@ -10,7 +10,12 @@ const client = new Greenflash({
 describe('resource ratings', () => {
   // skipped: tests are disabled for the time being
   test('log: only required params', async () => {
-    const responsePromise = client.ratings.log({ rating: 4, ratingMax: 5, ratingMin: 1,  conversationId: '123e4567-e89b-12d3-a456-426614174000', });
+    const responsePromise = client.ratings.log({
+      rating: 4,
+      ratingMax: 5,
+      ratingMin: 1,
+      conversationId: '123e4567-e89b-12d3-a456-426614174000',
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +27,7 @@ describe('resource ratings', () => {
 
   // skipped: tests are disabled for the time being
   test('log: required and optional params', async () => {
-    const response = await client.ratings.log({
+    await client.ratings.log({
       rating: 4,
       ratingMax: 5,
       ratingMin: 1,
