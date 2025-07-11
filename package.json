@@ -1,8 +1,8 @@
 {
-  "name": "greenflash-public-api",
+  "name": "greenflash",
   "version": "0.1.0-alpha.3",
   "description": "The official TypeScript library for the Greenflash API",
-  "author": "Greenflash <founders@greenflash.ai>",
+  "author": "Greenflash <support@greenflash.ai>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "type": "commonjs",
@@ -47,8 +47,8 @@
     "typescript": "5.8.3"
   },
   "imports": {
-    "greenflash-public-api": ".",
-    "greenflash-public-api/*": "./src/*"
+    "greenflash": ".",
+    "greenflash/*": "./src/*"
   },
   "exports": {
     ".": {

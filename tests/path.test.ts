@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'greenflash-public-api/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from 'greenflash/internal/utils/path';
 import { inspect } from 'node:util';
 import { runInNewContext } from 'node:vm';
 

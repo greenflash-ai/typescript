@@ -1,10 +1,10 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIPromise } from 'greenflash-public-api/core/api-promise';
+import { APIPromise } from 'greenflash/core/api-promise';
 
 import util from 'node:util';
-import Greenflash from 'greenflash-public-api';
-import { APIUserAbortError } from 'greenflash-public-api';
+import Greenflash from 'greenflash';
+import { APIUserAbortError } from 'greenflash';
 const defaultFetch = fetch;
 
 describe('instantiate client', () => {
@@ -306,13 +306,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['GREENFLASH_BASE_URL'] = ''; // empty
       const client = new Greenflash({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://greenflash.ai/api/v1');
+      expect(client.baseURL).toEqual('https://www.greenflash.ai/api/v1');
     });
 
     test('blank env variable', () => {
       process.env['GREENFLASH_BASE_URL'] = '  '; // blank
       const client = new Greenflash({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://greenflash.ai/api/v1');
+      expect(client.baseURL).toEqual('https://www.greenflash.ai/api/v1');
     });
 
     test('in request options', () => {
@@ -425,14 +425,14 @@ describe('instantiate client', () => {
 
   test('with environment variable arguments', () => {
     // set options via env var
-    process.env['GREENFLASH_PUBLIC_API_API_KEY'] = 'My API Key';
+    process.env['GREENFLASH_API_KEY'] = 'My API Key';
     const client = new Greenflash();
     expect(client.apiKey).toBe('My API Key');
   });
 
   test('with overridden environment variable arguments', () => {
     // set options via env var
-    process.env['GREENFLASH_PUBLIC_API_API_KEY'] = 'another My API Key';
+    process.env['GREENFLASH_API_KEY'] = 'another My API Key';
     const client = new Greenflash({ apiKey: 'My API Key' });
     expect(client.apiKey).toBe('My API Key');
   });

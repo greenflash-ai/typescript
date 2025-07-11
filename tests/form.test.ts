@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'greenflash-public-api/internal/uploads';
-import { toFile } from 'greenflash-public-api/core/uploads';
+import { multipartFormRequestOptions, createForm } from 'greenflash/internal/uploads';
+import { toFile } from 'greenflash/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

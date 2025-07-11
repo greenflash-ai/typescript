@@ -20,7 +20,7 @@ or products provided by Greenflash, please follow the respective company's secur
 
 ### Greenflash Terms and Policies
 
-Please contact founders@greenflash.ai for any questions or concerns regarding the security of our services.
+Please contact support@greenflash.ai for any questions or concerns regarding the security of our services.
 
 ---
 
