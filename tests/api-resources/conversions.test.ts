@@ -32,12 +32,12 @@ describe('resource conversions', () => {
       externalUserId: 'user-123',
       value: '99.99',
       valueType: 'currency',
-      conversationId: 'conv-0001',
+      conversationId: '123e4567-e89b-12d3-a456-426614174000',
       convertedAt: '2025-07-09T09:15:00Z',
       externalConversationId: 'conv-456',
       metadata: { sku: 'bar' },
-      productId: 'prod-789',
-      projectId: 'proj-001',
+      productId: '123e4567-e89b-12d3-a456-426614174000',
+      projectId: '123e4567-e89b-12d3-a456-426614174000',
     });
   });
 });

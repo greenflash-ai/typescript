@@ -15,7 +15,7 @@ export class Ratings extends APIResource {
    *   rating: 4,
    *   ratingMax: 5,
    *   ratingMin: 1,
-   *   conversationId: 'conv-0001',
+   *   conversationId: '123e4567-e89b-12d3-a456-426614174000',
    *   feedback: 'Helpful response!',
    *   messageId: 'msg-001',
    *   ratedAt: '2025-07-09T09:00:00Z',
