@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as MessagesAPI from './messages';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -27,9 +26,16 @@ export class Ratings extends APIResource {
    * });
    * ```
    */
-  log(body: RatingLogParams, options?: RequestOptions): APIPromise<MessagesAPI.GenericSuccess> {
+  log(body: RatingLogParams, options?: RequestOptions): APIPromise<GenericSuccess> {
     return this._client.post('/ratings', { body, ...options });
   }
+}
+
+export interface GenericSuccess {
+  /**
+   * Indicates whether the API call was successful.
+   */
+  success: boolean;
 }
 
 export interface RatingLogParams {
@@ -79,5 +85,5 @@ export interface RatingLogParams {
 }
 
 export declare namespace Ratings {
-  export { type RatingLogParams as RatingLogParams };
+  export { type GenericSuccess as GenericSuccess, type RatingLogParams as RatingLogParams };
 }
