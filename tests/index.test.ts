@@ -312,13 +312,13 @@ describe('instantiate client', () => {
     test('empty env variable', () => {
       process.env['GREENFLASH_PUBLIC_API_BASE_URL'] = ''; // empty
       const client = new GreenflashPublicAPI({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.greenflash.ai/api/v1');
+      expect(client.baseURL).toEqual('https://greenflash.ai/api/v1');
     });
 
     test('blank env variable', () => {
       process.env['GREENFLASH_PUBLIC_API_BASE_URL'] = '  '; // blank
       const client = new GreenflashPublicAPI({ apiKey: 'My API Key' });
-      expect(client.baseURL).toEqual('https://api.greenflash.ai/api/v1');
+      expect(client.baseURL).toEqual('https://greenflash.ai/api/v1');
     });
 
     test('in request options', () => {

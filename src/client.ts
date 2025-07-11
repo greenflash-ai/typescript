@@ -16,10 +16,14 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { ConversionLogParams, ConversionLogResponse, Conversions } from './resources/conversions';
-import { Identify, IdentifyCreateOrUpdateParams, IdentifyCreateOrUpdateResponse } from './resources/identify';
-import { GenericSuccess, MessageCreateParams, MessageCreateResponse, Messages } from './resources/messages';
-import { RatingLogParams, Ratings } from './resources/ratings';
+import { ConversionCreateParams, ConversionCreateResponse, Conversions } from './resources/conversions';
+import {
+  Identify,
+  IdentifyCreateOrUpdateProfileParams,
+  IdentifyCreateOrUpdateProfileResponse,
+} from './resources/identify';
+import { MessageCreateParams, MessageCreateResponse, Messages, SystemPrompt } from './resources/messages';
+import { GenericSuccess, RatingCreateParams, Ratings } from './resources/ratings';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -37,7 +41,7 @@ export interface ClientOptions {
   /**
    * Defaults to process.env['GREENFLASH_PUBLIC_API_API_KEY'].
    */
-  apiKey?: string | null | undefined;
+  apiKey?: string | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -112,7 +116,7 @@ export interface ClientOptions {
  * API Client for interfacing with the Greenflash Public API API.
  */
 export class GreenflashPublicAPI {
-  apiKey: string | null;
+  apiKey: string;
 
   baseURL: string;
   maxRetries: number;
@@ -129,8 +133,8 @@ export class GreenflashPublicAPI {
   /**
    * API Client for interfacing with the Greenflash Public API API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['GREENFLASH_PUBLIC_API_API_KEY'] ?? null]
-   * @param {string} [opts.baseURL=process.env['GREENFLASH_PUBLIC_API_BASE_URL'] ?? https://api.greenflash.ai/api/v1] - Override the default base URL for the API.
+   * @param {string | undefined} [opts.apiKey=process.env['GREENFLASH_PUBLIC_API_API_KEY'] ?? undefined]
+   * @param {string} [opts.baseURL=process.env['GREENFLASH_PUBLIC_API_BASE_URL'] ?? https://greenflash.ai/api/v1] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -140,13 +144,19 @@ export class GreenflashPublicAPI {
    */
   constructor({
     baseURL = readEnv('GREENFLASH_PUBLIC_API_BASE_URL'),
-    apiKey = readEnv('GREENFLASH_PUBLIC_API_API_KEY') ?? null,
+    apiKey = readEnv('GREENFLASH_PUBLIC_API_API_KEY'),
     ...opts
   }: ClientOptions = {}) {
+    if (apiKey === undefined) {
+      throw new Errors.GreenflashPublicAPIError(
+        "The GREENFLASH_PUBLIC_API_API_KEY environment variable is missing or empty; either provide it, or instantiate the GreenflashPublicAPI client with an apiKey option, like new GreenflashPublicAPI({ apiKey: 'My API Key' }).",
+      );
+    }
+
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL: baseURL || `https://api.greenflash.ai/api/v1`,
+      baseURL: baseURL || `https://greenflash.ai/api/v1`,
     };
 
     this.baseURL = options.baseURL!;
@@ -192,7 +202,7 @@ export class GreenflashPublicAPI {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'https://api.greenflash.ai/api/v1';
+    return this.baseURL !== 'https://greenflash.ai/api/v1';
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -200,22 +210,10 @@ export class GreenflashPublicAPI {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    if (this.apiKey && values.get('authorization')) {
-      return;
-    }
-    if (nulls.has('authorization')) {
-      return;
-    }
-
-    throw new Error(
-      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted',
-    );
+    return;
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
-    if (this.apiKey == null) {
-      return undefined;
-    }
     return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
   }
 
@@ -737,22 +735,26 @@ export declare namespace GreenflashPublicAPI {
 
   export {
     Messages as Messages,
-    type GenericSuccess as GenericSuccess,
+    type SystemPrompt as SystemPrompt,
     type MessageCreateResponse as MessageCreateResponse,
     type MessageCreateParams as MessageCreateParams,
   };
 
   export {
     Identify as Identify,
-    type IdentifyCreateOrUpdateResponse as IdentifyCreateOrUpdateResponse,
-    type IdentifyCreateOrUpdateParams as IdentifyCreateOrUpdateParams,
+    type IdentifyCreateOrUpdateProfileResponse as IdentifyCreateOrUpdateProfileResponse,
+    type IdentifyCreateOrUpdateProfileParams as IdentifyCreateOrUpdateProfileParams,
   };
 
-  export { Ratings as Ratings, type RatingLogParams as RatingLogParams };
+  export {
+    Ratings as Ratings,
+    type GenericSuccess as GenericSuccess,
+    type RatingCreateParams as RatingCreateParams,
+  };
 
   export {
     Conversions as Conversions,
-    type ConversionLogResponse as ConversionLogResponse,
-    type ConversionLogParams as ConversionLogParams,
+    type ConversionCreateResponse as ConversionCreateResponse,
+    type ConversionCreateParams as ConversionCreateParams,
   };
 }
