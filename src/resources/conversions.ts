@@ -1,7 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as MessagesAPI from './messages';
+import * as RatingsAPI from './ratings';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -36,7 +36,7 @@ export class Conversions extends APIResource {
   }
 }
 
-export interface ConversionLogResponse extends MessagesAPI.GenericSuccess {
+export interface ConversionLogResponse extends RatingsAPI.GenericSuccess {
   /**
    * The unique identifier for the conversion record that was created.
    */

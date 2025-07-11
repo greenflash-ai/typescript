@@ -2,7 +2,7 @@
 
 Types:
 
-- <code><a href="./src/resources/messages.ts">GenericSuccess</a></code>
+- <code><a href="./src/resources/messages.ts">SystemPrompt</a></code>
 - <code><a href="./src/resources/messages.ts">MessageCreateResponse</a></code>
 
 Methods:
@@ -20,6 +20,10 @@ Methods:
 - <code title="post /identify">client.identify.<a href="./src/resources/identify.ts">createOrUpdate</a>({ ...params }) -> IdentifyCreateOrUpdateResponse</code>
 
 # Ratings
+
+Types:
+
+- <code><a href="./src/resources/ratings.ts">GenericSuccess</a></code>
 
 Methods:
 

@@ -4,8 +4,8 @@ export { Conversions, type ConversionLogResponse, type ConversionLogParams } fro
 export { Identify, type IdentifyCreateOrUpdateResponse, type IdentifyCreateOrUpdateParams } from './identify';
 export {
   Messages,
-  type GenericSuccess,
+  type SystemPrompt,
   type MessageCreateResponse,
   type MessageCreateParams,
 } from './messages';
-export { Ratings, type RatingLogParams } from './ratings';
+export { Ratings, type GenericSuccess, type RatingLogParams } from './ratings';
