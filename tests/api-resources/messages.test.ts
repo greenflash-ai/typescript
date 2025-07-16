@@ -8,8 +8,7 @@ const client = new Greenflash({
 });
 
 describe('resource messages', () => {
-  // skipped: tests are disabled for the time being
-  test.skip('create: only required params', async () => {
+  test('create: only required params', async () => {
     const responsePromise = client.messages.create({
       externalUserId: 'user-123',
       turns: [
@@ -30,8 +29,7 @@ describe('resource messages', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
-  test.skip('create: required and optional params', async () => {
+  test('create: required and optional params', async () => {
     const response = await client.messages.create({
       externalUserId: 'user-123',
       turns: [
@@ -42,7 +40,7 @@ describe('resource messages', () => {
               role: 'user',
               contentType: 'text',
               context: 'context',
-              createdAt: '2019-12-27T18:11:19.117Z',
+              createdAt: 'createdAt',
               messageIndex: 0,
               metadata: { foo: 'bar' },
               tokens: 1,
@@ -52,13 +50,13 @@ describe('resource messages', () => {
               role: 'assistant',
               contentType: 'text',
               context: 'context',
-              createdAt: '2019-12-27T18:11:19.117Z',
+              createdAt: 'createdAt',
               messageIndex: 1,
               metadata: { foo: 'bar' },
               tokens: 2,
             },
           ],
-          createdAt: '2019-12-27T18:11:19.117Z',
+          createdAt: 'createdAt',
           metadata: { foo: 'bar' },
           modelOverride: 'modelOverride',
           systemPromptOverride: 'You are a helpful assistant.',
@@ -69,13 +67,13 @@ describe('resource messages', () => {
       externalConversationId: 'conv-456',
       metadata: { campaign: 'bar' },
       model: 'gpt-greenflash-1',
-      productId: '123e4567-e89b-12d3-a456-426614174000',
-      projectId: '123e4567-e89b-12d3-a456-426614174000',
+      productId: '123e4567-e89b-12d3-a456-426614174001',
+      projectId: '123e4567-e89b-12d3-a456-426614174002',
       systemPrompt: {
         components: [
           {
             content: 'You are a helpful assistant.',
-            componentId: 'componentId',
+            componentId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
             externalComponentId: 'externalComponentId',
             isDynamic: true,
             name: 'name',
@@ -86,9 +84,10 @@ describe('resource messages', () => {
           },
         ],
         externalTemplateId: 'externalTemplateId',
-        templateId: 'tmpl-001',
+        tags: ['string'],
+        templateId: '123e4567-e89b-12d3-a456-426614174004',
       },
-      versionId: '123e4567-e89b-12d3-a456-426614174000',
+      versionId: '123e4567-e89b-12d3-a456-426614174003',
     });
   });
 });
