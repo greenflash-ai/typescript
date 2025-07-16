@@ -8,7 +8,6 @@ const client = new Greenflash({
 });
 
 describe('resource conversions', () => {
-  // skipped: tests are disabled for the time being
   test('log: only required params', async () => {
     const responsePromise = client.conversions.log({
       action: 'purchase',
@@ -25,7 +24,6 @@ describe('resource conversions', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  // skipped: tests are disabled for the time being
   test('log: required and optional params', async () => {
     const response = await client.conversions.log({
       action: 'purchase',
@@ -36,8 +34,8 @@ describe('resource conversions', () => {
       convertedAt: '2025-07-09T09:15:00Z',
       externalConversationId: 'conv-456',
       metadata: { sku: 'bar' },
-      productId: '123e4567-e89b-12d3-a456-426614174000',
-      projectId: '123e4567-e89b-12d3-a456-426614174000',
+      productId: '123e4567-e89b-12d3-a456-426614174001',
+      projectId: '123e4567-e89b-12d3-a456-426614174002',
     });
   });
 });

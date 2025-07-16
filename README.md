@@ -11,8 +11,11 @@ It is generated with [Stainless](https://www.stainless.com/).
 ## Installation
 
 ```sh
-npm install greenflash
+npm install git+ssh://git@github.com:greenflash-ai/typescript.git
 ```
+
+> [!NOTE]
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install greenflash`
 
 ## Usage
 
@@ -26,14 +29,14 @@ const client = new Greenflash({
   apiKey: process.env['GREENFLASH_API_KEY'], // This is the default and can be omitted
 });
 
-const message = await client.messages.create({
+const createResponse = await client.messages.create({
   externalUserId: 'externalUserId',
   turns: [{ messages: [{ content: 'content', role: 'user' }] }],
   externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
 });
 
-console.log(message.conversationId);
+console.log(createResponse.conversationId);
 ```
 
 ### Request & Response types
@@ -54,7 +57,7 @@ const params: Greenflash.MessageCreateParams = {
   externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
 };
-const message: Greenflash.MessageCreateResponse = await client.messages.create(params);
+const createResponse: Greenflash.CreateResponse = await client.messages.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -67,7 +70,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const message = await client.messages
+const createResponse = await client.messages
   .create({
     externalUserId: 'externalUserId',
     turns: [{ messages: [{ content: 'content', role: 'user' }] }],
@@ -165,7 +168,7 @@ const response = await client.messages
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: message, response: raw } = await client.messages
+const { data: createResponse, response: raw } = await client.messages
   .create({
     externalUserId: 'externalUserId',
     turns: [{ messages: [{ content: 'content', role: 'user' }] }],
@@ -174,7 +177,7 @@ const { data: message, response: raw } = await client.messages
   })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(message.conversationId);
+console.log(createResponse.conversationId);
 ```
 
 ### Logging
