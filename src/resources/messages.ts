@@ -104,7 +104,8 @@ export interface CreateParams {
   projectId?: string;
 
   /**
-   * System prompt as a simple string that will be converted to a template object.
+   * System prompt for the conversation. Can be a simple string or a template object
+   * with components.
    */
   systemPrompt?: SystemPrompt;
 
@@ -203,7 +204,7 @@ export interface MessageItem {
   /**
    * Additional context for the message.
    */
-  context?: string | null;
+  context?: string;
 
   /**
    * When this message was created.
@@ -228,7 +229,8 @@ export interface MessageItem {
 }
 
 /**
- * System prompt as a simple string that will be converted to a template object.
+ * System prompt for the conversation. Can be a simple string or a template object
+ * with components.
  */
 export type SystemPrompt = string | SystemPrompt.SystemPromptTemplate;
 
@@ -332,7 +334,8 @@ export interface TurnItem {
   modelOverride?: string;
 
   /**
-   * System prompt as a simple string that will be converted to a template object.
+   * System prompt for the conversation. Can be a simple string or a template object
+   * with components.
    */
   systemPromptOverride?: SystemPrompt;
 
@@ -391,7 +394,8 @@ export interface MessageCreateParams {
   projectId?: string;
 
   /**
-   * System prompt as a simple string that will be converted to a template object.
+   * System prompt for the conversation. Can be a simple string or a template object
+   * with components.
    */
   systemPrompt?: SystemPrompt;
 
