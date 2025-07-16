@@ -16,10 +16,29 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { ConversionLogParams, ConversionLogResponse, Conversions } from './resources/conversions';
-import { Identify, IdentifyCreateOrUpdateParams, IdentifyCreateOrUpdateResponse } from './resources/identify';
-import { MessageCreateParams, MessageCreateResponse, Messages, SystemPrompt } from './resources/messages';
-import { GenericSuccess, RatingLogParams, Ratings } from './resources/ratings';
+import {
+  ConversionLogParams,
+  Conversions,
+  LogConversionParams,
+  LogConversionResponse,
+} from './resources/conversions';
+import {
+  CreateOrUpdateParams,
+  CreateOrUpdateResponse,
+  Identify,
+  IdentifyCreateOrUpdateParams,
+  Participant,
+} from './resources/identify';
+import {
+  CreateParams,
+  CreateResponse,
+  MessageCreateParams,
+  MessageItem,
+  Messages,
+  SystemPrompt,
+  TurnItem,
+} from './resources/messages';
+import { LogRatingParams, LogRatingResponse, RatingLogParams, Ratings } from './resources/ratings';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -737,26 +756,33 @@ export declare namespace Greenflash {
 
   export {
     Messages as Messages,
+    type CreateParams as CreateParams,
+    type CreateResponse as CreateResponse,
+    type MessageItem as MessageItem,
     type SystemPrompt as SystemPrompt,
-    type MessageCreateResponse as MessageCreateResponse,
+    type TurnItem as TurnItem,
     type MessageCreateParams as MessageCreateParams,
   };
 
   export {
     Identify as Identify,
-    type IdentifyCreateOrUpdateResponse as IdentifyCreateOrUpdateResponse,
+    type CreateOrUpdateParams as CreateOrUpdateParams,
+    type CreateOrUpdateResponse as CreateOrUpdateResponse,
+    type Participant as Participant,
     type IdentifyCreateOrUpdateParams as IdentifyCreateOrUpdateParams,
   };
 
   export {
     Ratings as Ratings,
-    type GenericSuccess as GenericSuccess,
+    type LogRatingParams as LogRatingParams,
+    type LogRatingResponse as LogRatingResponse,
     type RatingLogParams as RatingLogParams,
   };
 
   export {
     Conversions as Conversions,
-    type ConversionLogResponse as ConversionLogResponse,
+    type LogConversionParams as LogConversionParams,
+    type LogConversionResponse as LogConversionResponse,
     type ConversionLogParams as ConversionLogParams,
   };
 }

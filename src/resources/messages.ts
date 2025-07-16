@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as MessagesAPI from './messages';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -22,7 +21,7 @@ export class Messages extends APIResource {
    *
    * @example
    * ```ts
-   * const message = await client.messages.create({
+   * const createResponse = await client.messages.create({
    *   externalUserId: 'user-123',
    *   turns: [
    *     {
@@ -37,136 +36,27 @@ export class Messages extends APIResource {
    *   externalConversationId: 'conv-456',
    *   metadata: { campaign: 'summer-sale' },
    *   model: 'gpt-greenflash-1',
-   *   productId: '123e4567-e89b-12d3-a456-426614174000',
-   *   projectId: '123e4567-e89b-12d3-a456-426614174000',
+   *   productId: '123e4567-e89b-12d3-a456-426614174001',
+   *   projectId: '123e4567-e89b-12d3-a456-426614174002',
    *   systemPrompt: {
-   *     templateId: 'tmpl-001',
+   *     templateId: '123e4567-e89b-12d3-a456-426614174004',
    *     components: [
    *       { ... },
    *     ],
    *   },
-   *   versionId: '123e4567-e89b-12d3-a456-426614174000',
+   *   versionId: '123e4567-e89b-12d3-a456-426614174003',
    * });
    * ```
    */
-  create(body: MessageCreateParams, options?: RequestOptions): APIPromise<MessageCreateResponse> {
+  create(body: MessageCreateParams, options?: RequestOptions): APIPromise<CreateResponse> {
     return this._client.post('/messages', { body, ...options });
   }
 }
 
-export interface SystemPrompt {
-  /**
-   * Array of component objects.
-   */
-  components?: Array<SystemPrompt.Component>;
-
-  /**
-   * Your own external identifier for the template.
-   */
-  externalTemplateId?: string;
-
-  /**
-   * The ID of the template.
-   */
-  templateId?: string;
-}
-
-export namespace SystemPrompt {
-  export interface Component {
-    /**
-     * The content of the component.
-     */
-    content: string;
-
-    /**
-     * The ID of the component.
-     */
-    componentId?: string;
-
-    /**
-     * Your own external identifier for the component.
-     */
-    externalComponentId?: string;
-
-    /**
-     * Whether the component is dynamic.
-     */
-    isDynamic?: boolean;
-
-    /**
-     * Name of the component.
-     */
-    name?: string;
-
-    /**
-     * Source of the component. One of: 'customer', 'participant', 'greenflash',
-     * 'agent'. Defaults to 'customer'.
-     */
-    source?: 'customer' | 'participant' | 'greenflash' | 'agent';
-
-    /**
-     * Array of string tags associated with the component.
-     */
-    tags?: Array<string>;
-
-    /**
-     * Type of the component. One of: 'system', 'endUser', 'userModified', 'rag',
-     * 'agent'. Defaults to 'system'.
-     */
-    type?: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
-
-    /**
-     * Version of the component.
-     */
-    version?: number;
-  }
-}
-
-export interface MessageCreateResponse {
-  /**
-   * The ID of the conversation that was created or updated.
-   */
-  conversationId: string;
-
-  /**
-   * Indicates whether the API call was successful.
-   */
-  success: boolean;
-
-  /**
-   * The component IDs used internally to track the system prompt components.
-   */
-  systemPromptComponentIds?: Array<string>;
-
-  /**
-   * The template ID used internally to track the system prompt template.
-   */
-  systemPromptTemplateId?: string;
-
-  turns?: Array<MessageCreateResponse.Turn>;
-}
-
-export namespace MessageCreateResponse {
-  export interface Turn {
-    messages: Array<Turn.Message>;
-
-    turnId: string;
-
-    turnIndex: number;
-  }
-
-  export namespace Turn {
-    export interface Message {
-      messageId: string;
-
-      messageIndex: number;
-
-      role: 'user' | 'assistant' | 'system';
-    }
-  }
-}
-
-export interface MessageCreateParams {
+/**
+ * Request payload for logging messages and conversations.
+ */
+export interface CreateParams {
   /**
    * The external user ID that will be mapped to a participant in our system.
    */
@@ -176,7 +66,7 @@ export interface MessageCreateParams {
    * An array of conversation turns, each containing messages exchanged during that
    * turn.
    */
-  turns: Array<MessageCreateParams.Turn>;
+  turns: Array<TurnItem>;
 
   /**
    * The conversation ID. When provided, this will update an existing conversation
@@ -217,7 +107,7 @@ export interface MessageCreateParams {
    * System prompt for the conversation. Can be a simple string or a template object
    * with components.
    */
-  systemPrompt?: string | SystemPrompt;
+  systemPrompt?: SystemPrompt;
 
   /**
    * The ID of the product version.
@@ -225,92 +115,303 @@ export interface MessageCreateParams {
   versionId?: string;
 }
 
-export namespace MessageCreateParams {
+/**
+ * Success response for message logging operations.
+ */
+export interface CreateResponse {
+  /**
+   * The ID of the conversation that was created or updated.
+   */
+  conversationId: string;
+
+  /**
+   * Indicates whether the API call was successful.
+   */
+  success: boolean;
+
+  /**
+   * The component IDs used internally to track the system prompt components.
+   */
+  systemPromptComponentIds: Array<string>;
+
+  /**
+   * The template ID used internally to track the system prompt template.
+   */
+  systemPromptTemplateId: string;
+
+  /**
+   * The turns that were processed, including their internal IDs.
+   */
+  turns: Array<CreateResponse.Turn>;
+}
+
+export namespace CreateResponse {
   export interface Turn {
     /**
-     * The messages exchanged during this turn.
+     * The messages that were processed during this turn.
      */
     messages: Array<Turn.Message>;
 
     /**
-     * When this turn was created.
+     * The internal ID of the turn.
      */
-    createdAt?: string;
+    turnId: string;
 
     /**
-     * Additional metadata for this turn.
+     * The index of the turn in the conversation.
      */
-    metadata?: { [key: string]: unknown };
-
-    /**
-     * Override the conversation-level model for this specific turn.
-     */
-    modelOverride?: string;
-
-    /**
-     * Override the conversation-level system prompt for this specific turn.
-     */
-    systemPromptOverride?: string | MessagesAPI.SystemPrompt;
-
-    /**
-     * The index of the turn in the conversation sequence. Inferred based on the
-     * location in the array and previous records, but can be overridden here.
-     */
-    turnIndex?: number;
+    turnIndex: number;
   }
 
   export namespace Turn {
     export interface Message {
       /**
-       * The content of the message.
+       * The internal ID of the message.
        */
-      content: string;
+      messageId: string;
 
       /**
-       * The role of the message sender. Must be one of: 'user', 'assistant', or
-       * 'system'.
+       * The index of the message within the turn.
+       */
+      messageIndex: number;
+
+      /**
+       * The role of the message sender.
        */
       role: 'user' | 'assistant' | 'system';
-
-      /**
-       * The type of content. One of: 'text', 'image', 'audio', or 'json'. Defaults to
-       * 'text'.
-       */
-      contentType?: 'text' | 'image' | 'audio' | 'json';
-
-      /**
-       * Additional context for the message.
-       */
-      context?: string;
-
-      /**
-       * When this message was created.
-       */
-      createdAt?: string;
-
-      /**
-       * The index of the message within the turn. Inferred based on the location in the
-       * array and previous records, but can be overridden here.
-       */
-      messageIndex?: number;
-
-      /**
-       * Additional metadata for the message.
-       */
-      metadata?: { [key: string]: unknown };
-
-      /**
-       * The number of tokens in the message.
-       */
-      tokens?: number;
     }
   }
 }
 
+export interface MessageItem {
+  /**
+   * The content of the message.
+   */
+  content: string;
+
+  /**
+   * The role of the message sender. Must be one of: 'user', 'assistant', or
+   * 'system'.
+   */
+  role: 'user' | 'assistant' | 'system';
+
+  /**
+   * The type of content. One of: 'text', 'image', 'audio', or 'json'. Defaults to
+   * 'text'.
+   */
+  contentType?: 'text' | 'image' | 'audio' | 'json';
+
+  /**
+   * Additional context for the message.
+   */
+  context?: string | null;
+
+  /**
+   * When this message was created.
+   */
+  createdAt?: string;
+
+  /**
+   * The index of the message within the turn. Inferred based on the location in the
+   * array and previous records, but can be overridden here.
+   */
+  messageIndex?: number;
+
+  /**
+   * Additional metadata for the message.
+   */
+  metadata?: { [key: string]: unknown };
+
+  /**
+   * The number of tokens in the message.
+   */
+  tokens?: number;
+}
+
+/**
+ * System prompt for the conversation. Can be a simple string or a template object
+ * with components.
+ */
+export type SystemPrompt = string | SystemPrompt.SystemPromptTemplate;
+
+export namespace SystemPrompt {
+  /**
+   * System prompt as a template object with components.
+   */
+  export interface SystemPromptTemplate {
+    /**
+     * Array of component objects.
+     */
+    components: Array<SystemPromptTemplate.Component>;
+
+    /**
+     * Your own external identifier for the template.
+     */
+    externalTemplateId?: string;
+
+    /**
+     * Array of string tags associated with the template.
+     */
+    tags?: Array<string>;
+
+    /**
+     * The ID of the template.
+     */
+    templateId?: string;
+  }
+
+  export namespace SystemPromptTemplate {
+    export interface Component {
+      /**
+       * The content of the component.
+       */
+      content: string;
+
+      /**
+       * The ID of the component.
+       */
+      componentId?: string;
+
+      /**
+       * Your own external identifier for the component.
+       */
+      externalComponentId?: string;
+
+      /**
+       * Whether the component is dynamic.
+       */
+      isDynamic?: boolean;
+
+      /**
+       * Name of the component.
+       */
+      name?: string;
+
+      /**
+       * Source of the component. One of: 'customer', 'participant', 'greenflash',
+       * 'agent'. Defaults to 'customer'.
+       */
+      source?: 'customer' | 'participant' | 'greenflash' | 'agent';
+
+      /**
+       * Array of string tags associated with the component.
+       */
+      tags?: Array<string>;
+
+      /**
+       * Type of the component. One of: 'system', 'endUser', 'userModified', 'rag',
+       * 'agent'. Defaults to 'system'.
+       */
+      type?: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
+
+      /**
+       * Version of the component.
+       */
+      version?: number;
+    }
+  }
+}
+
+export interface TurnItem {
+  /**
+   * The messages exchanged during this turn.
+   */
+  messages: Array<MessageItem>;
+
+  /**
+   * When this turn was created.
+   */
+  createdAt?: string;
+
+  /**
+   * Additional metadata for this turn.
+   */
+  metadata?: { [key: string]: unknown };
+
+  /**
+   * Override the conversation-level model for this specific turn.
+   */
+  modelOverride?: string;
+
+  /**
+   * System prompt for the conversation. Can be a simple string or a template object
+   * with components.
+   */
+  systemPromptOverride?: SystemPrompt;
+
+  /**
+   * The index of the turn in the conversation sequence. Inferred based on the
+   * location in the array and previous records, but can be overridden here.
+   */
+  turnIndex?: number;
+}
+
+export interface MessageCreateParams {
+  /**
+   * The external user ID that will be mapped to a participant in our system.
+   */
+  externalUserId: string;
+
+  /**
+   * An array of conversation turns, each containing messages exchanged during that
+   * turn.
+   */
+  turns: Array<TurnItem>;
+
+  /**
+   * The conversation ID. When provided, this will update an existing conversation
+   * instead of creating a new one. Either conversationId, externalConversationId,
+   * productId, or projectId must be provided.
+   */
+  conversationId?: string;
+
+  /**
+   * Your own external identifier for the conversation. Either conversationId,
+   * externalConversationId, productId, or projectId must be provided.
+   */
+  externalConversationId?: string;
+
+  /**
+   * Additional metadata for the conversation.
+   */
+  metadata?: { [key: string]: unknown };
+
+  /**
+   * The AI model used for the conversation.
+   */
+  model?: string;
+
+  /**
+   * The ID of the product this conversation belongs to. Either conversationId,
+   * externalConversationId, productId, or projectId must be provided.
+   */
+  productId?: string;
+
+  /**
+   * The ID of the project this conversation belongs to. Either conversationId,
+   * externalConversationId, productId, or projectId must be provided.
+   */
+  projectId?: string;
+
+  /**
+   * System prompt for the conversation. Can be a simple string or a template object
+   * with components.
+   */
+  systemPrompt?: SystemPrompt;
+
+  /**
+   * The ID of the product version.
+   */
+  versionId?: string;
+}
+
 export declare namespace Messages {
   export {
+    type CreateParams as CreateParams,
+    type CreateResponse as CreateResponse,
+    type MessageItem as MessageItem,
     type SystemPrompt as SystemPrompt,
-    type MessageCreateResponse as MessageCreateResponse,
+    type TurnItem as TurnItem,
     type MessageCreateParams as MessageCreateParams,
   };
 }

@@ -1,11 +1,25 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Conversions, type ConversionLogResponse, type ConversionLogParams } from './conversions';
-export { Identify, type IdentifyCreateOrUpdateResponse, type IdentifyCreateOrUpdateParams } from './identify';
+export {
+  Conversions,
+  type LogConversionParams,
+  type LogConversionResponse,
+  type ConversionLogParams,
+} from './conversions';
+export {
+  Identify,
+  type CreateOrUpdateParams,
+  type CreateOrUpdateResponse,
+  type Participant,
+  type IdentifyCreateOrUpdateParams,
+} from './identify';
 export {
   Messages,
+  type CreateParams,
+  type CreateResponse,
+  type MessageItem,
   type SystemPrompt,
-  type MessageCreateResponse,
+  type TurnItem,
   type MessageCreateParams,
 } from './messages';
-export { Ratings, type GenericSuccess, type RatingLogParams } from './ratings';
+export { Ratings, type LogRatingParams, type LogRatingResponse, type RatingLogParams } from './ratings';
