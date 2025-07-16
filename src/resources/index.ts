@@ -1,6 +1,11 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Conversions, type LogParams, type LogResponse, type ConversionLogParams } from './conversions';
+export {
+  Conversions,
+  type LogConversionParams,
+  type LogConversionResponse,
+  type ConversionLogParams,
+} from './conversions';
 export {
   Identify,
   type CreateOrUpdateParams,
@@ -17,4 +22,4 @@ export {
   type TurnItem,
   type MessageCreateParams,
 } from './messages';
-export { Ratings, type LogParams, type LogResponse, type RatingLogParams } from './ratings';
+export { Ratings, type LogRatingParams, type LogRatingResponse, type RatingLogParams } from './ratings';

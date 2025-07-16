@@ -16,7 +16,7 @@ export class Conversions extends APIResource {
    *
    * @example
    * ```ts
-   * const logResponse = await client.conversions.log({
+   * const logConversionResponse = await client.conversions.log({
    *   action: 'purchase',
    *   externalUserId: 'user-123',
    *   value: '99.99',
@@ -30,7 +30,7 @@ export class Conversions extends APIResource {
    * });
    * ```
    */
-  log(body: ConversionLogParams, options?: RequestOptions): APIPromise<LogResponse> {
+  log(body: ConversionLogParams, options?: RequestOptions): APIPromise<LogConversionResponse> {
     return this._client.post('/conversions', { body, ...options });
   }
 }
@@ -38,7 +38,7 @@ export class Conversions extends APIResource {
 /**
  * Request payload for logging conversions.
  */
-export interface LogParams {
+export interface LogConversionParams {
   /**
    * The action or event name that represents the conversion (e.g., "purchase",
    * "signup", "upgrade").
@@ -95,7 +95,7 @@ export interface LogParams {
 /**
  * Success response for conversion logging operations.
  */
-export interface LogResponse {
+export interface LogConversionResponse {
   /**
    * The unique identifier for the conversion record that was created.
    */
@@ -163,8 +163,8 @@ export interface ConversionLogParams {
 
 export declare namespace Conversions {
   export {
-    type LogParams as LogParams,
-    type LogResponse as LogResponse,
+    type LogConversionParams as LogConversionParams,
+    type LogConversionResponse as LogConversionResponse,
     type ConversionLogParams as ConversionLogParams,
   };
 }
