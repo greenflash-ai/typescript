@@ -28,20 +28,20 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/ratings.ts">LogParams</a></code>
-- <code><a href="./src/resources/ratings.ts">LogResponse</a></code>
+- <code><a href="./src/resources/ratings.ts">LogRatingParams</a></code>
+- <code><a href="./src/resources/ratings.ts">LogRatingResponse</a></code>
 
 Methods:
 
-- <code title="post /ratings">client.ratings.<a href="./src/resources/ratings.ts">log</a>({ ...params }) -> LogResponse</code>
+- <code title="post /ratings">client.ratings.<a href="./src/resources/ratings.ts">log</a>({ ...params }) -> LogRatingResponse</code>
 
 # Conversions
 
 Types:
 
-- <code><a href="./src/resources/conversions.ts">LogParams</a></code>
-- <code><a href="./src/resources/conversions.ts">LogResponse</a></code>
+- <code><a href="./src/resources/conversions.ts">LogConversionParams</a></code>
+- <code><a href="./src/resources/conversions.ts">LogConversionResponse</a></code>
 
 Methods:
 
-- <code title="post /conversions">client.conversions.<a href="./src/resources/conversions.ts">log</a>({ ...params }) -> LogResponse</code>
+- <code title="post /conversions">client.conversions.<a href="./src/resources/conversions.ts">log</a>({ ...params }) -> LogConversionResponse</code>

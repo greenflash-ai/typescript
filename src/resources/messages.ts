@@ -232,17 +232,17 @@ export interface MessageItem {
  * System prompt for the conversation. Can be a simple string or a template object
  * with components.
  */
-export type SystemPrompt = string | SystemPrompt.UnionMember1;
+export type SystemPrompt = string | SystemPrompt.SystemPromptTemplate;
 
 export namespace SystemPrompt {
   /**
    * System prompt as a template object with components.
    */
-  export interface UnionMember1 {
+  export interface SystemPromptTemplate {
     /**
      * Array of component objects.
      */
-    components: Array<UnionMember1.Component>;
+    components: Array<SystemPromptTemplate.Component>;
 
     /**
      * Your own external identifier for the template.
@@ -260,7 +260,7 @@ export namespace SystemPrompt {
     templateId?: string;
   }
 
-  export namespace UnionMember1 {
+  export namespace SystemPromptTemplate {
     export interface Component {
       /**
        * The content of the component.

@@ -16,7 +16,12 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import { ConversionLogParams, Conversions, LogParams, LogResponse } from './resources/conversions';
+import {
+  ConversionLogParams,
+  Conversions,
+  LogConversionParams,
+  LogConversionResponse,
+} from './resources/conversions';
 import {
   CreateOrUpdateParams,
   CreateOrUpdateResponse,
@@ -33,12 +38,7 @@ import {
   SystemPrompt,
   TurnItem,
 } from './resources/messages';
-import {
-  LogParams as RatingsAPILogParams,
-  LogResponse as RatingsAPILogResponse,
-  RatingLogParams,
-  Ratings,
-} from './resources/ratings';
+import { LogRatingParams, LogRatingResponse, RatingLogParams, Ratings } from './resources/ratings';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -774,15 +774,15 @@ export declare namespace Greenflash {
 
   export {
     Ratings as Ratings,
-    type RatingsAPILogParams as LogParams,
-    type RatingsAPILogResponse as LogResponse,
+    type LogRatingParams as LogRatingParams,
+    type LogRatingResponse as LogRatingResponse,
     type RatingLogParams as RatingLogParams,
   };
 
   export {
     Conversions as Conversions,
-    type LogParams as LogParams,
-    type LogResponse as LogResponse,
+    type LogConversionParams as LogConversionParams,
+    type LogConversionResponse as LogConversionResponse,
     type ConversionLogParams as ConversionLogParams,
   };
 }

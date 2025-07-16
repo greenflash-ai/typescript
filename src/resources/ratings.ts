@@ -15,7 +15,7 @@ export class Ratings extends APIResource {
    *
    * @example
    * ```ts
-   * const logResponse = await client.ratings.log({
+   * const logRatingResponse = await client.ratings.log({
    *   rating: 4,
    *   ratingMax: 5,
    *   ratingMin: 1,
@@ -26,7 +26,7 @@ export class Ratings extends APIResource {
    * });
    * ```
    */
-  log(body: RatingLogParams, options?: RequestOptions): APIPromise<LogResponse> {
+  log(body: RatingLogParams, options?: RequestOptions): APIPromise<LogRatingResponse> {
     return this._client.post('/ratings', { body, ...options });
   }
 }
@@ -34,7 +34,7 @@ export class Ratings extends APIResource {
 /**
  * Request payload for logging ratings.
  */
-export interface LogParams {
+export interface LogRatingParams {
   /**
    * The rating value. Must be between ratingMin and ratingMax (inclusive).
    */
@@ -83,7 +83,7 @@ export interface LogParams {
 /**
  * Success response for rating logging operations.
  */
-export interface LogResponse {
+export interface LogRatingResponse {
   /**
    * Indicates whether the API call was successful.
    */
@@ -138,8 +138,8 @@ export interface RatingLogParams {
 
 export declare namespace Ratings {
   export {
-    type LogParams as LogParams,
-    type LogResponse as LogResponse,
+    type LogRatingParams as LogRatingParams,
+    type LogRatingResponse as LogRatingResponse,
     type RatingLogParams as RatingLogParams,
   };
 }
