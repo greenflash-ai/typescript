@@ -19,8 +19,6 @@ describe('resource messages', () => {
           ],
         },
       ],
-      productId: '123e4567-e89b-12d3-a456-426614174000',
-      projectId: '123e4567-e89b-12d3-a456-426614174000',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
