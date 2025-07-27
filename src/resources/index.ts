@@ -19,7 +19,6 @@ export {
   type CreateResponse,
   type MessageItem,
   type SystemPrompt,
-  type TurnItem,
   type MessageCreateParams,
 } from './messages';
 export { Ratings, type LogRatingParams, type LogRatingResponse, type RatingLogParams } from './ratings';
