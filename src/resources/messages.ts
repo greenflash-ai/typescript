@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as MessagesAPI from './messages';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -66,7 +67,7 @@ export interface CreateParams {
    * An array of conversation turns, each containing messages exchanged during that
    * turn.
    */
-  turns: Array<TurnItem>;
+  turns: Array<CreateParams.Turn>;
 
   /**
    * The conversation ID. When provided, this will update an existing conversation
@@ -113,6 +114,42 @@ export interface CreateParams {
    * The ID of the product version.
    */
   versionId?: string;
+}
+
+export namespace CreateParams {
+  export interface Turn {
+    /**
+     * The messages exchanged during this turn.
+     */
+    messages: Array<MessagesAPI.MessageItem>;
+
+    /**
+     * When this turn was created.
+     */
+    createdAt?: string;
+
+    /**
+     * Additional metadata for this turn.
+     */
+    metadata?: { [key: string]: unknown };
+
+    /**
+     * Override the conversation-level model for this specific turn.
+     */
+    modelOverride?: string;
+
+    /**
+     * System prompt for the conversation. Can be a simple string or a template object
+     * with components.
+     */
+    systemPromptOverride?: MessagesAPI.SystemPrompt;
+
+    /**
+     * The index of the turn in the conversation sequence. Inferred based on the
+     * location in the array and previous records, but can be overridden here.
+     */
+    turnIndex?: number;
+  }
 }
 
 /**
@@ -312,40 +349,6 @@ export namespace SystemPrompt {
   }
 }
 
-export interface TurnItem {
-  /**
-   * The messages exchanged during this turn.
-   */
-  messages: Array<MessageItem>;
-
-  /**
-   * When this turn was created.
-   */
-  createdAt?: string;
-
-  /**
-   * Additional metadata for this turn.
-   */
-  metadata?: { [key: string]: unknown };
-
-  /**
-   * Override the conversation-level model for this specific turn.
-   */
-  modelOverride?: string;
-
-  /**
-   * System prompt for the conversation. Can be a simple string or a template object
-   * with components.
-   */
-  systemPromptOverride?: SystemPrompt;
-
-  /**
-   * The index of the turn in the conversation sequence. Inferred based on the
-   * location in the array and previous records, but can be overridden here.
-   */
-  turnIndex?: number;
-}
-
 export interface MessageCreateParams {
   /**
    * The external user ID that will be mapped to a participant in our system.
@@ -356,7 +359,7 @@ export interface MessageCreateParams {
    * An array of conversation turns, each containing messages exchanged during that
    * turn.
    */
-  turns: Array<TurnItem>;
+  turns: Array<MessageCreateParams.Turn>;
 
   /**
    * The conversation ID. When provided, this will update an existing conversation
@@ -405,13 +408,48 @@ export interface MessageCreateParams {
   versionId?: string;
 }
 
+export namespace MessageCreateParams {
+  export interface Turn {
+    /**
+     * The messages exchanged during this turn.
+     */
+    messages: Array<MessagesAPI.MessageItem>;
+
+    /**
+     * When this turn was created.
+     */
+    createdAt?: string;
+
+    /**
+     * Additional metadata for this turn.
+     */
+    metadata?: { [key: string]: unknown };
+
+    /**
+     * Override the conversation-level model for this specific turn.
+     */
+    modelOverride?: string;
+
+    /**
+     * System prompt for the conversation. Can be a simple string or a template object
+     * with components.
+     */
+    systemPromptOverride?: MessagesAPI.SystemPrompt;
+
+    /**
+     * The index of the turn in the conversation sequence. Inferred based on the
+     * location in the array and previous records, but can be overridden here.
+     */
+    turnIndex?: number;
+  }
+}
+
 export declare namespace Messages {
   export {
     type CreateParams as CreateParams,
     type CreateResponse as CreateResponse,
     type MessageItem as MessageItem,
     type SystemPrompt as SystemPrompt,
-    type TurnItem as TurnItem,
     type MessageCreateParams as MessageCreateParams,
   };
 }

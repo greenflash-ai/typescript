@@ -6,7 +6,6 @@ Types:
 - <code><a href="./src/resources/messages.ts">CreateResponse</a></code>
 - <code><a href="./src/resources/messages.ts">MessageItem</a></code>
 - <code><a href="./src/resources/messages.ts">SystemPrompt</a></code>
-- <code><a href="./src/resources/messages.ts">TurnItem</a></code>
 
 Methods:
 
