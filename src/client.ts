@@ -36,7 +36,6 @@ import {
   MessageItem,
   Messages,
   SystemPrompt,
-  TurnItem,
 } from './resources/messages';
 import { LogRatingParams, LogRatingResponse, RatingLogParams, Ratings } from './resources/ratings';
 import { type Fetch } from './internal/builtin-types';
@@ -760,7 +759,6 @@ export declare namespace Greenflash {
     type CreateResponse as CreateResponse,
     type MessageItem as MessageItem,
     type SystemPrompt as SystemPrompt,
-    type TurnItem as TurnItem,
     type MessageCreateParams as MessageCreateParams,
   };
 
