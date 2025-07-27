@@ -28,14 +28,7 @@ const client = new Greenflash({
 
 const createResponse = await client.messages.create({
   externalUserId: 'externalUserId',
-  turns: [
-    {
-      messages: [
-        { content: 'Hello!', role: 'user' },
-        { content: 'Hi there!', role: 'assistant' },
-      ],
-    },
-  ],
+  messages: [{}],
   externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
 });
@@ -57,14 +50,7 @@ const client = new Greenflash({
 
 const params: Greenflash.MessageCreateParams = {
   externalUserId: 'externalUserId',
-  turns: [
-    {
-      messages: [
-        { content: 'Hello!', role: 'user' },
-        { content: 'Hi there!', role: 'assistant' },
-      ],
-    },
-  ],
+  messages: [{}],
   externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
 };
@@ -84,14 +70,7 @@ a subclass of `APIError` will be thrown:
 const createResponse = await client.messages
   .create({
     externalUserId: 'externalUserId',
-    turns: [
-      {
-        messages: [
-          { content: 'Hello!', role: 'user' },
-          { content: 'Hi there!', role: 'assistant' },
-        ],
-      },
-    ],
+    messages: [{}],
     externalConversationId: 'externalConversationId',
     productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
   })
@@ -135,7 +114,7 @@ const client = new Greenflash({
 });
 
 // Or, configure per-request:
-await client.messages.create({ externalUserId: 'externalUserId', turns: [{ messages: [{ content: 'Hello!', role: 'user' }, { content: 'Hi there!', role: 'assistant' }] }], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
+await client.messages.create({ externalUserId: 'externalUserId', messages: [{}], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
   maxRetries: 5,
 });
 ```
@@ -152,7 +131,7 @@ const client = new Greenflash({
 });
 
 // Override per-request:
-await client.messages.create({ externalUserId: 'externalUserId', turns: [{ messages: [{ content: 'Hello!', role: 'user' }, { content: 'Hi there!', role: 'assistant' }] }], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
+await client.messages.create({ externalUserId: 'externalUserId', messages: [{}], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -178,14 +157,7 @@ const client = new Greenflash();
 const response = await client.messages
   .create({
     externalUserId: 'externalUserId',
-    turns: [
-      {
-        messages: [
-          { content: 'Hello!', role: 'user' },
-          { content: 'Hi there!', role: 'assistant' },
-        ],
-      },
-    ],
+    messages: [{}],
     externalConversationId: 'externalConversationId',
     productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
   })
@@ -196,14 +168,7 @@ console.log(response.statusText); // access the underlying Response object
 const { data: createResponse, response: raw } = await client.messages
   .create({
     externalUserId: 'externalUserId',
-    turns: [
-      {
-        messages: [
-          { content: 'Hello!', role: 'user' },
-          { content: 'Hi there!', role: 'assistant' },
-        ],
-      },
-    ],
+    messages: [{}],
     externalConversationId: 'externalConversationId',
     productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
   })

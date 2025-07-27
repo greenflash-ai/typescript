@@ -10,8 +10,9 @@ export class Ratings extends APIResource {
    * individual messages. This is useful for collecting feedback about the quality of
    * responses or overall conversation experiences.
    *
-   * You can rate either a specific message (using `messageId`) or an entire
-   * conversation (using either `conversationId` or `externalConversationId`).
+   * You can rate either a specific message (using `messageId` or
+   * `externalMessageId`) or an entire conversation (using either `conversationId` or
+   * `externalConversationId`).
    *
    * @example
    * ```ts
@@ -19,9 +20,9 @@ export class Ratings extends APIResource {
    *   rating: 4,
    *   ratingMax: 5,
    *   ratingMin: 1,
-   *   conversationId: '123e4567-e89b-12d3-a456-426614174000',
+   *   externalConversationId:
+   *     '123e4567-e89b-12d3-a456-426614174000',
    *   feedback: 'Helpful response!',
-   *   messageId: 'msg-001',
    *   ratedAt: '2025-07-09T09:00:00Z',
    * });
    * ```
@@ -52,15 +53,21 @@ export interface LogRatingParams {
 
   /**
    * The internal ID of the conversation to rate. Either conversationId,
-   * externalConversationId, or messageId must be provided.
+   * externalConversationId, messageId, or externalMessageId must be provided.
    */
   conversationId?: string;
 
   /**
    * Your external identifier for the conversation to rate. Either conversationId,
-   * externalConversationId, or messageId must be provided.
+   * externalConversationId, messageId, or externalMessageId must be provided.
    */
   externalConversationId?: string;
+
+  /**
+   * Your external identifier for a specific message to rate. Either conversationId,
+   * externalConversationId, messageId, or externalMessageId must be provided.
+   */
+  externalMessageId?: string;
 
   /**
    * Optional text feedback accompanying the rating.
@@ -68,8 +75,8 @@ export interface LogRatingParams {
   feedback?: string;
 
   /**
-   * The ID of a specific message to rate. Either conversationId,
-   * externalConversationId, or messageId must be provided.
+   * The internal ID of a specific message to rate. Either conversationId,
+   * externalConversationId, messageId, or externalMessageId must be provided.
    */
   messageId?: string;
 
@@ -108,15 +115,21 @@ export interface RatingLogParams {
 
   /**
    * The internal ID of the conversation to rate. Either conversationId,
-   * externalConversationId, or messageId must be provided.
+   * externalConversationId, messageId, or externalMessageId must be provided.
    */
   conversationId?: string;
 
   /**
    * Your external identifier for the conversation to rate. Either conversationId,
-   * externalConversationId, or messageId must be provided.
+   * externalConversationId, messageId, or externalMessageId must be provided.
    */
   externalConversationId?: string;
+
+  /**
+   * Your external identifier for a specific message to rate. Either conversationId,
+   * externalConversationId, messageId, or externalMessageId must be provided.
+   */
+  externalMessageId?: string;
 
   /**
    * Optional text feedback accompanying the rating.
@@ -124,8 +137,8 @@ export interface RatingLogParams {
   feedback?: string;
 
   /**
-   * The ID of a specific message to rate. Either conversationId,
-   * externalConversationId, or messageId must be provided.
+   * The internal ID of a specific message to rate. Either conversationId,
+   * externalConversationId, messageId, or externalMessageId must be provided.
    */
   messageId?: string;
 
