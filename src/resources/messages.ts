@@ -1,37 +1,65 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
-import * as MessagesAPI from './messages';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
 export class Messages extends APIResource {
   /**
    * The `/messages` endpoint allows you to log messages between your users and your
-   * products.
+   * products, supporting both simple chat scenarios and complex agentic workflows.
    *
-   * Full conversations can be logged all at once in a single request with multiple
-   * turns, or sequentially over multiple requests with a single turn per request.
+   * **Simple Chat:** Use the `role` field with values like "user", "assistant", or
+   * "system" for basic conversational AI.
+   *
+   * **Agentic Workflows:** Use the `messageType` field for complex scenarios
+   * including tool calls, thoughts, observations, retrievals, and more.
+   *
+   * **Message Ordering:** Messages in the array will be stored with sequential
+   * timestamps to preserve order. You can optionally provide explicit `createdAt`
+   * timestamps for historical data import.
+   *
+   * **Message Threading:** Messages can reference parent messages using either
+   * `parentMessageId` (internal ID) or `parentExternalMessageId` (your external ID)
+   * to create threaded conversations.
    *
    * The simplest way to log a message is to pass the `role` and `content` of the
-   * message to the API along with an `externalConversationId` for the converasation
+   * message to the API along with an `externalConversationId` for the conversation
    * and your `productId`.
    *
-   * However, we recommend that you pass as much information about the conversation
-   * as possible to allow you to analyze and optimize your prompts, models, and more.
+   * For agentic workflows, you can include structured data via `input`/`output`
+   * fields, tool names for `tool_call` messages, and various message types to
+   * represent the full execution trace.
    *
    * @example
    * ```ts
    * const createResponse = await client.messages.create({
    *   externalUserId: 'user-123',
-   *   turns: [
+   *   messages: [
+   *     { externalMessageId: 'user-msg-1', role: 'user', content: 'Hello!' },
    *     {
-   *       turnIndex: 0,
-   *       systemPromptOverride: 'You are a helpful assistant.',
-   *       messages: [
-   *         { ... },
-   *         { ... },
-   *       ],
+   *       externalMessageId: 'assistant-msg-1',
+   *       role: 'assistant',
+   *       content: 'Hi there! How can I help you?',
+   *     },
+   *     {
+   *       externalMessageId: 'tool-call-1',
+   *       messageType: 'tool_call',
+   *       content: 'Calling search tool',
+   *       toolName: 'web_search',
+   *       input: { ... },
+   *     },
+   *     {
+   *       externalMessageId: 'tool-result-1',
+   *       messageType: 'observation',
+   *       content: 'Search completed',
+   *       output: { ... },
+   *       parentExternalMessageId: 'tool-call-1',
+   *     },
+   *     {
+   *       externalMessageId: 'final-1',
+   *       messageType: 'final_response',
+   *       content: 'Based on the search, today will be sunny with a high of 75°F.',
    *     },
    *   ],
    *   externalConversationId: 'conv-456',
@@ -64,10 +92,9 @@ export interface CreateParams {
   externalUserId: string;
 
   /**
-   * An array of conversation turns, each containing messages exchanged during that
-   * turn.
+   * An array of conversation messages.
    */
-  turns: Array<CreateParams.Turn>;
+  messages: Array<MessageItem>;
 
   /**
    * The conversation ID. When provided, this will update an existing conversation
@@ -116,42 +143,6 @@ export interface CreateParams {
   versionId?: string;
 }
 
-export namespace CreateParams {
-  export interface Turn {
-    /**
-     * The messages exchanged during this turn.
-     */
-    messages: Array<MessagesAPI.MessageItem>;
-
-    /**
-     * When this turn was created.
-     */
-    createdAt?: string;
-
-    /**
-     * Additional metadata for this turn.
-     */
-    metadata?: { [key: string]: unknown };
-
-    /**
-     * Override the conversation-level model for this specific turn.
-     */
-    modelOverride?: string;
-
-    /**
-     * System prompt for the conversation. Can be a simple string or a template object
-     * with components.
-     */
-    systemPromptOverride?: MessagesAPI.SystemPrompt;
-
-    /**
-     * The index of the turn in the conversation sequence. Inferred based on the
-     * location in the array and previous records, but can be overridden here.
-     */
-    turnIndex?: number;
-  }
-}
-
 /**
  * Success response for message logging operations.
  */
@@ -160,6 +151,11 @@ export interface CreateResponse {
    * The ID of the conversation that was created or updated.
    */
   conversationId: string;
+
+  /**
+   * The messages that were processed.
+   */
+  messages: Array<CreateResponse.Message>;
 
   /**
    * Indicates whether the API call was successful.
@@ -175,84 +171,82 @@ export interface CreateResponse {
    * The template ID used internally to track the system prompt template.
    */
   systemPromptTemplateId: string;
-
-  /**
-   * The turns that were processed, including their internal IDs.
-   */
-  turns: Array<CreateResponse.Turn>;
 }
 
 export namespace CreateResponse {
-  export interface Turn {
+  export interface Message {
     /**
-     * The messages that were processed during this turn.
+     * The internal ID of the message.
      */
-    messages: Array<Turn.Message>;
-
-    /**
-     * The internal ID of the turn.
-     */
-    turnId: string;
+    messageId: string;
 
     /**
-     * The index of the turn in the conversation.
+     * The type of the message that was created.
      */
-    turnIndex: number;
-  }
+    messageType: string;
 
-  export namespace Turn {
-    export interface Message {
-      /**
-       * The internal ID of the message.
-       */
-      messageId: string;
-
-      /**
-       * The index of the message within the turn.
-       */
-      messageIndex: number;
-
-      /**
-       * The role of the message sender.
-       */
-      role: 'user' | 'assistant' | 'system';
-    }
+    /**
+     * Your external identifier for the message, if provided.
+     */
+    externalMessageId?: string;
   }
 }
 
 export interface MessageItem {
   /**
-   * The content of the message.
+   * String content of the message. Required for language-based analyses.
    */
-  content: string;
+  content?: string;
 
   /**
-   * The role of the message sender. Must be one of: 'user', 'assistant', or
-   * 'system'.
+   * Additional context (e.g., RAG data) used in generating the message.
    */
-  role: 'user' | 'assistant' | 'system';
+  context?: string | null;
 
   /**
-   * The type of content. One of: 'text', 'image', 'audio', or 'json'. Defaults to
-   * 'text'.
-   */
-  contentType?: 'text' | 'image' | 'audio' | 'json';
-
-  /**
-   * Additional context for the message.
-   */
-  context?: string;
-
-  /**
-   * When this message was created.
+   * When this message was created. If not provided, messages will be assigned
+   * sequential timestamps to preserve order. If provided, this timestamp will be
+   * used as-is (useful for importing historical data).
    */
   createdAt?: string;
 
   /**
-   * The index of the message within the turn. Inferred based on the location in the
-   * array and previous records, but can be overridden here.
+   * Your own external identifier for this message. This can be used to reference the
+   * message in other API calls.
    */
-  messageIndex?: number;
+  externalMessageId?: string;
+
+  /**
+   * Structured input data for tool calls, retrievals, or other structured
+   * operations.
+   */
+  input?: { [key: string]: unknown };
+
+  /**
+   * Detailed message type for agentic workflows. Cannot be used with role. Allowed
+   * values: user_message, assistant_message, system_message, thought, tool_call,
+   * observation, final_response, retrieval, memory_read, memory_write, chain_start,
+   * chain_end, embedding, tool_error, callback, llm, task, workflow
+   */
+  messageType?:
+    | 'user_message'
+    | 'assistant_message'
+    | 'system_message'
+    | 'thought'
+    | 'tool_call'
+    | 'observation'
+    | 'final_response'
+    | 'retrieval'
+    | 'memory_read'
+    | 'memory_write'
+    | 'chain_start'
+    | 'chain_end'
+    | 'embedding'
+    | 'tool_error'
+    | 'callback'
+    | 'llm'
+    | 'task'
+    | 'workflow';
 
   /**
    * Additional metadata for the message.
@@ -260,9 +254,44 @@ export interface MessageItem {
   metadata?: { [key: string]: unknown };
 
   /**
-   * The number of tokens in the message.
+   * Override the conversation-level model for this specific message.
    */
-  tokens?: number;
+  modelOverride?: string;
+
+  /**
+   * Structured output data from tool calls, retrievals, or other structured
+   * operations.
+   */
+  output?: { [key: string]: unknown };
+
+  /**
+   * The external ID of the parent message for threading. Cannot be used with
+   * parentMessageId.
+   */
+  parentExternalMessageId?: string;
+
+  /**
+   * The internal ID of the parent message for threading. Cannot be used with
+   * parentExternalMessageId.
+   */
+  parentMessageId?: string;
+
+  /**
+   * Simple message role for basic chat scenarios. One of: 'user', 'assistant', or
+   * 'system'. Cannot be used with messageType.
+   */
+  role?: 'user' | 'assistant' | 'system';
+
+  /**
+   * System prompt for the conversation. Can be a simple string or a template object
+   * with components.
+   */
+  systemPromptOverride?: SystemPrompt;
+
+  /**
+   * Name of the tool being called. Required for tool_call messages.
+   */
+  toolName?: string;
 }
 
 /**
@@ -356,10 +385,9 @@ export interface MessageCreateParams {
   externalUserId: string;
 
   /**
-   * An array of conversation turns, each containing messages exchanged during that
-   * turn.
+   * An array of conversation messages.
    */
-  turns: Array<MessageCreateParams.Turn>;
+  messages: Array<MessageItem>;
 
   /**
    * The conversation ID. When provided, this will update an existing conversation
@@ -406,42 +434,6 @@ export interface MessageCreateParams {
    * The ID of the product version.
    */
   versionId?: string;
-}
-
-export namespace MessageCreateParams {
-  export interface Turn {
-    /**
-     * The messages exchanged during this turn.
-     */
-    messages: Array<MessagesAPI.MessageItem>;
-
-    /**
-     * When this turn was created.
-     */
-    createdAt?: string;
-
-    /**
-     * Additional metadata for this turn.
-     */
-    metadata?: { [key: string]: unknown };
-
-    /**
-     * Override the conversation-level model for this specific turn.
-     */
-    modelOverride?: string;
-
-    /**
-     * System prompt for the conversation. Can be a simple string or a template object
-     * with components.
-     */
-    systemPromptOverride?: MessagesAPI.SystemPrompt;
-
-    /**
-     * The index of the turn in the conversation sequence. Inferred based on the
-     * location in the array and previous records, but can be overridden here.
-     */
-    turnIndex?: number;
-  }
 }
 
 export declare namespace Messages {
