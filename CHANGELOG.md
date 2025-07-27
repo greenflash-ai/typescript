@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-07-27)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Features
+
+* **api:** manual updates ([ec9ecc2](https://github.com/greenflash-ai/typescript/commit/ec9ecc220d521d6f0ab93c32f86adbb49d9a6dc3))
+
 ## 0.1.0-alpha.11 (2025-07-27)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
