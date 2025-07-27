@@ -201,7 +201,7 @@ export interface MessageItem {
   /**
    * Additional context (e.g., RAG data) used in generating the message.
    */
-  context?: string | null;
+  context?: string;
 
   /**
    * When this message was created. If not provided, messages will be assigned
