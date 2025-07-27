@@ -24,10 +24,11 @@ describe('resource ratings', () => {
       rating: 4,
       ratingMax: 5,
       ratingMin: 1,
-      conversationId: '123e4567-e89b-12d3-a456-426614174000',
-      externalConversationId: 'externalConversationId',
+      conversationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+      externalConversationId: '123e4567-e89b-12d3-a456-426614174000',
+      externalMessageId: 'externalMessageId',
       feedback: 'Helpful response!',
-      messageId: 'msg-001',
+      messageId: 'messageId',
       ratedAt: '2025-07-09T09:00:00Z',
     });
   });
