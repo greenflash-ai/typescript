@@ -6,13 +6,12 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Conversions extends APIResource {
   /**
-   * The `/conversions` endpoint allows you to record business conversion events.
-   * This is useful for tracking user actions that lead to conversions, such as
-   * purchases, signups, or upgrades.
+   * Track important business events like purchases, signups, or upgrades that result
+   * from your conversations.
    *
-   * You can record conversions for either a specific conversation (using
-   * `conversationId`) or an entire conversation (using either
-   * `externalConversationId`).
+   * Use this endpoint to record when users take valuable actions after interacting
+   * with your AI. You can link conversions to specific conversations using either
+   * the internal `conversationId` or your own `externalConversationId`.
    *
    * @example
    * ```ts
@@ -40,123 +39,119 @@ export class Conversions extends APIResource {
  */
 export interface LogConversionParams {
   /**
-   * The action or event name that represents the conversion (e.g., "purchase",
-   * "signup", "upgrade").
+   * The type of conversion (e.g., "purchase", "signup", "upgrade").
    */
   action: string;
 
   /**
-   * The external ID of the user who performed the conversion action.
+   * Your unique identifier for the user who completed the conversion.
    */
   externalUserId: string;
 
   /**
-   * The value of the conversion. Interpretation depends on valueType.
+   * The conversion value (interpretation depends on valueType).
    */
   value: string;
 
   /**
-   * The type of the value. Must be one of: 'currency', 'numeric', or 'text'.
+   * The type of value: currency (e.g., "$99.99"), numeric (e.g., "5"), or text.
    */
   valueType: 'currency' | 'numeric' | 'text';
 
   /**
-   * The internal ID of the conversation that led to the conversion.
+   * The Greenflash conversation ID that led to this conversion.
    */
   conversationId?: string;
 
   /**
-   * The timestamp when the conversion occurred. If not provided, the current time
-   * will be used.
+   * When the conversion occurred. Defaults to current time if not provided.
    */
   convertedAt?: string;
 
   /**
-   * Your external identifier for the conversation that led to the conversion.
+   * Your external conversation identifier that led to this conversion.
    */
   externalConversationId?: string;
 
   /**
-   * Additional metadata about the conversion as key-value pairs.
+   * Additional data about the conversion.
    */
   metadata?: { [key: string]: unknown };
 
   /**
-   * The ID of the product associated with this conversion.
+   * The Greenflash product associated with this conversion.
    */
   productId?: string;
 
   /**
-   * The ID of the project associated with this conversion.
+   * The Greenflash project associated with this conversion.
    */
   projectId?: string;
 }
 
 /**
- * Success response for conversion logging operations.
+ * Success response for conversion logging.
  */
 export interface LogConversionResponse {
   /**
-   * The unique identifier for the conversion record that was created.
+   * The unique Greenflash ID of the conversion record that was created.
    */
   conversionId: string;
 
   /**
-   * Indicates whether the API call was successful.
+   * Whether the API call was successful.
    */
   success: boolean;
 }
 
 export interface ConversionLogParams {
   /**
-   * The action or event name that represents the conversion (e.g., "purchase",
-   * "signup", "upgrade").
+   * The type of conversion (e.g., "purchase", "signup", "upgrade").
    */
   action: string;
 
   /**
-   * The external ID of the user who performed the conversion action.
+   * Your unique identifier for the user who completed the conversion.
    */
   externalUserId: string;
 
   /**
-   * The value of the conversion. Interpretation depends on valueType.
+   * The conversion value (interpretation depends on valueType).
    */
   value: string;
 
   /**
-   * The type of the value. Must be one of: 'currency', 'numeric', or 'text'.
+   * The type of value: currency (e.g., "$99.99"), numeric (e.g., "5"), or text.
    */
   valueType: 'currency' | 'numeric' | 'text';
 
   /**
-   * The internal ID of the conversation that led to the conversion.
+   * The Greenflash conversation ID that led to this conversion.
    */
   conversationId?: string;
 
   /**
-   * The timestamp when the conversion occurred. If not provided, the current time
-   * will be used.
+   * When the conversion occurred. Defaults to current time if not provided.
    */
   convertedAt?: string;
 
   /**
-   * Your external identifier for the conversation that led to the conversion.
+   * Your external conversation identifier that led to this conversion.
    */
   externalConversationId?: string;
 
   /**
-   * Additional metadata about the conversion as key-value pairs.
+   * Additional data about the conversion.
    */
   metadata?: { [key: string]: unknown };
 
   /**
-   * The ID of the product associated with this conversion.
+   * The Greenflash product associated with this conversion.
    */
   productId?: string;
 
   /**
-   * The ID of the project associated with this conversion.
+   * The Greenflash project associated with this conversion.
    */
   projectId?: string;
 }

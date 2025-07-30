@@ -6,30 +6,28 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Messages extends APIResource {
   /**
-   * The `/messages` endpoint allows you to log messages between your users and your
-   * products, supporting both simple chat scenarios and complex agentic workflows.
+   * Record conversations between your users and AI, supporting both simple chat and
+   * complex agentic workflows.
    *
-   * **Simple Chat:** Use the `role` field with values like "user", "assistant", or
-   * "system" for basic conversational AI.
+   * **Simple Chat:** Use `role` with values like "user", "assistant", or "system"
+   * for basic conversations.
    *
-   * **Agentic Workflows:** Use the `messageType` field for complex scenarios
-   * including tool calls, thoughts, observations, retrievals, and more.
+   * **Agentic Workflows:** Use `messageType` for complex scenarios including tool
+   * calls, thoughts, observations, and more.
    *
-   * **Message Ordering:** Messages in the array will be stored with sequential
-   * timestamps to preserve order. You can optionally provide explicit `createdAt`
-   * timestamps for historical data import.
+   * **Message Ordering:** Messages are stored with sequential timestamps. You can
+   * provide explicit `createdAt` timestamps for historical data.
    *
-   * **Message Threading:** Messages can reference parent messages using either
-   * `parentMessageId` (internal ID) or `parentExternalMessageId` (your external ID)
-   * to create threaded conversations.
+   * **Message Threading:** Reference parent messages using `parentMessageId`
+   * (internal ID) or `parentExternalMessageId` (your external ID) to create threaded
+   * conversations.
    *
-   * The simplest way to log a message is to pass the `role` and `content` of the
-   * message to the API along with an `externalConversationId` for the conversation
-   * and your `productId`.
+   * The simplest way to log a message is to provide the `role` and `content` along
+   * with an `externalConversationId` and your `productId`.
    *
-   * For agentic workflows, you can include structured data via `input`/`output`
-   * fields, tool names for `tool_call` messages, and various message types to
-   * represent the full execution trace.
+   * For agentic workflows, include structured data via `input`/`output` fields, tool
+   * names for `tool_call` messages, and various message types to represent the full
+   * execution trace.
    *
    * @example
    * ```ts
@@ -83,34 +81,34 @@ export class Messages extends APIResource {
 }
 
 /**
- * Request payload for logging messages and conversations.
+ * Request payload for logging conversations and messages.
  */
 export interface CreateParams {
   /**
-   * The external user ID that will be mapped to a participant in our system.
+   * Your external user ID that will be mapped to a participant in our system.
    */
   externalUserId: string;
 
   /**
-   * An array of conversation messages.
+   * Array of conversation messages.
    */
   messages: Array<MessageItem>;
 
   /**
-   * The conversation ID. When provided, this will update an existing conversation
+   * The Greenflash conversation ID. When provided, updates an existing conversation
    * instead of creating a new one. Either conversationId, externalConversationId,
    * productId, or projectId must be provided.
    */
   conversationId?: string;
 
   /**
-   * Your own external identifier for the conversation. Either conversationId,
+   * Your external identifier for the conversation. Either conversationId,
    * externalConversationId, productId, or projectId must be provided.
    */
   externalConversationId?: string;
 
   /**
-   * Additional metadata for the conversation.
+   * Additional data about the conversation.
    */
   metadata?: { [key: string]: unknown };
 
@@ -120,13 +118,13 @@ export interface CreateParams {
   model?: string;
 
   /**
-   * The ID of the product this conversation belongs to. Either conversationId,
+   * The Greenflash product this conversation belongs to. Either conversationId,
    * externalConversationId, productId, or projectId must be provided.
    */
   productId?: string;
 
   /**
-   * The ID of the project this conversation belongs to. Either conversationId,
+   * The Greenflash project this conversation belongs to. Either conversationId,
    * externalConversationId, productId, or projectId must be provided.
    */
   projectId?: string;
@@ -138,13 +136,13 @@ export interface CreateParams {
   systemPrompt?: SystemPrompt;
 
   /**
-   * The ID of the product version.
+   * The product version ID.
    */
   versionId?: string;
 }
 
 /**
- * Success response for message logging operations.
+ * Success response for message logging.
  */
 export interface CreateResponse {
   /**
@@ -158,7 +156,7 @@ export interface CreateResponse {
   messages: Array<CreateResponse.Message>;
 
   /**
-   * Indicates whether the API call was successful.
+   * Whether the API call was successful.
    */
   success: boolean;
 
@@ -176,7 +174,7 @@ export interface CreateResponse {
 export namespace CreateResponse {
   export interface Message {
     /**
-     * The internal ID of the message.
+     * The internal Greenflash message ID.
      */
     messageId: string;
 
@@ -194,37 +192,35 @@ export namespace CreateResponse {
 
 export interface MessageItem {
   /**
-   * String content of the message. Required for language-based analyses.
+   * The message content. Required for language-based analyses.
    */
   content?: string;
 
   /**
-   * Additional context (e.g., RAG data) used in generating the message.
+   * Additional context (e.g., RAG data) used to generate the message.
    */
-  context?: string;
+  context?: string | null;
 
   /**
-   * When this message was created. If not provided, messages will be assigned
-   * sequential timestamps to preserve order. If provided, this timestamp will be
-   * used as-is (useful for importing historical data).
+   * When this message was created. If not provided, messages get sequential
+   * timestamps. Use for importing historical data.
    */
   createdAt?: string;
 
   /**
-   * Your own external identifier for this message. This can be used to reference the
-   * message in other API calls.
+   * Your external identifier for this message. Used to reference the message in
+   * other API calls.
    */
   externalMessageId?: string;
 
   /**
-   * Structured input data for tool calls, retrievals, or other structured
-   * operations.
+   * Structured input data for tool calls, retrievals, or other operations.
    */
   input?: { [key: string]: unknown };
 
   /**
-   * Detailed message type for agentic workflows. Cannot be used with role. Allowed
-   * values: user_message, assistant_message, system_message, thought, tool_call,
+   * Detailed message type for agentic workflows. Cannot be used with role. Available
+   * types: user_message, assistant_message, system_message, thought, tool_call,
    * observation, final_response, retrieval, memory_read, memory_write, chain_start,
    * chain_end, embedding, tool_error, callback, llm, task, workflow
    */
@@ -249,7 +245,7 @@ export interface MessageItem {
     | 'workflow';
 
   /**
-   * Additional metadata for the message.
+   * Additional data about the message.
    */
   metadata?: { [key: string]: unknown };
 
@@ -259,8 +255,7 @@ export interface MessageItem {
   modelOverride?: string;
 
   /**
-   * Structured output data from tool calls, retrievals, or other structured
-   * operations.
+   * Structured output data from tool calls, retrievals, or other operations.
    */
   output?: { [key: string]: unknown };
 
@@ -277,8 +272,8 @@ export interface MessageItem {
   parentMessageId?: string;
 
   /**
-   * Simple message role for basic chat scenarios. One of: 'user', 'assistant', or
-   * 'system'. Cannot be used with messageType.
+   * Simple message role for basic chat: user, assistant, or system. Cannot be used
+   * with messageType.
    */
   role?: 'user' | 'assistant' | 'system';
 
@@ -311,17 +306,17 @@ export namespace SystemPrompt {
     components: Array<SystemPromptTemplate.Component>;
 
     /**
-     * Your own external identifier for the template.
+     * Your external identifier for the template.
      */
     externalTemplateId?: string;
 
     /**
-     * Array of string tags associated with the template.
+     * Tags to categorize the template.
      */
     tags?: Array<string>;
 
     /**
-     * The ID of the template.
+     * The Greenflash template ID.
      */
     templateId?: string;
   }
@@ -334,44 +329,44 @@ export namespace SystemPrompt {
       content: string;
 
       /**
-       * The ID of the component.
+       * The Greenflash component ID.
        */
       componentId?: string;
 
       /**
-       * Your own external identifier for the component.
+       * Your external identifier for the component.
        */
       externalComponentId?: string;
 
       /**
-       * Whether the component is dynamic.
+       * Whether the component content changes dynamically.
        */
       isDynamic?: boolean;
 
       /**
-       * Name of the component.
+       * Component name.
        */
       name?: string;
 
       /**
-       * Source of the component. One of: 'customer', 'participant', 'greenflash',
-       * 'agent'. Defaults to 'customer'.
+       * Component source: customer, participant, greenflash, or agent. Defaults to
+       * customer.
        */
       source?: 'customer' | 'participant' | 'greenflash' | 'agent';
 
       /**
-       * Array of string tags associated with the component.
+       * Tags to categorize the component.
        */
       tags?: Array<string>;
 
       /**
-       * Type of the component. One of: 'system', 'endUser', 'userModified', 'rag',
-       * 'agent'. Defaults to 'system'.
+       * Component type: system, endUser, userModified, rag, or agent. Defaults to
+       * system.
        */
       type?: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
 
       /**
-       * Version of the component.
+       * Component version number.
        */
       version?: number;
     }
@@ -380,30 +375,30 @@ export namespace SystemPrompt {
 
 export interface MessageCreateParams {
   /**
-   * The external user ID that will be mapped to a participant in our system.
+   * Your external user ID that will be mapped to a participant in our system.
    */
   externalUserId: string;
 
   /**
-   * An array of conversation messages.
+   * Array of conversation messages.
    */
   messages: Array<MessageItem>;
 
   /**
-   * The conversation ID. When provided, this will update an existing conversation
+   * The Greenflash conversation ID. When provided, updates an existing conversation
    * instead of creating a new one. Either conversationId, externalConversationId,
    * productId, or projectId must be provided.
    */
   conversationId?: string;
 
   /**
-   * Your own external identifier for the conversation. Either conversationId,
+   * Your external identifier for the conversation. Either conversationId,
    * externalConversationId, productId, or projectId must be provided.
    */
   externalConversationId?: string;
 
   /**
-   * Additional metadata for the conversation.
+   * Additional data about the conversation.
    */
   metadata?: { [key: string]: unknown };
 
@@ -413,13 +408,13 @@ export interface MessageCreateParams {
   model?: string;
 
   /**
-   * The ID of the product this conversation belongs to. Either conversationId,
+   * The Greenflash product this conversation belongs to. Either conversationId,
    * externalConversationId, productId, or projectId must be provided.
    */
   productId?: string;
 
   /**
-   * The ID of the project this conversation belongs to. Either conversationId,
+   * The Greenflash project this conversation belongs to. Either conversationId,
    * externalConversationId, productId, or projectId must be provided.
    */
   projectId?: string;
@@ -431,7 +426,7 @@ export interface MessageCreateParams {
   systemPrompt?: SystemPrompt;
 
   /**
-   * The ID of the product version.
+   * The product version ID.
    */
   versionId?: string;
 }
