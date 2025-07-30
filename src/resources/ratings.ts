@@ -6,13 +6,12 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Ratings extends APIResource {
   /**
-   * The `/ratings` endpoint allows you to record user ratings for conversations or
-   * individual messages. This is useful for collecting feedback about the quality of
-   * responses or overall conversation experiences.
+   * Record user feedback and ratings for conversations or individual messages.
    *
-   * You can rate either a specific message (using `messageId` or
-   * `externalMessageId`) or an entire conversation (using either `conversationId` or
-   * `externalConversationId`).
+   * Use this endpoint to collect feedback about response quality or overall
+   * conversation experiences. You can rate either a specific message (using
+   * `messageId` or `externalMessageId`) or an entire conversation (using
+   * `conversationId` or `externalConversationId`).
    *
    * @example
    * ```ts
@@ -52,19 +51,19 @@ export interface LogRatingParams {
   ratingMin: number;
 
   /**
-   * The internal ID of the conversation to rate. Either conversationId,
+   * The Greenflash conversation ID to rate. Either conversationId,
    * externalConversationId, messageId, or externalMessageId must be provided.
    */
   conversationId?: string;
 
   /**
-   * Your external identifier for the conversation to rate. Either conversationId,
+   * Your external conversation identifier to rate. Either conversationId,
    * externalConversationId, messageId, or externalMessageId must be provided.
    */
   externalConversationId?: string;
 
   /**
-   * Your external identifier for a specific message to rate. Either conversationId,
+   * Your external message identifier to rate. Either conversationId,
    * externalConversationId, messageId, or externalMessageId must be provided.
    */
   externalMessageId?: string;
@@ -75,24 +74,23 @@ export interface LogRatingParams {
   feedback?: string;
 
   /**
-   * The internal ID of a specific message to rate. Either conversationId,
+   * The Greenflash message ID to rate. Either conversationId,
    * externalConversationId, messageId, or externalMessageId must be provided.
    */
   messageId?: string;
 
   /**
-   * The timestamp when the rating was given. If not provided, the current time will
-   * be used.
+   * When the rating was given. Defaults to current time if not provided.
    */
   ratedAt?: string;
 }
 
 /**
- * Success response for rating logging operations.
+ * Success response for rating logging.
  */
 export interface LogRatingResponse {
   /**
-   * Indicates whether the API call was successful.
+   * Whether the API call was successful.
    */
   success: boolean;
 }
@@ -114,19 +112,19 @@ export interface RatingLogParams {
   ratingMin: number;
 
   /**
-   * The internal ID of the conversation to rate. Either conversationId,
+   * The Greenflash conversation ID to rate. Either conversationId,
    * externalConversationId, messageId, or externalMessageId must be provided.
    */
   conversationId?: string;
 
   /**
-   * Your external identifier for the conversation to rate. Either conversationId,
+   * Your external conversation identifier to rate. Either conversationId,
    * externalConversationId, messageId, or externalMessageId must be provided.
    */
   externalConversationId?: string;
 
   /**
-   * Your external identifier for a specific message to rate. Either conversationId,
+   * Your external message identifier to rate. Either conversationId,
    * externalConversationId, messageId, or externalMessageId must be provided.
    */
   externalMessageId?: string;
@@ -137,14 +135,13 @@ export interface RatingLogParams {
   feedback?: string;
 
   /**
-   * The internal ID of a specific message to rate. Either conversationId,
+   * The Greenflash message ID to rate. Either conversationId,
    * externalConversationId, messageId, or externalMessageId must be provided.
    */
   messageId?: string;
 
   /**
-   * The timestamp when the rating was given. If not provided, the current time will
-   * be used.
+   * When the rating was given. Defaults to current time if not provided.
    */
   ratedAt?: string;
 }

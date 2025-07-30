@@ -6,13 +6,12 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Identify extends APIResource {
   /**
-   * The `/identify` endpoint allows you to create or update user profiles in the
-   * system. This endpoint is used to manage user identity information that can be
-   * referenced in other API calls using the `externalUserId`.
+   * Create new user profiles or update existing ones with contact information and
+   * metadata.
    *
-   * When you call this endpoint with an `externalUserId` that already exists, the
-   * user profile will be updated. If the `externalUserId` doesn't exist yet, a new
-   * profile will be created.
+   * Provide an `externalUserId` to identify the user. If this ID already exists, the
+   * profile will be updated. If it doesn't exist, a new profile will be created. You
+   * can then reference this user in other API calls using the same `externalUserId`.
    *
    * @example
    * ```ts
@@ -35,28 +34,27 @@ export class Identify extends APIResource {
 }
 
 /**
- * Request payload for identifying users.
+ * Request payload for creating or updating user profiles.
  */
 export interface CreateOrUpdateParams {
   /**
-   * Your unique identifier for the user. This is used to reference the user in other
-   * API calls.
+   * Your unique identifier for the user. Use this same ID in other API calls to
+   * reference this user.
    */
   externalUserId: string;
 
   /**
-   * Whether the user's personal information should be anonymized. Defaults to false
-   * for new users.
+   * Whether to anonymize the user's personal information. Defaults to false.
    */
   anonymized?: boolean;
 
   /**
-   * The user's email address. Must be a valid email format.
+   * The user's email address.
    */
   email?: string;
 
   /**
-   * Additional metadata associated with the user as key-value pairs.
+   * Additional data about the user (e.g., plan type, preferences).
    */
   metadata?: { [key: string]: unknown };
 
@@ -81,7 +79,7 @@ export interface CreateOrUpdateResponse {
   participant: Participant;
 
   /**
-   * Indicates whether the API call was successful.
+   * Whether the API call was successful.
    */
   success: boolean;
 }
@@ -91,7 +89,7 @@ export interface CreateOrUpdateResponse {
  */
 export interface Participant {
   /**
-   * The internal ID of the participant.
+   * The Greenflash participant ID.
    */
   id: string;
 
@@ -106,17 +104,17 @@ export interface Participant {
   createdAt: string;
 
   /**
-   * The external ID you provided (matches the externalUserId from the request).
+   * Your external user ID (matches the externalUserId from the request).
    */
   externalId: string;
 
   /**
-   * Additional metadata associated with the participant.
+   * Additional data about the participant.
    */
   metadata: { [key: string]: unknown };
 
   /**
-   * The ID of the tenant this participant belongs to.
+   * The tenant this participant belongs to.
    */
   tenantId: string;
 
@@ -143,24 +141,23 @@ export interface Participant {
 
 export interface IdentifyCreateOrUpdateParams {
   /**
-   * Your unique identifier for the user. This is used to reference the user in other
-   * API calls.
+   * Your unique identifier for the user. Use this same ID in other API calls to
+   * reference this user.
    */
   externalUserId: string;
 
   /**
-   * Whether the user's personal information should be anonymized. Defaults to false
-   * for new users.
+   * Whether to anonymize the user's personal information. Defaults to false.
    */
   anonymized?: boolean;
 
   /**
-   * The user's email address. Must be a valid email format.
+   * The user's email address.
    */
   email?: string;
 
   /**
-   * Additional metadata associated with the user as key-value pairs.
+   * Additional data about the user (e.g., plan type, preferences).
    */
   metadata?: { [key: string]: unknown };
 
