@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2025-08-09)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Chores
+
+* **internal:** move publish config ([6509fc2](https://github.com/greenflash-ai/typescript/commit/6509fc258a9c170206ff3d63ce44630142317709))
+* update @stainless-api/prism-cli to v5.15.0 ([dd9f5fb](https://github.com/greenflash-ai/typescript/commit/dd9f5fb6d785c65bcdf87be5ea01c68832c122e1))
+
 ## 0.1.0-alpha.15 (2025-07-30)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
