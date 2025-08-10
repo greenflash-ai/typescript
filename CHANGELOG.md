@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2025-08-10)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Chores
+
+* **internal:** update comment in script ([6a28069](https://github.com/greenflash-ai/typescript/commit/6a28069c660246041356854bb97b02b3ccc4dd16))
+
 ## 0.1.0-alpha.16 (2025-08-09)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
