@@ -26,14 +26,13 @@ const client = new Greenflash({
   apiKey: process.env['GREENFLASH_API_KEY'], // This is the default and can be omitted
 });
 
-const createResponse = await client.messages.create({
+client.messages.create({
   externalUserId: 'externalUserId',
   messages: [{}],
   externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
 });
 
-console.log(createResponse.conversationId);
 ```
 
 ### Request & Response types
@@ -45,7 +44,7 @@ This library includes TypeScript definitions for all request params and response
 import Greenflash from 'greenflash';
 
 const client = new Greenflash({
-  apiKey: process.env['GREENFLASH_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env['GREENFLASH_API_KEY'],
 });
 
 const params: Greenflash.MessageCreateParams = {
@@ -54,7 +53,7 @@ const params: Greenflash.MessageCreateParams = {
   externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
 };
-const createResponse: Greenflash.CreateResponse = await client.messages.create(params);
+const createResponse: Greenflash.CreateResponse = client.messages.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -67,7 +66,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const createResponse = await client.messages
+client.messages
   .create({
     externalUserId: 'externalUserId',
     messages: [{}],
@@ -114,7 +113,7 @@ const client = new Greenflash({
 });
 
 // Or, configure per-request:
-await client.messages.create({ externalUserId: 'externalUserId', messages: [{}], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
+client.messages.create({ externalUserId: 'externalUserId', messages: [{}], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
   maxRetries: 5,
 });
 ```
@@ -131,7 +130,7 @@ const client = new Greenflash({
 });
 
 // Override per-request:
-await client.messages.create({ externalUserId: 'externalUserId', messages: [{}], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
+client.messages.create({ externalUserId: 'externalUserId', messages: [{}], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
   timeout: 5 * 1000,
 });
 ```
@@ -241,7 +240,7 @@ To make requests to undocumented endpoints, you can use `client.get`, `client.po
 Options on the client, such as retries, will be respected when making these requests.
 
 ```ts
-await client.post('/some/path', {
+client.post('/some/path', {
   body: { some_prop: 'foo' },
   query: { some_query_arg: 'bar' },
 });
