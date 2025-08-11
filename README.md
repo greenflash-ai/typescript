@@ -27,10 +27,19 @@ const client = new Greenflash({
 });
 
 client.messages.create({
-  externalUserId: 'externalUserId',
-  messages: [{}],
-  externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+  externalUserId: 'externalUserId',
+  externalConversationId: 'externalConversationId',
+  messages: [
+    {
+      role: 'user',
+      content: 'Hello, how can you help me today?'
+    },
+    {
+      role: 'assistant',
+      content: 'I can answer any questions you have!'
+    }
+  ],
 });
 
 ```
