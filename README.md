@@ -22,9 +22,7 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Greenflash from 'greenflash';
 
-const client = new Greenflash({
-  apiKey: process.env['GREENFLASH_API_KEY'], // This is the default and can be omitted
-});
+const client = new Greenflash({ apiKey: process.env['GREENFLASH_API_KEY'] });
 
 client.messages.create({
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
