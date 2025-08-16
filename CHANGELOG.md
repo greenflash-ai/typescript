@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0-alpha.18 (2025-08-16)
+
+Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
+
+### Chores
+
+* **deps:** update dependency @types/node to v20.17.58 ([a170517](https://github.com/greenflash-ai/typescript/commit/a170517cf1e3ebac26697f008357f263cca75cba))
+* **internal:** formatting change ([7f65cec](https://github.com/greenflash-ai/typescript/commit/7f65cecb8459ea18f1c2dfdc30878a6608393962))
+* update readme ([#27](https://github.com/greenflash-ai/typescript/issues/27)) ([162edf4](https://github.com/greenflash-ai/typescript/commit/162edf450716d930761872767723e213cdef2f5f))
+* update SDK preview from latest OpenAPI spec ([12c1b8a](https://github.com/greenflash-ai/typescript/commit/12c1b8a3450c22cc84f338408db696f68913aa77))
+
 ## 0.1.0-alpha.17 (2025-08-10)
 
 Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
