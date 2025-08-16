@@ -746,10 +746,12 @@ export class Greenflash {
   ratings: API.Ratings = new API.Ratings(this);
   conversions: API.Conversions = new API.Conversions(this);
 }
+
 Greenflash.Messages = Messages;
 Greenflash.Identify = Identify;
 Greenflash.Ratings = Ratings;
 Greenflash.Conversions = Conversions;
+
 export declare namespace Greenflash {
   export type RequestOptions = Opts.RequestOptions;
 
