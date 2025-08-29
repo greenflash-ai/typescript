@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.19 (2025-08-29)
+
+Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
+
+### Chores
+
+* **internal:** update global Error reference ([e9751d7](https://github.com/greenflash-ai/typescript/commit/e9751d7187f0f1522b54bf97f6507cd9079d9d9c))
+
 ## 0.1.0-alpha.18 (2025-08-23)
 
 Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
