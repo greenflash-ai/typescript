@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.19 (2025-09-09)
+
+Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
+
+### Bug Fixes
+
+* coerce nullable values to undefined ([9941db7](https://github.com/greenflash-ai/typescript/commit/9941db77d1c230cb2e2a778314cc7224f59df0bf))
+
+
+### Chores
+
+* ci build action ([4effa3e](https://github.com/greenflash-ai/typescript/commit/4effa3ed3a5e6ce3592b1acd9a6c0458c337820c))
+* **internal:** update global Error reference ([e9751d7](https://github.com/greenflash-ai/typescript/commit/e9751d7187f0f1522b54bf97f6507cd9079d9d9c))
+
 ## 0.1.0-alpha.18 (2025-08-23)
 
 Full Changelog: [v0.1.0-alpha.17...v0.1.0-alpha.18](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.17...v0.1.0-alpha.18)
