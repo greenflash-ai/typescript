@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.20 (2025-09-20)
+
+Full Changelog: [v0.1.0-alpha.19...v0.1.0-alpha.20](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.19...v0.1.0-alpha.20)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([b6fdb31](https://github.com/greenflash-ai/typescript/commit/b6fdb31771372202647ca2e0494a804c6dc45efa))
+
 ## 0.1.0-alpha.19 (2025-09-09)
 
 Full Changelog: [v0.1.0-alpha.18...v0.1.0-alpha.19](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.18...v0.1.0-alpha.19)
