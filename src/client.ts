@@ -148,7 +148,7 @@ export class Greenflash {
    * API Client for interfacing with the Greenflash API.
    *
    * @param {string | null | undefined} [opts.apiKey=process.env['GREENFLASH_API_KEY'] ?? null]
-   * @param {string} [opts.baseURL=process.env['GREENFLASH_BASE_URL'] ?? https://greenflash.ai/api/v1] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['GREENFLASH_BASE_URL'] ?? https://www.greenflash.ai/api/v1] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -164,7 +164,7 @@ export class Greenflash {
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL: baseURL || `https://greenflash.ai/api/v1`,
+      baseURL: baseURL || `https://www.greenflash.ai/api/v1`,
     };
 
     this.baseURL = options.baseURL!;
@@ -210,7 +210,7 @@ export class Greenflash {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'https://greenflash.ai/api/v1';
+    return this.baseURL !== 'https://www.greenflash.ai/api/v1';
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
