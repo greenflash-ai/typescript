@@ -16,6 +16,7 @@ export class Ratings extends APIResource {
    * @example
    * ```ts
    * const logRatingResponse = await client.ratings.log({
+   *   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
    *   rating: 4,
    *   ratingMax: 5,
    *   ratingMin: 1,
@@ -35,6 +36,11 @@ export class Ratings extends APIResource {
  * Request payload for logging ratings.
  */
 export interface LogRatingParams {
+  /**
+   * The Greenflash product ID to rate.
+   */
+  productId: string;
+
   /**
    * The rating value. Must be between ratingMin and ratingMax (inclusive).
    */
@@ -96,6 +102,11 @@ export interface LogRatingResponse {
 }
 
 export interface RatingLogParams {
+  /**
+   * The Greenflash product ID to rate.
+   */
+  productId: string;
+
   /**
    * The rating value. Must be between ratingMin and ratingMax (inclusive).
    */
