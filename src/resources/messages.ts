@@ -250,11 +250,6 @@ export interface MessageItem {
   metadata?: { [key: string]: unknown };
 
   /**
-   * Override the conversation-level model for this specific message.
-   */
-  modelOverride?: string;
-
-  /**
    * Structured output data from tool calls, retrievals, or other operations.
    */
   output?: { [key: string]: unknown };
@@ -276,12 +271,6 @@ export interface MessageItem {
    * with messageType.
    */
   role?: 'user' | 'assistant' | 'system';
-
-  /**
-   * System prompt for the conversation. Can be a simple string or a template object
-   * with components.
-   */
-  systemPromptOverride?: SystemPrompt;
 
   /**
    * Name of the tool being called. Required for tool_call messages.
