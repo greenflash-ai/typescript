@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "greenflash/*": ["dist/src/*"],
-      "greenflash": ["dist/src/index.ts"]
+      "greenflash/*": ["./dist/src/*"],
+      "greenflash": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
