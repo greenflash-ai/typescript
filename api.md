@@ -44,3 +44,10 @@ Types:
 Methods:
 
 - <code title="post /conversions">client.conversions.<a href="./src/resources/conversions.ts">log</a>({ ...params }) -> LogConversionResponse</code>
+
+# Organizations
+
+Types:
+
+- <code><a href="./src/resources/organizations.ts">UpdateOrganizationParams</a></code>
+- <code><a href="./src/resources/organizations.ts">UpdateOrganizationResponse</a></code>

@@ -37,6 +37,11 @@ import {
   Messages,
   SystemPrompt,
 } from './resources/messages';
+import {
+  Organizations,
+  UpdateOrganizationParams,
+  UpdateOrganizationResponse,
+} from './resources/organizations';
 import { LogRatingParams, LogRatingResponse, RatingLogParams, Ratings } from './resources/ratings';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
@@ -745,12 +750,14 @@ export class Greenflash {
   identify: API.Identify = new API.Identify(this);
   ratings: API.Ratings = new API.Ratings(this);
   conversions: API.Conversions = new API.Conversions(this);
+  organizations: API.Organizations = new API.Organizations(this);
 }
 
 Greenflash.Messages = Messages;
 Greenflash.Identify = Identify;
 Greenflash.Ratings = Ratings;
 Greenflash.Conversions = Conversions;
+Greenflash.Organizations = Organizations;
 
 export declare namespace Greenflash {
   export type RequestOptions = Opts.RequestOptions;
@@ -784,5 +791,11 @@ export declare namespace Greenflash {
     type LogConversionParams as LogConversionParams,
     type LogConversionResponse as LogConversionResponse,
     type ConversionLogParams as ConversionLogParams,
+  };
+
+  export {
+    Organizations as Organizations,
+    type UpdateOrganizationParams as UpdateOrganizationParams,
+    type UpdateOrganizationResponse as UpdateOrganizationResponse,
   };
 }
