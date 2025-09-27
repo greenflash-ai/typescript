@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.1.0-alpha.22 (2025-09-27)
+
+Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
+
+### Features
+
+* **api:** add organization endpoint ([7f7596b](https://github.com/greenflash-ai/typescript/commit/7f7596b6529b578a5754636eaa49c2241d73914f))
+* **api:** add organizations and examples to config ([73ecda9](https://github.com/greenflash-ai/typescript/commit/73ecda9203211e87706046c97516afbdeb18524b))
+* **api:** organization to organizations ([93ba89f](https://github.com/greenflash-ai/typescript/commit/93ba89fc8aa784ae29726cf9175084299fab10ff))
+
+
+### Performance Improvements
+
+* faster formatting ([975ca66](https://github.com/greenflash-ai/typescript/commit/975ca661a102aacb98e1a194d3d410bfc3dca6b8))
+
+
+### Chores
+
+* **internal:** codegen related update ([57804f3](https://github.com/greenflash-ai/typescript/commit/57804f30018e307ad6444f80db79fc194907d5a5))
+* **internal:** fix incremental formatting in some cases ([804b28d](https://github.com/greenflash-ai/typescript/commit/804b28d4fc35a9543d806e3bd358117a334b8193))
+* **internal:** ignore .eslintcache ([a94b8ce](https://github.com/greenflash-ai/typescript/commit/a94b8cea0c0ef24208da3daa37888545bd38d7cd))
+* **internal:** remove deprecated `compilerOptions.baseUrl` from tsconfig.json ([862ac5a](https://github.com/greenflash-ai/typescript/commit/862ac5ae2f4635ab10329dd7ed1a451a7c28e583))
+
 ## 0.1.0-alpha.21 (2025-09-22)
 
 Full Changelog: [v0.1.0-alpha.20...v0.1.0-alpha.21](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.20...v0.1.0-alpha.21)
