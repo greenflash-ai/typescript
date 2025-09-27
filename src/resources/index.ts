@@ -21,4 +21,9 @@ export {
   type SystemPrompt,
   type MessageCreateParams,
 } from './messages';
+export {
+  Organizations,
+  type UpdateOrganizationParams,
+  type UpdateOrganizationResponse,
+} from './organizations';
 export { Ratings, type LogRatingParams, type LogRatingResponse, type RatingLogParams } from './ratings';
