@@ -22,6 +22,10 @@ export class Messages extends APIResource {
    * (internal ID) or `parentExternalMessageId` (your external ID) to create threaded
    * conversations.
    *
+   * **User Organization:** Optionally provide an `externalOrganizationId` to
+   * associate the user with an organization. If the organization doesn't exist, it
+   * will be created automatically.
+   *
    * The simplest way to log a message is to provide the `role` and `content` along
    * with an `externalConversationId` and your `productId`.
    *
@@ -61,6 +65,7 @@ export class Messages extends APIResource {
    *     },
    *   ],
    *   externalConversationId: 'conv-456',
+   *   externalOrganizationId: 'org-789',
    *   metadata: { campaign: 'summer-sale' },
    *   model: 'gpt-greenflash-1',
    *   productId: '123e4567-e89b-12d3-a456-426614174001',
@@ -106,6 +111,12 @@ export interface CreateParams {
    * externalConversationId, productId, or projectId must be provided.
    */
   externalConversationId?: string;
+
+  /**
+   * Your unique identifier for the organization this user belongs to. If provided,
+   * the user will be associated with this organization.
+   */
+  externalOrganizationId?: string;
 
   /**
    * Additional data about the conversation.
@@ -385,6 +396,12 @@ export interface MessageCreateParams {
    * externalConversationId, productId, or projectId must be provided.
    */
   externalConversationId?: string;
+
+  /**
+   * Your unique identifier for the organization this user belongs to. If provided,
+   * the user will be associated with this organization.
+   */
+  externalOrganizationId?: string;
 
   /**
    * Additional data about the conversation.

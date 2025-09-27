@@ -24,6 +24,7 @@ describe('resource identify', () => {
       externalUserId: 'user-123',
       anonymized: false,
       email: 'alice@example.com',
+      externalOrganizationId: 'org-456',
       metadata: { plan: 'bar' },
       name: 'Alice Example',
       phone: '+15551234567',
