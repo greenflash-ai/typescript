@@ -38,6 +38,7 @@ import {
   SystemPrompt,
 } from './resources/messages';
 import {
+  OrganizationUpdateParams,
   Organizations,
   UpdateOrganizationParams,
   UpdateOrganizationResponse,
@@ -797,5 +798,6 @@ export declare namespace Greenflash {
     Organizations as Organizations,
     type UpdateOrganizationParams as UpdateOrganizationParams,
     type UpdateOrganizationResponse as UpdateOrganizationResponse,
+    type OrganizationUpdateParams as OrganizationUpdateParams,
   };
 }
