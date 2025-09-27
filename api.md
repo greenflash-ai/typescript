@@ -51,3 +51,7 @@ Types:
 
 - <code><a href="./src/resources/organizations.ts">UpdateOrganizationParams</a></code>
 - <code><a href="./src/resources/organizations.ts">UpdateOrganizationResponse</a></code>
+
+Methods:
+
+- <code title="post /organizations">client.organizations.<a href="./src/resources/organizations.ts">update</a>({ ...params }) -> UpdateOrganizationResponse</code>
