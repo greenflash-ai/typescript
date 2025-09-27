@@ -25,5 +25,6 @@ export {
   Organizations,
   type UpdateOrganizationParams,
   type UpdateOrganizationResponse,
+  type OrganizationUpdateParams,
 } from './organizations';
 export { Ratings, type LogRatingParams, type LogRatingResponse, type RatingLogParams } from './ratings';
