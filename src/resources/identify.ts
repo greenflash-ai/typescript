@@ -13,12 +13,17 @@ export class Identify extends APIResource {
    * profile will be updated. If it doesn't exist, a new profile will be created. You
    * can then reference this user in other API calls using the same `externalUserId`.
    *
+   * Optionally provide an `externalOrganizationId` to associate the user with an
+   * organization. If the organization doesn't exist, it will be created
+   * automatically.
+   *
    * @example
    * ```ts
    * const createOrUpdateResponse =
    *   await client.identify.createOrUpdate({
    *     externalUserId: 'user-123',
    *     email: 'alice@example.com',
+   *     externalOrganizationId: 'org-456',
    *     metadata: { plan: 'premium' },
    *     name: 'Alice Example',
    *     phone: '+15551234567',
@@ -52,6 +57,12 @@ export interface CreateOrUpdateParams {
    * The user's email address.
    */
   email?: string;
+
+  /**
+   * Your unique identifier for the organization this user belongs to. If provided,
+   * the user will be associated with this organization.
+   */
+  externalOrganizationId?: string;
 
   /**
    * Additional data about the user (e.g., plan type, preferences).
@@ -155,6 +166,12 @@ export interface IdentifyCreateOrUpdateParams {
    * The user's email address.
    */
   email?: string;
+
+  /**
+   * Your unique identifier for the organization this user belongs to. If provided,
+   * the user will be associated with this organization.
+   */
+  externalOrganizationId?: string;
 
   /**
    * Additional data about the user (e.g., plan type, preferences).
