@@ -29,7 +29,7 @@ describe('resource messages', () => {
         {
           content: 'Hello!',
           context: 'context',
-          createdAt: 'createdAt',
+          createdAt: '2019-12-27',
           externalMessageId: 'user-msg-1',
           input: { foo: 'bar' },
           messageType: 'user_message',
@@ -43,7 +43,7 @@ describe('resource messages', () => {
         {
           content: 'Hi there! How can I help you?',
           context: 'context',
-          createdAt: 'createdAt',
+          createdAt: '2019-12-27',
           externalMessageId: 'assistant-msg-1',
           input: { foo: 'bar' },
           messageType: 'user_message',
@@ -57,7 +57,7 @@ describe('resource messages', () => {
         {
           content: 'Calling search tool',
           context: 'context',
-          createdAt: 'createdAt',
+          createdAt: '2019-12-27',
           externalMessageId: 'tool-call-1',
           input: { query: 'bar' },
           messageType: 'tool_call',
@@ -71,7 +71,7 @@ describe('resource messages', () => {
         {
           content: 'Search completed',
           context: 'context',
-          createdAt: 'createdAt',
+          createdAt: '2019-12-27',
           externalMessageId: 'tool-result-1',
           input: { foo: 'bar' },
           messageType: 'observation',
@@ -85,7 +85,7 @@ describe('resource messages', () => {
         {
           content: 'Based on the search, today will be sunny with a high of 75°F.',
           context: 'context',
-          createdAt: 'createdAt',
+          createdAt: '2019-12-27',
           externalMessageId: 'final-1',
           input: { foo: 'bar' },
           messageType: 'final_response',

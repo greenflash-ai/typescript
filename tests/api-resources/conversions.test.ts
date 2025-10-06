@@ -31,7 +31,7 @@ describe('resource conversions', () => {
       value: '99.99',
       valueType: 'currency',
       conversationId: '123e4567-e89b-12d3-a456-426614174000',
-      convertedAt: '2025-07-09T09:15:00Z',
+      convertedAt: '2019-12-27',
       externalConversationId: 'conv-456',
       metadata: { sku: 'bar' },
       productId: '123e4567-e89b-12d3-a456-426614174001',
