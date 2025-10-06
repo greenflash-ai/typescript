@@ -7,18 +7,19 @@ import { path } from '../internal/utils/path';
 
 export class Users extends APIResource {
   /**
-   * Create a new user profile with contact information and metadata.
+   * Create or update a user profile with contact information and metadata.
    *
-   * Provide an `externalUserId` to identify the user. This ID must be unique - if it
-   * already exists, the request will fail. You can then reference this user in other
-   * API calls using the same `externalUserId`.
+   * Provide an `externalUserId` to identify the user. If the user doesn't exist,
+   * they'll be created. If they already exist, their profile will be updated with
+   * the information you provide. This makes it easy to keep user data in sync
+   * without worrying about whether the user exists yet.
+   *
+   * You can then reference this user in other API calls using the same
+   * `externalUserId`.
    *
    * Optionally provide an `externalOrganizationId` to associate the user with an
    * organization. If the organization doesn't exist, it will be created
    * automatically.
-   *
-   * **Note:** This endpoint will fail if the user already exists. Use
-   * `PUT /users/{userId}` to update existing users.
    *
    * @example
    * ```ts
@@ -40,7 +41,13 @@ export class Users extends APIResource {
    * Update an existing user profile with new contact information and metadata.
    *
    * The `userId` in the URL path should be your `externalUserId`. Only the fields
-   * you provide will be updated - all other fields will remain unchanged.
+   * you provide will be updated - all other fields will remain unchanged. This is
+   * useful when you want to update specific fields without providing the full user
+   * profile.
+   *
+   * If you prefer a simpler approach where you always provide the complete user
+   * profile, use `POST /users` instead - it will create or update the user
+   * automatically.
    *
    * Optionally provide an `externalOrganizationId` to associate the user with an
    * organization. If the organization doesn't exist, it will be created
