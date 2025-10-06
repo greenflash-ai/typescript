@@ -7,9 +7,9 @@ const client = new Greenflash({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource identify', () => {
-  test('createOrUpdate: only required params', async () => {
-    const responsePromise = client.identify.createOrUpdate({ externalUserId: 'user-123' });
+describe('resource users', () => {
+  test('create: only required params', async () => {
+    const responsePromise = client.users.create({ externalUserId: 'user-123' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -19,8 +19,8 @@ describe('resource identify', () => {
     expect(dataAndResponse.response).toBe(rawResponse);
   });
 
-  test('createOrUpdate: required and optional params', async () => {
-    const response = await client.identify.createOrUpdate({
+  test('create: required and optional params', async () => {
+    const response = await client.users.create({
       externalUserId: 'user-123',
       anonymized: false,
       email: 'alice@example.com',
@@ -29,5 +29,16 @@ describe('resource identify', () => {
       name: 'Alice Example',
       phone: '+15551234567',
     });
+  });
+
+  test('update', async () => {
+    const responsePromise = client.users.update('userId', {});
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
   });
 });

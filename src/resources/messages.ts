@@ -35,7 +35,7 @@ export class Messages extends APIResource {
    *
    * @example
    * ```ts
-   * const createResponse = await client.messages.create({
+   * const createMessageResponse = await client.messages.create({
    *   externalUserId: 'user-123',
    *   messages: [
    *     { externalMessageId: 'user-msg-1', role: 'user', content: 'Hello!' },
@@ -80,7 +80,7 @@ export class Messages extends APIResource {
    * });
    * ```
    */
-  create(body: MessageCreateParams, options?: RequestOptions): APIPromise<CreateResponse> {
+  create(body: MessageCreateParams, options?: RequestOptions): APIPromise<CreateMessageResponse> {
     return this._client.post('/messages', { body, ...options });
   }
 }
@@ -88,7 +88,7 @@ export class Messages extends APIResource {
 /**
  * Request payload for logging conversations and messages.
  */
-export interface CreateParams {
+export interface CreateMessageParams {
   /**
    * Your external user ID that will be mapped to a participant in our system.
    */
@@ -155,7 +155,7 @@ export interface CreateParams {
 /**
  * Success response for message logging.
  */
-export interface CreateResponse {
+export interface CreateMessageResponse {
   /**
    * The ID of the conversation that was created or updated.
    */
@@ -164,7 +164,7 @@ export interface CreateResponse {
   /**
    * The messages that were processed.
    */
-  messages: Array<CreateResponse.Message>;
+  messages: Array<CreateMessageResponse.Message>;
 
   /**
    * Whether the API call was successful.
@@ -182,7 +182,7 @@ export interface CreateResponse {
   systemPromptTemplateId: string;
 }
 
-export namespace CreateResponse {
+export namespace CreateMessageResponse {
   export interface Message {
     /**
      * The internal Greenflash message ID.
@@ -439,8 +439,8 @@ export interface MessageCreateParams {
 
 export declare namespace Messages {
   export {
-    type CreateParams as CreateParams,
-    type CreateResponse as CreateResponse,
+    type CreateMessageParams as CreateMessageParams,
+    type CreateMessageResponse as CreateMessageResponse,
     type MessageItem as MessageItem,
     type SystemPrompt as SystemPrompt,
     type MessageCreateParams as MessageCreateParams,
