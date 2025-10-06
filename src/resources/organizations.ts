@@ -7,16 +7,17 @@ import { path } from '../internal/utils/path';
 
 export class Organizations extends APIResource {
   /**
-   * Create a new organization with a unique external identifier.
+   * Create or update an organization with a unique external identifier.
    *
-   * Provide an `externalOrganizationId` to identify the organization. This ID must
-   * be unique - if it already exists, the request will fail. You can then reference
-   * this organization in other API calls (like user creation with `/users` or in the
-   * `/messages` endpoint) using the same `externalOrganizationId`.
+   * Provide an `externalOrganizationId` to identify the organization. If the
+   * organization doesn't exist, it'll be created. If it already exists, its
+   * information will be updated with what you provide. This makes it easy to keep
+   * organization data in sync without worrying about whether the organization exists
+   * yet.
    *
-   * Organizations are stored in the `tenant_organizations` table and can be
-   * associated with users (participants) through the
-   * `tenant_organizations_participants` junction table.
+   * You can reference this organization in other API calls (like user creation with
+   * `/users` or in the `/messages` endpoint) using the same
+   * `externalOrganizationId`.
    *
    * @example
    * ```ts
@@ -40,7 +41,12 @@ export class Organizations extends APIResource {
    *
    * The `organizationId` in the URL path should be your `externalOrganizationId`.
    * Only the fields you provide will be updated - all other fields will remain
-   * unchanged.
+   * unchanged. This is useful when you want to update specific fields without
+   * providing the full organization profile.
+   *
+   * If you prefer a simpler approach where you always provide the complete
+   * organization information, use `POST /organizations` instead - it will create or
+   * update the organization automatically.
    *
    * @example
    * ```ts
