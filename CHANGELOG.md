@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-alpha.23 (2025-10-06)
+
+Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
+
+### Features
+
+* **api:** manual updates ([688e2e4](https://github.com/greenflash-ai/typescript/commit/688e2e479eaba42042725e026d1269730ce33040))
+
+
+### Chores
+
+* **internal:** remove .eslintcache ([3d05e42](https://github.com/greenflash-ai/typescript/commit/3d05e42e51324210fcebf6c9b08cec403e6e066f))
+* **jsdoc:** fix [@link](https://github.com/link) annotations to refer only to parts of the package‘s public interface ([100d35f](https://github.com/greenflash-ai/typescript/commit/100d35fe00f3f30c3dcd643b8e7b425e4809e67e))
+
 ## 0.1.0-alpha.22 (2025-09-27)
 
 Full Changelog: [v0.1.0-alpha.21...v0.1.0-alpha.22](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.21...v0.1.0-alpha.22)
