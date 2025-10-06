@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.24 (2025-10-06)
+
+Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
+
+### Features
+
+* **api:** manually sync openapi spec from next ([0bdf514](https://github.com/greenflash-ai/typescript/commit/0bdf51473f9ebb517ba1ab96e465ea16d1c3933a))
+
 ## 0.1.0-alpha.23 (2025-10-06)
 
 Full Changelog: [v0.1.0-alpha.22...v0.1.0-alpha.23](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.22...v0.1.0-alpha.23)
