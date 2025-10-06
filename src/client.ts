@@ -23,27 +23,34 @@ import {
   LogConversionResponse,
 } from './resources/conversions';
 import {
-  CreateOrUpdateParams,
-  CreateOrUpdateResponse,
-  Identify,
-  IdentifyCreateOrUpdateParams,
-  Participant,
-} from './resources/identify';
-import {
-  CreateParams,
-  CreateResponse,
+  CreateMessageParams,
+  CreateMessageResponse,
   MessageCreateParams,
   MessageItem,
   Messages,
   SystemPrompt,
 } from './resources/messages';
 import {
+  CreateOrganizationParams,
+  CreateOrganizationResponse,
+  OrganizationCreateParams,
   OrganizationUpdateParams,
   Organizations,
+  TenantOrganization,
   UpdateOrganizationParams,
   UpdateOrganizationResponse,
 } from './resources/organizations';
 import { LogRatingParams, LogRatingResponse, RatingLogParams, Ratings } from './resources/ratings';
+import {
+  CreateUserParams,
+  CreateUserResponse,
+  Participant,
+  UpdateUserParams,
+  UpdateUserResponse,
+  UserCreateParams,
+  UserUpdateParams,
+  Users,
+} from './resources/users';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -748,14 +755,14 @@ export class Greenflash {
   static toFile = Uploads.toFile;
 
   messages: API.Messages = new API.Messages(this);
-  identify: API.Identify = new API.Identify(this);
+  users: API.Users = new API.Users(this);
   ratings: API.Ratings = new API.Ratings(this);
   conversions: API.Conversions = new API.Conversions(this);
   organizations: API.Organizations = new API.Organizations(this);
 }
 
 Greenflash.Messages = Messages;
-Greenflash.Identify = Identify;
+Greenflash.Users = Users;
 Greenflash.Ratings = Ratings;
 Greenflash.Conversions = Conversions;
 Greenflash.Organizations = Organizations;
@@ -765,19 +772,22 @@ export declare namespace Greenflash {
 
   export {
     Messages as Messages,
-    type CreateParams as CreateParams,
-    type CreateResponse as CreateResponse,
+    type CreateMessageParams as CreateMessageParams,
+    type CreateMessageResponse as CreateMessageResponse,
     type MessageItem as MessageItem,
     type SystemPrompt as SystemPrompt,
     type MessageCreateParams as MessageCreateParams,
   };
 
   export {
-    Identify as Identify,
-    type CreateOrUpdateParams as CreateOrUpdateParams,
-    type CreateOrUpdateResponse as CreateOrUpdateResponse,
+    Users as Users,
+    type CreateUserParams as CreateUserParams,
+    type CreateUserResponse as CreateUserResponse,
     type Participant as Participant,
-    type IdentifyCreateOrUpdateParams as IdentifyCreateOrUpdateParams,
+    type UpdateUserParams as UpdateUserParams,
+    type UpdateUserResponse as UpdateUserResponse,
+    type UserCreateParams as UserCreateParams,
+    type UserUpdateParams as UserUpdateParams,
   };
 
   export {
@@ -796,8 +806,12 @@ export declare namespace Greenflash {
 
   export {
     Organizations as Organizations,
+    type CreateOrganizationParams as CreateOrganizationParams,
+    type CreateOrganizationResponse as CreateOrganizationResponse,
+    type TenantOrganization as TenantOrganization,
     type UpdateOrganizationParams as UpdateOrganizationParams,
     type UpdateOrganizationResponse as UpdateOrganizationResponse,
+    type OrganizationCreateParams as OrganizationCreateParams,
     type OrganizationUpdateParams as OrganizationUpdateParams,
   };
 }

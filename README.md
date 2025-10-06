@@ -26,14 +26,14 @@ const client = new Greenflash({
   apiKey: process.env['GREENFLASH_API_KEY'], // This is the default and can be omitted
 });
 
-const createResponse = await client.messages.create({
+const createMessageResponse = await client.messages.create({
   externalUserId: 'externalUserId',
   messages: [{}],
   externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
 });
 
-console.log(createResponse.conversationId);
+console.log(createMessageResponse.conversationId);
 ```
 
 ### Request & Response types
@@ -54,7 +54,7 @@ const params: Greenflash.MessageCreateParams = {
   externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
 };
-const createResponse: Greenflash.CreateResponse = await client.messages.create(params);
+const createMessageResponse: Greenflash.CreateMessageResponse = await client.messages.create(params);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -67,7 +67,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const createResponse = await client.messages
+const createMessageResponse = await client.messages
   .create({
     externalUserId: 'externalUserId',
     messages: [{}],
@@ -165,7 +165,7 @@ const response = await client.messages
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: createResponse, response: raw } = await client.messages
+const { data: createMessageResponse, response: raw } = await client.messages
   .create({
     externalUserId: 'externalUserId',
     messages: [{}],
@@ -174,7 +174,7 @@ const { data: createResponse, response: raw } = await client.messages
   })
   .withResponse();
 console.log(raw.headers.get('X-My-Header'));
-console.log(createResponse.conversationId);
+console.log(createMessageResponse.conversationId);
 ```
 
 ### Logging

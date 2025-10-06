@@ -7,24 +7,31 @@ export {
   type ConversionLogParams,
 } from './conversions';
 export {
-  Identify,
-  type CreateOrUpdateParams,
-  type CreateOrUpdateResponse,
-  type Participant,
-  type IdentifyCreateOrUpdateParams,
-} from './identify';
-export {
   Messages,
-  type CreateParams,
-  type CreateResponse,
+  type CreateMessageParams,
+  type CreateMessageResponse,
   type MessageItem,
   type SystemPrompt,
   type MessageCreateParams,
 } from './messages';
 export {
   Organizations,
+  type CreateOrganizationParams,
+  type CreateOrganizationResponse,
+  type TenantOrganization,
   type UpdateOrganizationParams,
   type UpdateOrganizationResponse,
+  type OrganizationCreateParams,
   type OrganizationUpdateParams,
 } from './organizations';
 export { Ratings, type LogRatingParams, type LogRatingResponse, type RatingLogParams } from './ratings';
+export {
+  Users,
+  type CreateUserParams,
+  type CreateUserResponse,
+  type Participant,
+  type UpdateUserParams,
+  type UpdateUserResponse,
+  type UserCreateParams,
+  type UserUpdateParams,
+} from './users';
