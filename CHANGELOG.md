@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.25 (2025-10-07)
+
+Full Changelog: [v0.1.0-alpha.24...v0.1.0-alpha.25](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.24...v0.1.0-alpha.25)
+
+### Chores
+
+* **internal:** use npm pack for build uploads ([9bc507b](https://github.com/greenflash-ai/typescript/commit/9bc507b69dd2941a7b26572dd69747e38abbbba0))
+
 ## 0.1.0-alpha.24 (2025-10-06)
 
 Full Changelog: [v0.1.0-alpha.23...v0.1.0-alpha.24](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.23...v0.1.0-alpha.24)
