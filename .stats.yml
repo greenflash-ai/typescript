@@ -1,4 +1,4 @@
 configured_endpoints: 7
-openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/greenflash%2Fgreenflash-public-api-e2ce5771d0c38b0db79031d6b129a781cb86e3280f28416cfa06633ca7b23832.yml
-openapi_spec_hash: 849d50471b7bd5577187dbd4439d75ee
+openapi_spec_url: https://storage.googleapis.com/stainless-sdk-openapi-specs/greenflash%2Fgreenflash-public-api-48adb6bfe01d422462363eb550733d24e41dd001e25f4421cd6db342d641ccda.yml
+openapi_spec_hash: 19b53e14a86f672b2ed2f5a1d80ca236
 config_hash: dc4455e840452a0b26d5d47dec7512d4
