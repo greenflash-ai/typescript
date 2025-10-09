@@ -142,11 +142,6 @@ export interface Participant {
   anonymized: boolean;
 
   /**
-   * When the participant was first created.
-   */
-  createdAt: string;
-
-  /**
    * Your external user ID (matches the externalUserId from the request).
    */
   externalId: string;
@@ -162,9 +157,9 @@ export interface Participant {
   tenantId: string;
 
   /**
-   * When the participant was last updated.
+   * When the participant was first created.
    */
-  updatedAt: string;
+  createdAt?: string;
 
   /**
    * The participant's email address.
@@ -180,6 +175,11 @@ export interface Participant {
    * The participant's phone number.
    */
   phone?: string;
+
+  /**
+   * When the participant was last updated.
+   */
+  updatedAt?: string;
 }
 
 /**
