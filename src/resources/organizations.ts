@@ -112,11 +112,6 @@ export interface TenantOrganization {
   id: string;
 
   /**
-   * When the organization was first created.
-   */
-  createdAt: string;
-
-  /**
    * Custom metadata for the organization.
    */
   metadata: { [key: string]: unknown };
@@ -127,9 +122,9 @@ export interface TenantOrganization {
   tenantId: string;
 
   /**
-   * When the organization was last updated.
+   * When the organization was first created.
    */
-  updatedAt: string;
+  createdAt?: string;
 
   /**
    * Your external organization ID.
@@ -140,6 +135,11 @@ export interface TenantOrganization {
    * The organization name.
    */
   name?: string;
+
+  /**
+   * When the organization was last updated.
+   */
+  updatedAt?: string;
 }
 
 /**

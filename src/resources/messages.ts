@@ -311,11 +311,6 @@ export namespace SystemPrompt {
     externalTemplateId?: string;
 
     /**
-     * Tags to categorize the template.
-     */
-    tags?: Array<string>;
-
-    /**
      * The Greenflash template ID.
      */
     templateId?: string;
@@ -353,11 +348,6 @@ export namespace SystemPrompt {
        * customer.
        */
       source?: 'customer' | 'participant' | 'greenflash' | 'agent';
-
-      /**
-       * Tags to categorize the component.
-       */
-      tags?: Array<string>;
 
       /**
        * Component type: system, endUser, userModified, rag, or agent. Defaults to
