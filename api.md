@@ -62,3 +62,31 @@ Methods:
 
 - <code title="post /organizations">client.organizations.<a href="./src/resources/organizations.ts">create</a>({ ...params }) -> CreateOrganizationResponse</code>
 - <code title="put /organizations/{organizationId}">client.organizations.<a href="./src/resources/organizations.ts">update</a>(organizationID, { ...params }) -> UpdateOrganizationResponse</code>
+
+# Prompts
+
+Types:
+
+- <code><a href="./src/resources/prompts.ts">ComponentInput</a></code>
+- <code><a href="./src/resources/prompts.ts">ComponentUpdate</a></code>
+- <code><a href="./src/resources/prompts.ts">CreatePromptParams</a></code>
+- <code><a href="./src/resources/prompts.ts">CreatePromptResponse</a></code>
+- <code><a href="./src/resources/prompts.ts">DeletePromptResponse</a></code>
+- <code><a href="./src/resources/prompts.ts">GetPromptParams</a></code>
+- <code><a href="./src/resources/prompts.ts">GetPromptResponse</a></code>
+- <code><a href="./src/resources/prompts.ts">ListPromptsParams</a></code>
+- <code><a href="./src/resources/prompts.ts">ListPromptsResponse</a></code>
+- <code><a href="./src/resources/prompts.ts">Prompt</a></code>
+- <code><a href="./src/resources/prompts.ts">PromptComponent</a></code>
+- <code><a href="./src/resources/prompts.ts">SlimPrompt</a></code>
+- <code><a href="./src/resources/prompts.ts">SlimPromptComponent</a></code>
+- <code><a href="./src/resources/prompts.ts">UpdatePromptParams</a></code>
+- <code><a href="./src/resources/prompts.ts">UpdatePromptResponse</a></code>
+
+Methods:
+
+- <code title="post /prompts">client.prompts.<a href="./src/resources/prompts.ts">create</a>({ ...params }) -> CreatePromptResponse</code>
+- <code title="put /prompts/{id}">client.prompts.<a href="./src/resources/prompts.ts">update</a>(id, { ...params }) -> UpdatePromptResponse</code>
+- <code title="get /prompts">client.prompts.<a href="./src/resources/prompts.ts">list</a>({ ...params }) -> ListPromptsResponse</code>
+- <code title="delete /prompts/{id}">client.prompts.<a href="./src/resources/prompts.ts">delete</a>(id) -> DeletePromptResponse</code>
+- <code title="get /prompts/{id}">client.prompts.<a href="./src/resources/prompts.ts">get</a>(id) -> GetPromptResponse</code>

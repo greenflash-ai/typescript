@@ -24,6 +24,27 @@ export {
   type OrganizationCreateParams,
   type OrganizationUpdateParams,
 } from './organizations';
+export {
+  Prompts,
+  type ComponentInput,
+  type ComponentUpdate,
+  type CreatePromptParams,
+  type CreatePromptResponse,
+  type DeletePromptResponse,
+  type GetPromptParams,
+  type GetPromptResponse,
+  type ListPromptsParams,
+  type ListPromptsResponse,
+  type Prompt,
+  type PromptComponent,
+  type SlimPrompt,
+  type SlimPromptComponent,
+  type UpdatePromptParams,
+  type UpdatePromptResponse,
+  type PromptCreateParams,
+  type PromptUpdateParams,
+  type PromptListParams,
+} from './prompts';
 export { Ratings, type LogRatingParams, type LogRatingResponse, type RatingLogParams } from './ratings';
 export {
   Users,

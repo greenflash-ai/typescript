@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as PromptsAPI from './prompts';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -69,14 +70,12 @@ export class Messages extends APIResource {
    *   metadata: { campaign: 'summer-sale' },
    *   model: 'gpt-greenflash-1',
    *   productId: '123e4567-e89b-12d3-a456-426614174001',
-   *   projectId: '123e4567-e89b-12d3-a456-426614174002',
    *   systemPrompt: {
-   *     templateId: '123e4567-e89b-12d3-a456-426614174004',
+   *     promptId: '123e4567-e89b-12d3-a456-426614174004',
    *     components: [
    *       { ... },
    *     ],
    *   },
-   *   versionId: '123e4567-e89b-12d3-a456-426614174003',
    * });
    * ```
    */
@@ -102,13 +101,13 @@ export interface CreateMessageParams {
   /**
    * The Greenflash conversation ID. When provided, updates an existing conversation
    * instead of creating a new one. Either conversationId, externalConversationId,
-   * productId, or projectId must be provided.
+   * productId must be provided.
    */
   conversationId?: string;
 
   /**
    * Your external identifier for the conversation. Either conversationId,
-   * externalConversationId, productId, or projectId must be provided.
+   * externalConversationId, productId must be provided.
    */
   externalConversationId?: string;
 
@@ -130,26 +129,15 @@ export interface CreateMessageParams {
 
   /**
    * The Greenflash product this conversation belongs to. Either conversationId,
-   * externalConversationId, productId, or projectId must be provided.
+   * externalConversationId, productId must be provided.
    */
   productId?: string;
 
   /**
-   * The Greenflash project this conversation belongs to. Either conversationId,
-   * externalConversationId, productId, or projectId must be provided.
-   */
-  projectId?: string;
-
-  /**
-   * System prompt for the conversation. Can be a simple string or a template object
+   * System prompt for the conversation. Can be a simple string or a prompt object
    * with components.
    */
-  systemPrompt?: SystemPrompt;
-
-  /**
-   * The product version ID.
-   */
-  versionId?: string;
+  systemPrompt?: string | SystemPrompt;
 }
 
 /**
@@ -177,9 +165,9 @@ export interface CreateMessageResponse {
   systemPromptComponentIds: Array<string>;
 
   /**
-   * The template ID used internally to track the system prompt template.
+   * The prompt ID used internally to track the system prompt.
    */
-  systemPromptTemplateId: string;
+  systemPromptPromptId: string;
 }
 
 export namespace CreateMessageResponse {
@@ -290,77 +278,28 @@ export interface MessageItem {
 }
 
 /**
- * System prompt for the conversation. Can be a simple string or a template object
- * with components.
+ * System prompt as a prompt object. Can reference an existing prompt by ID or
+ * define new components inline.
  */
-export type SystemPrompt = string | SystemPrompt.SystemPromptTemplate;
-
-export namespace SystemPrompt {
+export interface SystemPrompt {
   /**
-   * System prompt as a template object with components.
+   * Array of component objects. When provided with promptId/externalPromptId, will
+   * upsert the prompt. When omitted with promptId/externalPromptId, will reference
+   * an existing prompt.
    */
-  export interface SystemPromptTemplate {
-    /**
-     * Array of component objects.
-     */
-    components: Array<SystemPromptTemplate.Component>;
+  components?: Array<PromptsAPI.ComponentInput>;
 
-    /**
-     * Your external identifier for the template.
-     */
-    externalTemplateId?: string;
+  /**
+   * Your external identifier for the prompt. Can be used to reference an existing
+   * prompt created via system prompt APIs.
+   */
+  externalPromptId?: string;
 
-    /**
-     * The Greenflash template ID.
-     */
-    templateId?: string;
-  }
-
-  export namespace SystemPromptTemplate {
-    export interface Component {
-      /**
-       * The content of the component.
-       */
-      content: string;
-
-      /**
-       * The Greenflash component ID.
-       */
-      componentId?: string;
-
-      /**
-       * Your external identifier for the component.
-       */
-      externalComponentId?: string;
-
-      /**
-       * Whether the component content changes dynamically.
-       */
-      isDynamic?: boolean;
-
-      /**
-       * Component name.
-       */
-      name?: string;
-
-      /**
-       * Component source: customer, participant, greenflash, or agent. Defaults to
-       * customer.
-       */
-      source?: 'customer' | 'participant' | 'greenflash' | 'agent';
-
-      /**
-       * Component type: system, endUser, userModified, rag, or agent. Defaults to
-       * system.
-       */
-      type?: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
-
-      /**
-       * Component version number.
-       */
-      version?: number;
-    }
-  }
+  /**
+   * Greenflash's internal prompt ID. Can be used to reference an existing prompt
+   * created via system prompt APIs.
+   */
+  promptId?: string;
 }
 
 export interface MessageCreateParams {
@@ -377,13 +316,13 @@ export interface MessageCreateParams {
   /**
    * The Greenflash conversation ID. When provided, updates an existing conversation
    * instead of creating a new one. Either conversationId, externalConversationId,
-   * productId, or projectId must be provided.
+   * productId must be provided.
    */
   conversationId?: string;
 
   /**
    * Your external identifier for the conversation. Either conversationId,
-   * externalConversationId, productId, or projectId must be provided.
+   * externalConversationId, productId must be provided.
    */
   externalConversationId?: string;
 
@@ -405,26 +344,15 @@ export interface MessageCreateParams {
 
   /**
    * The Greenflash product this conversation belongs to. Either conversationId,
-   * externalConversationId, productId, or projectId must be provided.
+   * externalConversationId, productId must be provided.
    */
   productId?: string;
 
   /**
-   * The Greenflash project this conversation belongs to. Either conversationId,
-   * externalConversationId, productId, or projectId must be provided.
-   */
-  projectId?: string;
-
-  /**
-   * System prompt for the conversation. Can be a simple string or a template object
+   * System prompt for the conversation. Can be a simple string or a prompt object
    * with components.
    */
-  systemPrompt?: SystemPrompt;
-
-  /**
-   * The product version ID.
-   */
-  versionId?: string;
+  systemPrompt?: string | SystemPrompt;
 }
 
 export declare namespace Messages {
