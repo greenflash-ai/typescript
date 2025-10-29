@@ -40,6 +40,27 @@ import {
   UpdateOrganizationParams,
   UpdateOrganizationResponse,
 } from './resources/organizations';
+import {
+  ComponentInput,
+  ComponentUpdate,
+  CreatePromptParams,
+  CreatePromptResponse,
+  DeletePromptResponse,
+  GetPromptParams,
+  GetPromptResponse,
+  ListPromptsParams,
+  ListPromptsResponse,
+  Prompt,
+  PromptComponent,
+  PromptCreateParams,
+  PromptListParams,
+  PromptUpdateParams,
+  Prompts,
+  SlimPrompt,
+  SlimPromptComponent,
+  UpdatePromptParams,
+  UpdatePromptResponse,
+} from './resources/prompts';
 import { LogRatingParams, LogRatingResponse, RatingLogParams, Ratings } from './resources/ratings';
 import {
   CreateUserParams,
@@ -759,6 +780,7 @@ export class Greenflash {
   ratings: API.Ratings = new API.Ratings(this);
   conversions: API.Conversions = new API.Conversions(this);
   organizations: API.Organizations = new API.Organizations(this);
+  prompts: API.Prompts = new API.Prompts(this);
 }
 
 Greenflash.Messages = Messages;
@@ -766,6 +788,7 @@ Greenflash.Users = Users;
 Greenflash.Ratings = Ratings;
 Greenflash.Conversions = Conversions;
 Greenflash.Organizations = Organizations;
+Greenflash.Prompts = Prompts;
 
 export declare namespace Greenflash {
   export type RequestOptions = Opts.RequestOptions;
@@ -813,5 +836,27 @@ export declare namespace Greenflash {
     type UpdateOrganizationResponse as UpdateOrganizationResponse,
     type OrganizationCreateParams as OrganizationCreateParams,
     type OrganizationUpdateParams as OrganizationUpdateParams,
+  };
+
+  export {
+    Prompts as Prompts,
+    type ComponentInput as ComponentInput,
+    type ComponentUpdate as ComponentUpdate,
+    type CreatePromptParams as CreatePromptParams,
+    type CreatePromptResponse as CreatePromptResponse,
+    type DeletePromptResponse as DeletePromptResponse,
+    type GetPromptParams as GetPromptParams,
+    type GetPromptResponse as GetPromptResponse,
+    type ListPromptsParams as ListPromptsParams,
+    type ListPromptsResponse as ListPromptsResponse,
+    type Prompt as Prompt,
+    type PromptComponent as PromptComponent,
+    type SlimPrompt as SlimPrompt,
+    type SlimPromptComponent as SlimPromptComponent,
+    type UpdatePromptParams as UpdatePromptParams,
+    type UpdatePromptResponse as UpdatePromptResponse,
+    type PromptCreateParams as PromptCreateParams,
+    type PromptUpdateParams as PromptUpdateParams,
+    type PromptListParams as PromptListParams,
   };
 }

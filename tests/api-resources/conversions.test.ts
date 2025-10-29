@@ -35,7 +35,6 @@ describe('resource conversions', () => {
       externalConversationId: 'conv-456',
       metadata: { sku: 'bar' },
       productId: '123e4567-e89b-12d3-a456-426614174001',
-      projectId: '123e4567-e89b-12d3-a456-426614174002',
     });
   });
 });
