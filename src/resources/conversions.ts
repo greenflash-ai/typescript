@@ -25,7 +25,6 @@ export class Conversions extends APIResource {
    *   externalConversationId: 'conv-456',
    *   metadata: { sku: 'ABC-123' },
    *   productId: '123e4567-e89b-12d3-a456-426614174001',
-   *   projectId: '123e4567-e89b-12d3-a456-426614174002',
    * });
    * ```
    */
@@ -82,11 +81,6 @@ export interface LogConversionParams {
    * The Greenflash product associated with this conversion.
    */
   productId?: string;
-
-  /**
-   * The Greenflash project associated with this conversion.
-   */
-  projectId?: string;
 }
 
 /**
@@ -149,11 +143,6 @@ export interface ConversionLogParams {
    * The Greenflash product associated with this conversion.
    */
   productId?: string;
-
-  /**
-   * The Greenflash project associated with this conversion.
-   */
-  projectId?: string;
 }
 
 export declare namespace Conversions {

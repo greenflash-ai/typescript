@@ -103,7 +103,6 @@ describe('resource messages', () => {
       metadata: { campaign: 'bar' },
       model: 'gpt-greenflash-1',
       productId: '123e4567-e89b-12d3-a456-426614174001',
-      projectId: '123e4567-e89b-12d3-a456-426614174002',
       systemPrompt: {
         components: [
           {
@@ -114,13 +113,11 @@ describe('resource messages', () => {
             name: 'name',
             source: 'customer',
             type: 'system',
-            version: 0,
           },
         ],
-        externalTemplateId: 'externalTemplateId',
-        templateId: '123e4567-e89b-12d3-a456-426614174004',
+        externalPromptId: 'externalPromptId',
+        promptId: '123e4567-e89b-12d3-a456-426614174004',
       },
-      versionId: '123e4567-e89b-12d3-a456-426614174003',
     });
   });
 });
