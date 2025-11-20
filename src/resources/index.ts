@@ -6,6 +6,7 @@ export {
   type LogConversionResponse,
   type ConversionLogParams,
 } from './conversions';
+export { Interactions } from './interactions';
 export {
   Messages,
   type CreateMessageParams,

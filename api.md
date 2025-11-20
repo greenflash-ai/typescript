@@ -11,6 +11,8 @@ Methods:
 
 - <code title="post /messages">client.messages.<a href="./src/resources/messages.ts">create</a>({ ...params }) -> CreateMessageResponse</code>
 
+# Interactions
+
 # Users
 
 Types:
