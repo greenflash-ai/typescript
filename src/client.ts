@@ -22,6 +22,7 @@ import {
   LogConversionParams,
   LogConversionResponse,
 } from './resources/conversions';
+import { Interactions } from './resources/interactions';
 import {
   CreateMessageParams,
   CreateMessageResponse,
@@ -776,6 +777,7 @@ export class Greenflash {
   static toFile = Uploads.toFile;
 
   messages: API.Messages = new API.Messages(this);
+  interactions: API.Interactions = new API.Interactions(this);
   users: API.Users = new API.Users(this);
   ratings: API.Ratings = new API.Ratings(this);
   conversions: API.Conversions = new API.Conversions(this);
@@ -784,6 +786,7 @@ export class Greenflash {
 }
 
 Greenflash.Messages = Messages;
+Greenflash.Interactions = Interactions;
 Greenflash.Users = Users;
 Greenflash.Ratings = Ratings;
 Greenflash.Conversions = Conversions;
@@ -801,6 +804,8 @@ export declare namespace Greenflash {
     type SystemPrompt as SystemPrompt,
     type MessageCreateParams as MessageCreateParams,
   };
+
+  export { Interactions as Interactions };
 
   export {
     Users as Users,
