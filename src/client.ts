@@ -16,13 +16,16 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
+import { CreateEventParams, CreateEventResponse, EventCreateParams, Events } from './resources/events';
 import {
-  ConversionLogParams,
-  Conversions,
-  LogConversionParams,
-  LogConversionResponse,
-} from './resources/conversions';
-import { Interactions } from './resources/interactions';
+  GetInteractionAnalyticsParams,
+  GetInteractionAnalyticsResponse,
+  InteractionGetInteractionAnalyticsParams,
+  InteractionListParams,
+  Interactions,
+  ListInteractionsParams,
+  ListInteractionsResponse,
+} from './resources/interactions';
 import {
   CreateMessageParams,
   CreateMessageResponse,
@@ -34,7 +37,13 @@ import {
 import {
   CreateOrganizationParams,
   CreateOrganizationResponse,
+  GetOrganizationAnalyticsParams,
+  GetOrganizationAnalyticsResponse,
+  ListOrganizationsParams,
+  ListOrganizationsResponse,
   OrganizationCreateParams,
+  OrganizationGetOrganizationAnalyticsParams,
+  OrganizationListParams,
   OrganizationUpdateParams,
   Organizations,
   TenantOrganization,
@@ -66,10 +75,16 @@ import { LogRatingParams, LogRatingResponse, RatingLogParams, Ratings } from './
 import {
   CreateUserParams,
   CreateUserResponse,
+  GetUserAnalyticsParams,
+  GetUserAnalyticsResponse,
+  ListUsersParams,
+  ListUsersResponse,
   Participant,
   UpdateUserParams,
   UpdateUserResponse,
   UserCreateParams,
+  UserGetUserAnalyticsParams,
+  UserListParams,
   UserUpdateParams,
   Users,
 } from './resources/users';
@@ -780,18 +795,18 @@ export class Greenflash {
   interactions: API.Interactions = new API.Interactions(this);
   users: API.Users = new API.Users(this);
   ratings: API.Ratings = new API.Ratings(this);
-  conversions: API.Conversions = new API.Conversions(this);
   organizations: API.Organizations = new API.Organizations(this);
   prompts: API.Prompts = new API.Prompts(this);
+  events: API.Events = new API.Events(this);
 }
 
 Greenflash.Messages = Messages;
 Greenflash.Interactions = Interactions;
 Greenflash.Users = Users;
 Greenflash.Ratings = Ratings;
-Greenflash.Conversions = Conversions;
 Greenflash.Organizations = Organizations;
 Greenflash.Prompts = Prompts;
+Greenflash.Events = Events;
 
 export declare namespace Greenflash {
   export type RequestOptions = Opts.RequestOptions;
@@ -805,17 +820,31 @@ export declare namespace Greenflash {
     type MessageCreateParams as MessageCreateParams,
   };
 
-  export { Interactions as Interactions };
+  export {
+    Interactions as Interactions,
+    type GetInteractionAnalyticsParams as GetInteractionAnalyticsParams,
+    type GetInteractionAnalyticsResponse as GetInteractionAnalyticsResponse,
+    type ListInteractionsParams as ListInteractionsParams,
+    type ListInteractionsResponse as ListInteractionsResponse,
+    type InteractionListParams as InteractionListParams,
+    type InteractionGetInteractionAnalyticsParams as InteractionGetInteractionAnalyticsParams,
+  };
 
   export {
     Users as Users,
     type CreateUserParams as CreateUserParams,
     type CreateUserResponse as CreateUserResponse,
+    type GetUserAnalyticsParams as GetUserAnalyticsParams,
+    type GetUserAnalyticsResponse as GetUserAnalyticsResponse,
+    type ListUsersParams as ListUsersParams,
+    type ListUsersResponse as ListUsersResponse,
     type Participant as Participant,
     type UpdateUserParams as UpdateUserParams,
     type UpdateUserResponse as UpdateUserResponse,
     type UserCreateParams as UserCreateParams,
     type UserUpdateParams as UserUpdateParams,
+    type UserListParams as UserListParams,
+    type UserGetUserAnalyticsParams as UserGetUserAnalyticsParams,
   };
 
   export {
@@ -826,21 +855,20 @@ export declare namespace Greenflash {
   };
 
   export {
-    Conversions as Conversions,
-    type LogConversionParams as LogConversionParams,
-    type LogConversionResponse as LogConversionResponse,
-    type ConversionLogParams as ConversionLogParams,
-  };
-
-  export {
     Organizations as Organizations,
     type CreateOrganizationParams as CreateOrganizationParams,
     type CreateOrganizationResponse as CreateOrganizationResponse,
+    type GetOrganizationAnalyticsParams as GetOrganizationAnalyticsParams,
+    type GetOrganizationAnalyticsResponse as GetOrganizationAnalyticsResponse,
+    type ListOrganizationsParams as ListOrganizationsParams,
+    type ListOrganizationsResponse as ListOrganizationsResponse,
     type TenantOrganization as TenantOrganization,
     type UpdateOrganizationParams as UpdateOrganizationParams,
     type UpdateOrganizationResponse as UpdateOrganizationResponse,
     type OrganizationCreateParams as OrganizationCreateParams,
     type OrganizationUpdateParams as OrganizationUpdateParams,
+    type OrganizationListParams as OrganizationListParams,
+    type OrganizationGetOrganizationAnalyticsParams as OrganizationGetOrganizationAnalyticsParams,
   };
 
   export {
@@ -863,5 +891,12 @@ export declare namespace Greenflash {
     type PromptCreateParams as PromptCreateParams,
     type PromptUpdateParams as PromptUpdateParams,
     type PromptListParams as PromptListParams,
+  };
+
+  export {
+    Events as Events,
+    type CreateEventParams as CreateEventParams,
+    type CreateEventResponse as CreateEventResponse,
+    type EventCreateParams as EventCreateParams,
   };
 }
