@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.28 (2025-11-24)
+
+Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
+
+### Features
+
+* **api:** manual updates ([a633e3d](https://github.com/greenflash-ai/typescript/commit/a633e3d7d8962bfb6fc0d6751e5c182be3b55fbe))
+
+
+### Chores
+
+* **internal:** codegen related update ([4e5b2ef](https://github.com/greenflash-ai/typescript/commit/4e5b2efa297223b112259cba8f64f370d9d99804))
+
 ## 0.1.0-alpha.27 (2025-10-29)
 
 Full Changelog: [v0.1.0-alpha.26...v0.1.0-alpha.27](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.26...v0.1.0-alpha.27)
