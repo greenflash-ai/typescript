@@ -7,32 +7,30 @@ import { RequestOptions } from '../internal/request-options';
 
 export class Messages extends APIResource {
   /**
-   * Record conversations between your users and AI, supporting both simple chat and
-   * complex agentic workflows.
+   * Send us your AI conversations so we can analyze them for you. Works with
+   * everything from simple chatbots to complex agentic systems.
    *
-   * **Simple Chat:** Use `role` with values like "user", "assistant", or "system"
-   * for basic conversations.
+   * **Getting Started (Simple Chat):** Just provide the `role` ("user", "assistant",
+   * or "system") and `content` for each message, along with an
+   * `externalConversationId` and your `productId`. That's it!
    *
-   * **Agentic Workflows:** Use `messageType` for complex scenarios including tool
-   * calls, thoughts, observations, and more.
+   * **Advanced Usage (Agentic Workflows):** Capture the full execution trace of your
+   * AI agents using `messageType` for tool calls, thoughts, observations, and more.
+   * Include structured data via `input`/`output` fields to track what your agents
+   * are doing.
    *
-   * **Message Ordering:** Messages are stored with sequential timestamps. You can
-   * provide explicit `createdAt` timestamps for historical data.
+   * **Key Features:**
    *
-   * **Message Threading:** Reference parent messages using `parentMessageId`
-   * (internal ID) or `parentExternalMessageId` (your external ID) to create threaded
-   * conversations.
+   * - **Automatic Ordering:** Messages are stored with sequential timestamps, or
+   *   provide your own `createdAt` timestamps for historical data.
+   * - **Threading:** Create nested conversations by referencing parent messages
+   *   using `parentMessageId` or `parentExternalMessageId`.
+   * - **Organization Tracking:** Associate users with organizations via
+   *   `externalOrganizationId`. We'll create the organization automatically if it
+   *   doesn't exist.
    *
-   * **User Organization:** Optionally provide an `externalOrganizationId` to
-   * associate the user with an organization. If the organization doesn't exist, it
-   * will be created automatically.
-   *
-   * The simplest way to log a message is to provide the `role` and `content` along
-   * with an `externalConversationId` and your `productId`.
-   *
-   * For agentic workflows, include structured data via `input`/`output` fields, tool
-   * names for `tool_call` messages, and various message types to represent the full
-   * execution trace.
+   * Perfect for understanding how your AI is performing in production and
+   * identifying areas for improvement.
    *
    * @example
    * ```ts
@@ -67,9 +65,9 @@ export class Messages extends APIResource {
    *   ],
    *   externalConversationId: 'conv-456',
    *   externalOrganizationId: 'org-789',
-   *   metadata: { campaign: 'summer-sale' },
    *   model: 'gpt-greenflash-1',
    *   productId: '123e4567-e89b-12d3-a456-426614174001',
+   *   properties: { campaign: 'summer-sale' },
    *   systemPrompt: {
    *     promptId: '123e4567-e89b-12d3-a456-426614174004',
    *     components: [
@@ -89,7 +87,7 @@ export class Messages extends APIResource {
  */
 export interface CreateMessageParams {
   /**
-   * Your external user ID that will be mapped to a participant in our system.
+   * Your external user ID that will be mapped to a user in our system.
    */
   externalUserId: string;
 
@@ -118,11 +116,6 @@ export interface CreateMessageParams {
   externalOrganizationId?: string;
 
   /**
-   * Additional data about the conversation.
-   */
-  metadata?: { [key: string]: unknown };
-
-  /**
    * The AI model used for the conversation.
    */
   model?: string;
@@ -132,6 +125,11 @@ export interface CreateMessageParams {
    * externalConversationId, productId must be provided.
    */
   productId?: string;
+
+  /**
+   * Additional data about the conversation.
+   */
+  properties?: { [key: string]: unknown };
 
   /**
    * System prompt for the conversation. Can be a simple string or a prompt object
@@ -244,11 +242,6 @@ export interface MessageItem {
     | 'workflow';
 
   /**
-   * Additional data about the message.
-   */
-  metadata?: { [key: string]: unknown };
-
-  /**
    * Structured output data from tool calls, retrievals, or other operations.
    */
   output?: { [key: string]: unknown };
@@ -264,6 +257,11 @@ export interface MessageItem {
    * parentExternalMessageId.
    */
   parentMessageId?: string;
+
+  /**
+   * Custom message properties.
+   */
+  properties?: { [key: string]: unknown };
 
   /**
    * Simple message role for basic chat: user, assistant, or system. Cannot be used
@@ -304,7 +302,7 @@ export interface SystemPrompt {
 
 export interface MessageCreateParams {
   /**
-   * Your external user ID that will be mapped to a participant in our system.
+   * Your external user ID that will be mapped to a user in our system.
    */
   externalUserId: string;
 
@@ -333,11 +331,6 @@ export interface MessageCreateParams {
   externalOrganizationId?: string;
 
   /**
-   * Additional data about the conversation.
-   */
-  metadata?: { [key: string]: unknown };
-
-  /**
    * The AI model used for the conversation.
    */
   model?: string;
@@ -347,6 +340,11 @@ export interface MessageCreateParams {
    * externalConversationId, productId must be provided.
    */
   productId?: string;
+
+  /**
+   * Additional data about the conversation.
+   */
+  properties?: { [key: string]: unknown };
 
   /**
    * System prompt for the conversation. Can be a simple string or a prompt object

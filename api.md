@@ -13,12 +13,28 @@ Methods:
 
 # Interactions
 
+Types:
+
+- <code><a href="./src/resources/interactions.ts">GetInteractionAnalyticsParams</a></code>
+- <code><a href="./src/resources/interactions.ts">GetInteractionAnalyticsResponse</a></code>
+- <code><a href="./src/resources/interactions.ts">ListInteractionsParams</a></code>
+- <code><a href="./src/resources/interactions.ts">ListInteractionsResponse</a></code>
+
+Methods:
+
+- <code title="get /interactions">client.interactions.<a href="./src/resources/interactions.ts">list</a>({ ...params }) -> ListInteractionsResponse</code>
+- <code title="get /interactions/{interactionId}/analytics">client.interactions.<a href="./src/resources/interactions.ts">getInteractionAnalytics</a>(interactionID, { ...params }) -> GetInteractionAnalyticsResponse</code>
+
 # Users
 
 Types:
 
 - <code><a href="./src/resources/users.ts">CreateUserParams</a></code>
 - <code><a href="./src/resources/users.ts">CreateUserResponse</a></code>
+- <code><a href="./src/resources/users.ts">GetUserAnalyticsParams</a></code>
+- <code><a href="./src/resources/users.ts">GetUserAnalyticsResponse</a></code>
+- <code><a href="./src/resources/users.ts">ListUsersParams</a></code>
+- <code><a href="./src/resources/users.ts">ListUsersResponse</a></code>
 - <code><a href="./src/resources/users.ts">Participant</a></code>
 - <code><a href="./src/resources/users.ts">UpdateUserParams</a></code>
 - <code><a href="./src/resources/users.ts">UpdateUserResponse</a></code>
@@ -27,6 +43,8 @@ Methods:
 
 - <code title="post /users">client.users.<a href="./src/resources/users.ts">create</a>({ ...params }) -> CreateUserResponse</code>
 - <code title="put /users/{userId}">client.users.<a href="./src/resources/users.ts">update</a>(userID, { ...params }) -> UpdateUserResponse</code>
+- <code title="get /users">client.users.<a href="./src/resources/users.ts">list</a>({ ...params }) -> ListUsersResponse</code>
+- <code title="get /users/{userId}/analytics">client.users.<a href="./src/resources/users.ts">getUserAnalytics</a>(userID, { ...params }) -> GetUserAnalyticsResponse</code>
 
 # Ratings
 
@@ -39,23 +57,16 @@ Methods:
 
 - <code title="post /ratings">client.ratings.<a href="./src/resources/ratings.ts">log</a>({ ...params }) -> LogRatingResponse</code>
 
-# Conversions
-
-Types:
-
-- <code><a href="./src/resources/conversions.ts">LogConversionParams</a></code>
-- <code><a href="./src/resources/conversions.ts">LogConversionResponse</a></code>
-
-Methods:
-
-- <code title="post /conversions">client.conversions.<a href="./src/resources/conversions.ts">log</a>({ ...params }) -> LogConversionResponse</code>
-
 # Organizations
 
 Types:
 
 - <code><a href="./src/resources/organizations.ts">CreateOrganizationParams</a></code>
 - <code><a href="./src/resources/organizations.ts">CreateOrganizationResponse</a></code>
+- <code><a href="./src/resources/organizations.ts">GetOrganizationAnalyticsParams</a></code>
+- <code><a href="./src/resources/organizations.ts">GetOrganizationAnalyticsResponse</a></code>
+- <code><a href="./src/resources/organizations.ts">ListOrganizationsParams</a></code>
+- <code><a href="./src/resources/organizations.ts">ListOrganizationsResponse</a></code>
 - <code><a href="./src/resources/organizations.ts">TenantOrganization</a></code>
 - <code><a href="./src/resources/organizations.ts">UpdateOrganizationParams</a></code>
 - <code><a href="./src/resources/organizations.ts">UpdateOrganizationResponse</a></code>
@@ -64,6 +75,8 @@ Methods:
 
 - <code title="post /organizations">client.organizations.<a href="./src/resources/organizations.ts">create</a>({ ...params }) -> CreateOrganizationResponse</code>
 - <code title="put /organizations/{organizationId}">client.organizations.<a href="./src/resources/organizations.ts">update</a>(organizationID, { ...params }) -> UpdateOrganizationResponse</code>
+- <code title="get /organizations">client.organizations.<a href="./src/resources/organizations.ts">list</a>({ ...params }) -> ListOrganizationsResponse</code>
+- <code title="get /organizations/{organizationId}/analytics">client.organizations.<a href="./src/resources/organizations.ts">getOrganizationAnalytics</a>(organizationID, { ...params }) -> GetOrganizationAnalyticsResponse</code>
 
 # Prompts
 
@@ -92,3 +105,14 @@ Methods:
 - <code title="get /prompts">client.prompts.<a href="./src/resources/prompts.ts">list</a>({ ...params }) -> ListPromptsResponse</code>
 - <code title="delete /prompts/{id}">client.prompts.<a href="./src/resources/prompts.ts">delete</a>(id) -> DeletePromptResponse</code>
 - <code title="get /prompts/{id}">client.prompts.<a href="./src/resources/prompts.ts">get</a>(id) -> GetPromptResponse</code>
+
+# Events
+
+Types:
+
+- <code><a href="./src/resources/events.ts">CreateEventParams</a></code>
+- <code><a href="./src/resources/events.ts">CreateEventResponse</a></code>
+
+Methods:
+
+- <code title="post /events">client.events.<a href="./src/resources/events.ts">create</a>({ ...params }) -> CreateEventResponse</code>
