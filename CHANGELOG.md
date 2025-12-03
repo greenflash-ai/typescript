@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.29 (2025-12-03)
+
+Full Changelog: [v0.1.0-alpha.28...v0.1.0-alpha.29](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.28...v0.1.0-alpha.29)
+
+### Chores
+
+* **client:** fix logger property type ([3763380](https://github.com/greenflash-ai/typescript/commit/3763380d7f168af34b57e9df77ab3d21a6c63e2a))
+* **internal:** upgrade eslint ([a222560](https://github.com/greenflash-ai/typescript/commit/a222560f451f9417d685bbf79eeafcdd1085aaef))
+
 ## 0.1.0-alpha.28 (2025-11-24)
 
 Full Changelog: [v0.1.0-alpha.27...v0.1.0-alpha.28](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.27...v0.1.0-alpha.28)
