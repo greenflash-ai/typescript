@@ -34,6 +34,13 @@ export interface CreateEventParams {
   productId: string;
 
   /**
+   * The specific value associated with the event (e.g., "99.00", "5",
+   * "premium_plan"). This pairs with "valueType" and "eventType" to define the
+   * magnitude or content of the event.
+   */
+  value: string;
+
+  /**
    * The unique Greenflash identifier for the conversation. Links the event to a
    * specific chat session in Greenflash.
    */
@@ -62,6 +69,12 @@ export interface CreateEventParams {
    * map Greenflash events back to your user records.
    */
   externalUserId?: string;
+
+  /**
+   * When true, bypasses sampling and ensures this event is always ingested
+   * regardless of sampleRate. Use for critical events that must be captured.
+   */
+  forceSample?: boolean;
 
   /**
    * A high-level categorization of how this event generally "changed things" or
@@ -95,23 +108,23 @@ export interface CreateEventParams {
   qualityImpactScore?: number;
 
   /**
+   * Controls the percentage of requests that are ingested (0.0 to 1.0). For example,
+   * 0.1 means 10% of events will be stored. Defaults to 1.0 (all events ingested).
+   * Sampling is deterministic based on event type and organization.
+   */
+  sampleRate?: number;
+
+  /**
    * The unique Greenflash identifier for the user. Provide this if you already have
    * the Greenflash User ID; otherwise, use "externalUserId".
    */
   userId?: string;
 
   /**
-   * The specific value associated with the event (e.g., "99.00", "5",
-   * "premium_plan"). This pairs with "valueType" and "eventType" to define the
-   * magnitude or content of the event.
-   */
-  value?: string;
-
-  /**
    * Defines the format of the "value" field (currency, numeric, or text). This
    * ensures the value is interpreted and processed correctly.
    */
-  valueType?: 'currency' | 'numeric' | 'text';
+  valueType?: 'currency' | 'numeric' | 'text' | 'boolean';
 }
 
 /**
@@ -144,6 +157,13 @@ export interface EventCreateParams {
   productId: string;
 
   /**
+   * The specific value associated with the event (e.g., "99.00", "5",
+   * "premium_plan"). This pairs with "valueType" and "eventType" to define the
+   * magnitude or content of the event.
+   */
+  value: string;
+
+  /**
    * The unique Greenflash identifier for the conversation. Links the event to a
    * specific chat session in Greenflash.
    */
@@ -172,6 +192,12 @@ export interface EventCreateParams {
    * map Greenflash events back to your user records.
    */
   externalUserId?: string;
+
+  /**
+   * When true, bypasses sampling and ensures this event is always ingested
+   * regardless of sampleRate. Use for critical events that must be captured.
+   */
+  forceSample?: boolean;
 
   /**
    * A high-level categorization of how this event generally "changed things" or
@@ -205,23 +231,23 @@ export interface EventCreateParams {
   qualityImpactScore?: number;
 
   /**
+   * Controls the percentage of requests that are ingested (0.0 to 1.0). For example,
+   * 0.1 means 10% of events will be stored. Defaults to 1.0 (all events ingested).
+   * Sampling is deterministic based on event type and organization.
+   */
+  sampleRate?: number;
+
+  /**
    * The unique Greenflash identifier for the user. Provide this if you already have
    * the Greenflash User ID; otherwise, use "externalUserId".
    */
   userId?: string;
 
   /**
-   * The specific value associated with the event (e.g., "99.00", "5",
-   * "premium_plan"). This pairs with "valueType" and "eventType" to define the
-   * magnitude or content of the event.
-   */
-  value?: string;
-
-  /**
    * Defines the format of the "value" field (currency, numeric, or text). This
    * ensures the value is interpreted and processed correctly.
    */
-  valueType?: 'currency' | 'numeric' | 'text';
+  valueType?: 'currency' | 'numeric' | 'text' | 'boolean';
 }
 
 export declare namespace Events {
