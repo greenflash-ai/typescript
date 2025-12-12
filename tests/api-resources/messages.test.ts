@@ -100,9 +100,11 @@ describe('resource messages', () => {
       conversationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
       externalConversationId: 'conv-456',
       externalOrganizationId: 'org-789',
+      forceSample: true,
       model: 'gpt-greenflash-1',
       productId: '123e4567-e89b-12d3-a456-426614174001',
       properties: { campaign: 'bar' },
+      sampleRate: 0,
       systemPrompt: {
         components: [
           {

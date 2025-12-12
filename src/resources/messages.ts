@@ -116,6 +116,12 @@ export interface CreateMessageParams {
   externalOrganizationId?: string;
 
   /**
+   * When true, bypasses sampling and ensures this request is always ingested
+   * regardless of sampleRate. Use for critical conversations that must be captured.
+   */
+  forceSample?: boolean;
+
+  /**
    * The AI model used for the conversation.
    */
   model?: string;
@@ -130,6 +136,13 @@ export interface CreateMessageParams {
    * Additional data about the conversation.
    */
   properties?: { [key: string]: unknown };
+
+  /**
+   * Controls the percentage of requests that are ingested (0.0 to 1.0). For example,
+   * 0.1 means 10% of requests will be stored. Defaults to 1.0 (all requests
+   * ingested). Sampling is deterministic based on conversation ID.
+   */
+  sampleRate?: number;
 
   /**
    * System prompt for the conversation. Can be a simple string or a prompt object
@@ -331,6 +344,12 @@ export interface MessageCreateParams {
   externalOrganizationId?: string;
 
   /**
+   * When true, bypasses sampling and ensures this request is always ingested
+   * regardless of sampleRate. Use for critical conversations that must be captured.
+   */
+  forceSample?: boolean;
+
+  /**
    * The AI model used for the conversation.
    */
   model?: string;
@@ -345,6 +364,13 @@ export interface MessageCreateParams {
    * Additional data about the conversation.
    */
   properties?: { [key: string]: unknown };
+
+  /**
+   * Controls the percentage of requests that are ingested (0.0 to 1.0). For example,
+   * 0.1 means 10% of requests will be stored. Defaults to 1.0 (all requests
+   * ingested). Sampling is deterministic based on conversation ID.
+   */
+  sampleRate?: number;
 
   /**
    * System prompt for the conversation. Can be a simple string or a prompt object
