@@ -58,7 +58,12 @@ describe('resource users', () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
       client.users.list(
-        { limit: 1, offset: 0, organizationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', page: 1 },
+        {
+          limit: 1,
+          offset: 0,
+          organizationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+          page: 1,
+        },
         { path: '/_stainless_unknown_path' },
       ),
     ).rejects.toThrow(Greenflash.NotFoundError);
