@@ -37,7 +37,11 @@ export class Messages extends APIResource {
    * const createMessageResponse = await client.messages.create({
    *   externalUserId: 'user-123',
    *   messages: [
-   *     { externalMessageId: 'user-msg-1', role: 'user', content: 'Hello!' },
+   *     {
+   *       externalMessageId: 'user-msg-1',
+   *       role: 'user',
+   *       content: 'Hello!',
+   *     },
    *     {
    *       externalMessageId: 'assistant-msg-1',
    *       role: 'assistant',
