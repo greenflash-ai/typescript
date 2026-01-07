@@ -62,7 +62,9 @@ const params: Greenflash.MessageCreateParams = {
   externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
 };
-const createMessageResponse: Greenflash.CreateMessageResponse = client.messages.create(params);
+const createMessageResponse: Greenflash.CreateMessageResponse = await client.messages.create(
+  params,
+);
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -122,7 +124,12 @@ const client = new Greenflash({
 });
 
 // Or, configure per-request:
-client.messages.create({ externalUserId: 'externalUserId', messages: [{}], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
+ client.messages.create({
+  externalUserId: 'externalUserId',
+  messages: [{}],
+  externalConversationId: 'externalConversationId',
+  productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+}, {
   maxRetries: 5,
 });
 ```
@@ -139,7 +146,12 @@ const client = new Greenflash({
 });
 
 // Override per-request:
-client.messages.create({ externalUserId: 'externalUserId', messages: [{}], externalConversationId: 'externalConversationId', productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, {
+client.messages.create({
+  externalUserId: 'externalUserId',
+  messages: [{}],
+  externalConversationId: 'externalConversationId',
+  productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+}, {
   timeout: 5 * 1000,
 });
 ```
