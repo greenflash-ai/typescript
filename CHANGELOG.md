@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.40.1 (2026-01-16)
+
+Full Changelog: [v0.40.0...v0.40.1](https://github.com/greenflash-ai/typescript/compare/v0.40.0...v0.40.1)
+
+### Chores
+
+* break long lines in snippets into multiline ([674cae4](https://github.com/greenflash-ai/typescript/commit/674cae4f6c0f4ba906d77c67ac65ceaf01aa218f))
+* **internal:** codegen related update ([afce6a1](https://github.com/greenflash-ai/typescript/commit/afce6a1723fc6f52fd24c749f5158c6bf09406cf))
+* **internal:** upgrade babel, qs, js-yaml ([48d7561](https://github.com/greenflash-ai/typescript/commit/48d75617ba9012e9ef46b8c0e4fcaecd16c0e0ed))
+
 ## 0.40.0 (2025-12-12)
 
 Full Changelog: [v0.1.0-alpha.29...v0.40.0](https://github.com/greenflash-ai/typescript/compare/v0.1.0-alpha.29...v0.40.0)
