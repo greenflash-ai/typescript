@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.40.2 (2026-01-17)
+
+Full Changelog: [v0.40.1...v0.40.2](https://github.com/greenflash-ai/typescript/compare/v0.40.1...v0.40.2)
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([f9a9d0f](https://github.com/greenflash-ai/typescript/commit/f9a9d0fe29fa52412a7cd50c8f4c6fa80b897c8e))
+
 ## 0.40.1 (2026-01-16)
 
 Full Changelog: [v0.40.0...v0.40.1](https://github.com/greenflash-ai/typescript/compare/v0.40.0...v0.40.1)
