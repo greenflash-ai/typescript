@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1 (2026-01-26)
+
+Full Changelog: [v0.40.2...v1.0.1](https://github.com/greenflash-ai/typescript/compare/v0.40.2...v1.0.1)
+
+### Chores
+
+* **ci:** upgrade `actions/github-script` ([f9cc4ad](https://github.com/greenflash-ai/typescript/commit/f9cc4ad8176504a995df37f5c3da8959eb387c93))
+
 ## 0.40.2 (2026-01-17)
 
 Full Changelog: [v0.40.1...v0.40.2](https://github.com/greenflash-ai/typescript/compare/v0.40.1...v0.40.2)
