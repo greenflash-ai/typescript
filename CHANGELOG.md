@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.2 (2026-01-26)
+
+Full Changelog: [v1.0.1...v1.0.2](https://github.com/greenflash-ai/typescript/compare/v1.0.1...v1.0.2)
+
+### Chores
+
+* update SDK settings ([0b59612](https://github.com/greenflash-ai/typescript/commit/0b5961295e947f471cd38f8f9fabc2cc0d614e71))
+
 ## 1.0.1 (2026-01-26)
 
 Full Changelog: [v0.40.2...v1.0.1](https://github.com/greenflash-ai/typescript/compare/v0.40.2...v1.0.1)
