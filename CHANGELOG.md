@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.3 (2026-01-29)
+
+Full Changelog: [v1.0.2...v1.0.3](https://github.com/greenflash-ai/typescript/compare/v1.0.2...v1.0.3)
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([60b62d0](https://github.com/greenflash-ai/typescript/commit/60b62d04c5d6d2476a9cb9378e7d39d5474b83e1))
+* **publish:** use npm registry directly for trusted publishing support ([0c7dbad](https://github.com/greenflash-ai/typescript/commit/0c7dbad83d30edaedffebea867cfd978a21fc027))
+
+
+### Chores
+
+* **internal:** codegen related update ([7f43959](https://github.com/greenflash-ai/typescript/commit/7f439592324f20310cdbeb4b73dce7d68fa6d3fa))
+
 ## 1.0.2 (2026-01-26)
 
 Full Changelog: [v1.0.1...v1.0.2](https://github.com/greenflash-ai/typescript/compare/v1.0.1...v1.0.2)
