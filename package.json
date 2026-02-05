@@ -1,6 +1,6 @@
 {
   "name": "greenflash",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The official TypeScript library for the Greenflash API",
   "author": "Greenflash <support@greenflash.ai>",
   "types": "dist/index.d.ts",

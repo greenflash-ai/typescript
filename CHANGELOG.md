@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.4 (2026-02-05)
+
+Full Changelog: [v1.0.3...v1.0.4](https://github.com/greenflash-ai/typescript/compare/v1.0.3...v1.0.4)
+
+### Bug Fixes
+
+* **client:** avoid memory leak with abort signals ([86a1bd8](https://github.com/greenflash-ai/typescript/commit/86a1bd8f691c413150dfc7d855ca3cd0f1075858))
+
+
+### Chores
+
+* **client:** do not parse responses with empty content-length ([c2fa262](https://github.com/greenflash-ai/typescript/commit/c2fa2623a3b470491a93a190fbb1b0093c06595a))
+* **client:** restructure abort controller binding ([db4fccc](https://github.com/greenflash-ai/typescript/commit/db4fccc2db5dec6567dea73ba07a47feb5f7956a))
+
 ## 1.0.3 (2026-01-29)
 
 Full Changelog: [v1.0.2...v1.0.3](https://github.com/greenflash-ai/typescript/compare/v1.0.2...v1.0.3)
