@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.5 (2026-02-06)
+
+Full Changelog: [v1.0.4...v1.0.5](https://github.com/greenflash-ai/typescript/compare/v1.0.4...v1.0.5)
+
+### Bug Fixes
+
+* **client:** avoid removing abort listener too early ([bcbf296](https://github.com/greenflash-ai/typescript/commit/bcbf2965b327cae350aaafc26bd5628159d83ba7))
+
 ## 1.0.4 (2026-02-05)
 
 Full Changelog: [v1.0.3...v1.0.4](https://github.com/greenflash-ai/typescript/compare/v1.0.3...v1.0.4)
