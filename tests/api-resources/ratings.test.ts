@@ -35,7 +35,7 @@ describe('resource ratings', () => {
       externalMessageId: 'externalMessageId',
       feedback: 'Helpful response!',
       messageId: 'messageId',
-      ratedAt: '2019-12-27',
+      ratedAt: '2025-07-09T09:00:00Z',
     });
   });
 });
