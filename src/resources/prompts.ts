@@ -187,9 +187,10 @@ export interface ComponentInput {
   source?: 'customer' | 'participant' | 'greenflash' | 'agent';
 
   /**
-   * Component type: system, endUser, userModified, rag, or agent.
+   * Component type: system, user, tool, guardrail, rag, agent, or a custom type
+   * (other).
    */
-  type?: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
+  type?: 'system' | 'user' | 'tool' | 'guardrail' | 'rag' | 'agent' | 'other';
 }
 
 export interface ComponentUpdate {
@@ -224,9 +225,10 @@ export interface ComponentUpdate {
   source?: 'customer' | 'participant' | 'greenflash' | 'agent';
 
   /**
-   * Component type.
+   * Component type: system, user, tool, guardrail, rag, agent, or a custom type
+   * (other).
    */
-  type?: 'system' | 'endUser' | 'userModified' | 'rag' | 'agent';
+  type?: 'system' | 'user' | 'tool' | 'guardrail' | 'rag' | 'agent' | 'other';
 }
 
 export interface CreatePromptParams {
@@ -465,11 +467,6 @@ export interface PromptComponent {
   source: string;
 
   /**
-   * Component type (e.g., system, endUser, rag, agent).
-   */
-  type: string;
-
-  /**
    * ISO 8601 timestamp when last updated.
    */
   updatedAt: string;
@@ -478,6 +475,12 @@ export interface PromptComponent {
    * Your external identifier for the component.
    */
   externalComponentId?: string;
+
+  /**
+   * Component type: system, user, tool, guardrail, rag, agent, or a custom type
+   * (other).
+   */
+  type?: 'system' | 'user' | 'tool' | 'guardrail' | 'rag' | 'agent' | 'other';
 }
 
 export interface SlimPrompt {
