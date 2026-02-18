@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.5 (2026-02-18)
+
+Full Changelog: [v1.0.4...v1.0.5](https://github.com/greenflash-ai/typescript/compare/v1.0.4...v1.0.5)
+
+### Bug Fixes
+
+* **client:** avoid removing abort listener too early ([bcbf296](https://github.com/greenflash-ai/typescript/commit/bcbf2965b327cae350aaafc26bd5628159d83ba7))
+
+
+### Chores
+
+* **internal/client:** fix form-urlencoded requests ([58ec6aa](https://github.com/greenflash-ai/typescript/commit/58ec6aad3946b257ec9da1b7c7c21c792e2f2fc9))
+* **internal:** avoid type checking errors with ts-reset ([813f2d1](https://github.com/greenflash-ai/typescript/commit/813f2d16c9b809c6d126f9db3e988ec887ac0961))
+
 ## 1.0.4 (2026-02-05)
 
 Full Changelog: [v1.0.3...v1.0.4](https://github.com/greenflash-ai/typescript/compare/v1.0.3...v1.0.4)
