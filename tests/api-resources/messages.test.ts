@@ -110,7 +110,23 @@ describe('resource messages', () => {
       productId: '123e4567-e89b-12d3-a456-426614174001',
       properties: { campaign: 'bar' },
       sampleRate: 0,
-      systemPrompt: 'x',
+      systemPrompt: {
+        components: [
+          {
+            content: 'You are a helpful assistant.',
+            componentId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+            externalComponentId: 'externalComponentId',
+            isDynamic: true,
+            name: 'name',
+            source: 'customer',
+            type: 'system',
+          },
+        ],
+        content: 'x',
+        externalPromptId: 'externalPromptId',
+        promptId: '123e4567-e89b-12d3-a456-426614174004',
+        variables: { foo: 'string' },
+      },
     });
   });
 });

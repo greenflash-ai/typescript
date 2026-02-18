@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../core/resource';
+import * as PromptsAPI from './prompts';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
@@ -77,7 +78,12 @@ export class Messages extends APIResource {
    *   model: 'gpt-greenflash-1',
    *   productId: '123e4567-e89b-12d3-a456-426614174001',
    *   properties: { campaign: 'summer-sale' },
-   *   systemPrompt: '[object Object]',
+   *   systemPrompt: {
+   *     promptId: '123e4567-e89b-12d3-a456-426614174004',
+   *     components: [
+   *       { ... },
+   *     ],
+   *   },
    * });
    * ```
    */
@@ -149,7 +155,8 @@ export interface CreateMessageParams {
   sampleRate?: number;
 
   /**
-   * System prompt as a simple string (will be converted to a prompt object).
+   * System prompt for the conversation. Can be a simple string or a prompt object
+   * with components.
    */
   systemPrompt?: SystemPrompt;
 }
@@ -329,9 +336,48 @@ export interface MessageItem {
 }
 
 /**
- * System prompt as a simple string (will be converted to a prompt object).
+ * System prompt for the conversation. Can be a simple string or a prompt object
+ * with components.
  */
-export type SystemPrompt = string;
+export type SystemPrompt = string | SystemPrompt.SystemPromptObject;
+
+export namespace SystemPrompt {
+  /**
+   * System prompt as a prompt object. Can reference an existing prompt by ID or
+   * define new components inline.
+   */
+  export interface SystemPromptObject {
+    /**
+     * Array of component objects. When provided with promptId/externalPromptId, will
+     * upsert the prompt. When omitted with promptId/externalPromptId, will reference
+     * an existing prompt.
+     */
+    components?: Array<PromptsAPI.ComponentInput>;
+
+    /**
+     * Simple string content (shorthand for a single system component). Mutually
+     * exclusive with components.
+     */
+    content?: string;
+
+    /**
+     * Your external identifier for the prompt. Can be used to reference an existing
+     * prompt created via system prompt APIs.
+     */
+    externalPromptId?: string;
+
+    /**
+     * Greenflash's internal prompt ID. Can be used to reference an existing prompt
+     * created via system prompt APIs.
+     */
+    promptId?: string;
+
+    /**
+     * Template variables for {{placeholder}} interpolation in component content.
+     */
+    variables?: { [key: string]: string };
+  }
+}
 
 export interface MessageCreateParams {
   /**
@@ -393,7 +439,8 @@ export interface MessageCreateParams {
   sampleRate?: number;
 
   /**
-   * System prompt as a simple string (will be converted to a prompt object).
+   * System prompt for the conversation. Can be a simple string or a prompt object
+   * with components.
    */
   systemPrompt?: SystemPrompt;
 }
