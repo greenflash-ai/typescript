@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.0 (2026-02-20)
+
+Full Changelog: [v1.0.5...v1.1.0](https://github.com/greenflash-ai/typescript/compare/v1.0.5...v1.1.0)
+
+### Features
+
+* **api:** manual updates ([78f69c5](https://github.com/greenflash-ai/typescript/commit/78f69c56cc17e2d7c2dfb1865a5eb0b89e6cdc25))
+* **api:** manual updates ([47e6ec8](https://github.com/greenflash-ai/typescript/commit/47e6ec8fb07c828e2fb1ef4140694992ad15a5b7))
+
+
+### Chores
+
+* update mock server docs ([82465ce](https://github.com/greenflash-ai/typescript/commit/82465ce0d32b9fbf865085e8040fe47a3765b39b))
+
 ## 1.0.5 (2026-02-18)
 
 Full Changelog: [v1.0.4...v1.0.5](https://github.com/greenflash-ai/typescript/compare/v1.0.4...v1.0.5)

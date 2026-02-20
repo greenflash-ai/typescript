@@ -28,6 +28,12 @@ export class Messages extends APIResource {
    * - **Organization Tracking:** Associate users with organizations via
    *   `externalOrganizationId`. We'll create the organization automatically if it
    *   doesn't exist.
+   * - **Automatic De-duplication:** Messages with an `externalMessageId` that
+   *   already exists in the conversation are automatically skipped. This allows you
+   *   to safely resend a batch of messages with new messages appended — previously
+   *   ingested messages will be deduplicated and only new messages will be inserted.
+   *   Each message in the response includes a `status` field ("created" or
+   *   "deduplicated") so you know what happened.
    *
    * Perfect for understanding how your AI is performing in production and
    * identifying areas for improvement.
@@ -152,7 +158,7 @@ export interface CreateMessageParams {
    * System prompt for the conversation. Can be a simple string or a prompt object
    * with components.
    */
-  systemPrompt?: string | SystemPrompt;
+  systemPrompt?: SystemPrompt;
 }
 
 /**
@@ -183,6 +189,16 @@ export interface CreateMessageResponse {
    * The prompt ID used internally to track the system prompt.
    */
   systemPromptPromptId: string;
+
+  /**
+   * Template variables used or detected for this conversation.
+   */
+  promptVariables?: { [key: string]: string };
+
+  /**
+   * Template match info when content was auto-matched against an existing template.
+   */
+  templateMatch?: CreateMessageResponse.TemplateMatch;
 }
 
 export namespace CreateMessageResponse {
@@ -198,9 +214,29 @@ export namespace CreateMessageResponse {
     messageType: string;
 
     /**
+     * Whether the message was newly created or deduplicated. Messages with an
+     * externalMessageId that already exists in the conversation are automatically
+     * skipped and returned with status "deduplicated".
+     */
+    status: 'created' | 'deduplicated';
+
+    /**
      * Your external identifier for the message, if provided.
      */
     externalMessageId?: string;
+  }
+
+  /**
+   * Template match info when content was auto-matched against an existing template.
+   */
+  export interface TemplateMatch {
+    matched: boolean;
+
+    confidence?: 'exact' | 'high' | 'medium';
+
+    detectedVariables?: { [key: string]: string };
+
+    promptId?: string;
   }
 }
 
@@ -259,6 +295,13 @@ export interface MessageItem {
     | 'workflow';
 
   /**
+   * The AI model used for this specific message. Use for multi-agent scenarios where
+   * different messages use different models. Overrides the conversation-level model
+   * for this message.
+   */
+  model?: string;
+
+  /**
    * Structured output data from tool calls, retrievals, or other operations.
    */
   output?: { [key: string]: unknown };
@@ -293,28 +336,47 @@ export interface MessageItem {
 }
 
 /**
- * System prompt as a prompt object. Can reference an existing prompt by ID or
- * define new components inline.
+ * System prompt for the conversation. Can be a simple string or a prompt object
+ * with components.
  */
-export interface SystemPrompt {
-  /**
-   * Array of component objects. When provided with promptId/externalPromptId, will
-   * upsert the prompt. When omitted with promptId/externalPromptId, will reference
-   * an existing prompt.
-   */
-  components?: Array<PromptsAPI.ComponentInput>;
+export type SystemPrompt = string | SystemPrompt.SystemPromptObject;
 
+export namespace SystemPrompt {
   /**
-   * Your external identifier for the prompt. Can be used to reference an existing
-   * prompt created via system prompt APIs.
+   * System prompt as a prompt object. Can reference an existing prompt by ID or
+   * define new components inline.
    */
-  externalPromptId?: string;
+  export interface SystemPromptObject {
+    /**
+     * Array of component objects. When provided with promptId/externalPromptId, will
+     * upsert the prompt. When omitted with promptId/externalPromptId, will reference
+     * an existing prompt.
+     */
+    components?: Array<PromptsAPI.ComponentInput>;
 
-  /**
-   * Greenflash's internal prompt ID. Can be used to reference an existing prompt
-   * created via system prompt APIs.
-   */
-  promptId?: string;
+    /**
+     * Simple string content (shorthand for a single system component). Mutually
+     * exclusive with components.
+     */
+    content?: string;
+
+    /**
+     * Your external identifier for the prompt. Can be used to reference an existing
+     * prompt created via system prompt APIs.
+     */
+    externalPromptId?: string;
+
+    /**
+     * Greenflash's internal prompt ID. Can be used to reference an existing prompt
+     * created via system prompt APIs.
+     */
+    promptId?: string;
+
+    /**
+     * Template variables for {{placeholder}} interpolation in component content.
+     */
+    variables?: { [key: string]: string };
+  }
 }
 
 export interface MessageCreateParams {
@@ -380,7 +442,7 @@ export interface MessageCreateParams {
    * System prompt for the conversation. Can be a simple string or a prompt object
    * with components.
    */
-  systemPrompt?: string | SystemPrompt;
+  systemPrompt?: SystemPrompt;
 }
 
 export declare namespace Messages {
