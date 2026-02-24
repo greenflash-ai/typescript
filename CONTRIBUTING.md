@@ -60,7 +60,7 @@ $ yarn link greenflash
 # With pnpm
 $ pnpm link --global
 $ cd ../my-package
-$ pnpm link -—global greenflash
+$ pnpm link --global greenflash
 ```
 
 ## Running tests
