@@ -5,6 +5,9 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Manage users
+ */
 export class Users extends APIResource {
   /**
    * Keep track of who's talking to your AI by creating user profiles with contact

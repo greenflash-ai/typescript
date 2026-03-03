@@ -4,6 +4,9 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * Capture interactions between users and AI
+ */
 export class Ratings extends APIResource {
   /**
    * Record user feedback and ratings for conversations or individual messages.

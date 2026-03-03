@@ -5,6 +5,9 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Manage prompts
+ */
 export class Prompts extends APIResource {
   /**
    * Create a new prompt that you can use across your AI applications. Build prompts

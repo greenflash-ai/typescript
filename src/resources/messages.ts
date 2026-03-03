@@ -5,6 +5,9 @@ import * as PromptsAPI from './prompts';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * Capture interactions between users and AI
+ */
 export class Messages extends APIResource {
   /**
    * Send us your AI conversations so we can analyze them for you. Works with

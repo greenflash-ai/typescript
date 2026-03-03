@@ -5,6 +5,9 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Manage users
+ */
 export class Organizations extends APIResource {
   /**
    * Group your users by company, team, or any organizational structure that makes
