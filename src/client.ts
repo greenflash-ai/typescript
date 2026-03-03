@@ -794,12 +794,33 @@ export class Greenflash {
 
   static toFile = Uploads.toFile;
 
+  /**
+   * Capture interactions between users and AI
+   */
   messages: API.Messages = new API.Messages(this);
+  /**
+   * Capture interactions between users and AI
+   */
   interactions: API.Interactions = new API.Interactions(this);
+  /**
+   * Manage users
+   */
   users: API.Users = new API.Users(this);
+  /**
+   * Capture interactions between users and AI
+   */
   ratings: API.Ratings = new API.Ratings(this);
+  /**
+   * Manage users
+   */
   organizations: API.Organizations = new API.Organizations(this);
+  /**
+   * Manage prompts
+   */
   prompts: API.Prompts = new API.Prompts(this);
+  /**
+   * Capture business events
+   */
   events: API.Events = new API.Events(this);
 }
 
