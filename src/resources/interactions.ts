@@ -5,6 +5,9 @@ import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
 
+/**
+ * Capture interactions between users and AI
+ */
 export class Interactions extends APIResource {
   /**
    * Browse through all conversations in your workspace to understand how users are

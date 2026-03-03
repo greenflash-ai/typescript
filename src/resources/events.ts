@@ -4,6 +4,9 @@ import { APIResource } from '../core/resource';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 
+/**
+ * Capture business events
+ */
 export class Events extends APIResource {
   /**
    * Track timestamped events representing user or organization actions. Events are
