@@ -1,6 +1,6 @@
 {
   "name": "greenflash-mcp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The official MCP Server for the Greenflash API",
   "author": "Greenflash <support@greenflash.ai>",
   "types": "dist/index.d.ts",
