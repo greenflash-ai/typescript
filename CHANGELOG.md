@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.1 (2026-03-04)
+
+Full Changelog: [v1.1.0...v1.1.1](https://github.com/greenflash-ai/typescript/compare/v1.1.0...v1.1.1)
+
+### Chores
+
+* **internal:** configure MCP Server hosting ([987a229](https://github.com/greenflash-ai/typescript/commit/987a22950963420e1ed4b4bcfe377cdbb05db4f6))
+
 ## 1.1.0 (2026-03-04)
 
 Full Changelog: [v1.0.5...v1.1.0](https://github.com/greenflash-ai/typescript/compare/v1.0.5...v1.1.0)
