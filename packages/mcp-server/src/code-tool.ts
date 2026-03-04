@@ -160,7 +160,7 @@ const remoteStainlessHandler = async ({
     headers: {
       ...(reqContext.stainlessApiKey && { Authorization: reqContext.stainlessApiKey }),
       'Content-Type': 'application/json',
-      client_envs: JSON.stringify({
+      'x-stainless-mcp-client-envs': JSON.stringify({
         GREENFLASH_API_KEY: readEnv('GREENFLASH_API_KEY') ?? client.apiKey ?? undefined,
         GREENFLASH_BASE_URL: readEnv('GREENFLASH_BASE_URL') ?? client.baseURL ?? undefined,
       }),
