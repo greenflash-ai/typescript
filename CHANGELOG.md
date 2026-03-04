@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.1.0 (2026-03-04)
+
+Full Changelog: [v1.0.5...v1.1.0](https://github.com/greenflash-ai/typescript/compare/v1.0.5...v1.1.0)
+
+### Features
+
+* **api:** manual updates ([78f69c5](https://github.com/greenflash-ai/typescript/commit/78f69c56cc17e2d7c2dfb1865a5eb0b89e6cdc25))
+* **api:** manual updates ([47e6ec8](https://github.com/greenflash-ai/typescript/commit/47e6ec8fb07c828e2fb1ef4140694992ad15a5b7))
+
+
+### Bug Fixes
+
+* **docs/contributing:** correct pnpm link command ([75520b5](https://github.com/greenflash-ai/typescript/commit/75520b58ef09fc07b49d5ec7b35e1983f9731f4d))
+
+
+### Chores
+
+* configure new SDK language ([7c36edf](https://github.com/greenflash-ai/typescript/commit/7c36edfabdb05cda03844cadee232156763ac79c))
+* **internal:** codegen related update ([54551cd](https://github.com/greenflash-ai/typescript/commit/54551cd45df77edbf3316e83cce4c7e15f07746d))
+* **internal:** move stringifyQuery implementation to internal function ([80616a4](https://github.com/greenflash-ai/typescript/commit/80616a4a7d6ab0e6d7fd166205e0e7c9eb140ea3))
+* update mock server docs ([82465ce](https://github.com/greenflash-ai/typescript/commit/82465ce0d32b9fbf865085e8040fe47a3765b39b))
+
 ## 1.0.5 (2026-02-18)
 
 Full Changelog: [v1.0.4...v1.0.5](https://github.com/greenflash-ai/typescript/compare/v1.0.4...v1.0.5)
