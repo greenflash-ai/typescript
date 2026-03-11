@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.1.2 (2026-03-11)
+
+Full Changelog: [v1.1.1...v1.1.2](https://github.com/greenflash-ai/typescript/compare/v1.1.1...v1.1.2)
+
+### Bug Fixes
+
+* **client:** preserve URL params already embedded in path ([b573177](https://github.com/greenflash-ai/typescript/commit/b57317751c624ea6e6e919ca445d66b8462cb1df))
+
+
+### Chores
+
+* **ci:** skip uploading artifacts on stainless-internal branches ([cc98bd0](https://github.com/greenflash-ai/typescript/commit/cc98bd0ec288bb031ae1c70b3ab86d01ec172c57))
+* **internal:** codegen related update ([3fc3741](https://github.com/greenflash-ai/typescript/commit/3fc37412338b369603d71b3b320742770c11a720))
+* **internal:** update dependencies to address dependabot vulnerabilities ([23ba628](https://github.com/greenflash-ai/typescript/commit/23ba62864d46aa71ffeec0077b2f1bcf6688659b))
+* **internal:** use x-stainless-mcp-client-envs header for MCP remote code tool calls ([63b1da3](https://github.com/greenflash-ai/typescript/commit/63b1da39533b7c2eee9542f08cd73596eda6a45d))
+* **mcp-server:** improve instructions ([c1fb5a1](https://github.com/greenflash-ai/typescript/commit/c1fb5a1665a9c52662da725306d745c86990e497))
+* **test:** do not count install time for mock server timeout ([0e78bc6](https://github.com/greenflash-ai/typescript/commit/0e78bc6bb6e5edf5f31bb29b3d2472b50427a4f7))
+
 ## 1.1.1 (2026-03-04)
 
 Full Changelog: [v1.1.0...v1.1.1](https://github.com/greenflash-ai/typescript/compare/v1.1.0...v1.1.1)
