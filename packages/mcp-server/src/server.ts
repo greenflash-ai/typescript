@@ -20,7 +20,7 @@ export const newMcpServer = async (stainlessApiKey: string | undefined) =>
   new McpServer(
     {
       name: 'greenflash_api',
-      version: '1.1.2',
+      version: '1.1.3',
     },
     {
       instructions: await getInstructions(stainlessApiKey),

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.3 (2026-03-12)
+
+Full Changelog: [v1.1.2...v1.1.3](https://github.com/greenflash-ai/typescript/compare/v1.1.2...v1.1.3)
+
+### Chores
+
+* **internal:** bump @modelcontextprotocol/sdk, @hono/node-server, and minimatch ([26098da](https://github.com/greenflash-ai/typescript/commit/26098da89fe2c7325274ae4e697999054e75912a))
+
 ## 1.1.2 (2026-03-11)
 
 Full Changelog: [v1.1.1...v1.1.2](https://github.com/greenflash-ai/typescript/compare/v1.1.1...v1.1.2)
