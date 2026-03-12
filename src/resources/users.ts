@@ -242,7 +242,7 @@ export interface GetUserAnalyticsResponse {
   averageUserSentiment: GetUserAnalyticsResponse.AverageUserSentiment;
 
   /**
-   * Summary of the user analytics.
+   * Structured participant profile summary.
    */
   summary: GetUserAnalyticsResponse.Summary | null;
 
@@ -309,12 +309,119 @@ export namespace GetUserAnalyticsResponse {
   }
 
   /**
-   * Summary of the user analytics.
+   * Structured participant profile summary.
    */
   export interface Summary {
-    analysis: string;
+    /**
+     * Behavioral patterns observed across conversations.
+     */
+    behavioralPatterns: Array<Summary.BehavioralPattern>;
 
-    reason: string;
+    /**
+     * Engagement profile.
+     */
+    engagement: Summary.Engagement;
+
+    /**
+     * Transparency about what data drove the analysis.
+     */
+    methodology: string;
+
+    /**
+     * Product-specific observations (when business context is available).
+     */
+    productAlignment: Summary.ProductAlignment | null;
+
+    /**
+     * Executive summary of the participant.
+     */
+    profileSummary: string;
+
+    /**
+     * Key signals the product owner should know about.
+     */
+    signals: Array<Summary.Signal>;
+  }
+
+  export namespace Summary {
+    export interface BehavioralPattern {
+      /**
+       * Specific examples from conversations.
+       */
+      evidence: string;
+
+      /**
+       * How often this pattern appears.
+       */
+      frequency: 'recurring' | 'occasional' | 'rare';
+
+      /**
+       * What the participant consistently does.
+       */
+      pattern: string;
+    }
+
+    /**
+     * Engagement profile.
+     */
+    export interface Engagement {
+      /**
+       * Explanation of the engagement assessment.
+       */
+      description: string;
+
+      /**
+       * Engagement level classification.
+       */
+      level: 'power_user' | 'regular' | 'casual' | 'at_risk' | 'churning';
+
+      /**
+       * Engagement trend direction.
+       */
+      trajectory: 'growing' | 'stable' | 'declining';
+    }
+
+    /**
+     * Product-specific observations (when business context is available).
+     */
+    export interface ProductAlignment {
+      /**
+       * Where the product isn't serving them.
+       */
+      gaps: Array<string>;
+
+      /**
+       * What's working well for this participant.
+       */
+      strengths: Array<string>;
+
+      /**
+       * How the participant relates to product goals.
+       */
+      summary: string;
+    }
+
+    export interface Signal {
+      /**
+       * Evidence-based description.
+       */
+      description: string;
+
+      /**
+       * Signal priority.
+       */
+      priority: 'high' | 'medium' | 'low';
+
+      /**
+       * Short headline.
+       */
+      title: string;
+
+      /**
+       * Signal category.
+       */
+      type: 'opportunity' | 'risk' | 'insight';
+    }
   }
 
   export interface Keyword {
