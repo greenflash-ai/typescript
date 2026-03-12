@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 (2026-03-12)
+
+Full Changelog: [v1.1.3...v1.2.0](https://github.com/greenflash-ai/typescript/compare/v1.1.3...v1.2.0)
+
+### Features
+
+* **api:** manual updates ([3982057](https://github.com/greenflash-ai/typescript/commit/3982057a14034553eea347d57635412bcfd16033))
+
 ## 1.1.3 (2026-03-12)
 
 Full Changelog: [v1.1.2...v1.1.3](https://github.com/greenflash-ai/typescript/compare/v1.1.2...v1.1.3)
