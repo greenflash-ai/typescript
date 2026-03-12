@@ -29,7 +29,7 @@ export class Prompts extends APIResource {
    *     {
    *       content:
    *         'You are a helpful assistant for {{productName}}. Greet {{userName}} warmly.',
-   *       type: '',
+   *       type: 'system',
    *       source: 'customer',
    *       name: 'Base Instructions',
    *       isDynamic: false,
@@ -71,7 +71,7 @@ export class Prompts extends APIResource {
    *       {
    *         content:
    *           'You are a helpful assistant for {{productName}}. Always be polite to {{userName}}.',
-   *         type: '',
+   *         type: 'system',
    *         source: 'customer',
    *         name: 'Base Instructions V2',
    *       },
