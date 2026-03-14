@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.1 (2026-03-14)
+
+Full Changelog: [v1.2.0...v1.2.1](https://github.com/greenflash-ai/typescript/compare/v1.2.0...v1.2.1)
+
+### Chores
+
+* **internal:** make generated MCP servers compatible with Cloudflare worker environments ([999fb4b](https://github.com/greenflash-ai/typescript/commit/999fb4bd7ce6161403fc39ac03f097288d361e60))
+* **internal:** support x-stainless-mcp-client-envs header in MCP servers ([343c454](https://github.com/greenflash-ai/typescript/commit/343c4543ff12ed5f34622ba69ff6b11d8b8b4015))
+
 ## 1.2.0 (2026-03-12)
 
 Full Changelog: [v1.1.3...v1.2.0](https://github.com/greenflash-ai/typescript/compare/v1.1.3...v1.2.0)
