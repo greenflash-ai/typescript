@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.2 (2026-03-17)
+
+Full Changelog: [v1.2.1...v1.2.2](https://github.com/greenflash-ai/typescript/compare/v1.2.1...v1.2.2)
+
+### Chores
+
+* **internal:** support x-stainless-mcp-client-permissions headers in MCP servers ([7fb43df](https://github.com/greenflash-ai/typescript/commit/7fb43df0523975457eac7f27d2eed00527a73604))
+* **internal:** tweak CI branches ([2a11969](https://github.com/greenflash-ai/typescript/commit/2a1196982cf6b21c46fd90e7f9f9922345dc581c))
+
 ## 1.2.1 (2026-03-14)
 
 Full Changelog: [v1.2.0...v1.2.1](https://github.com/greenflash-ai/typescript/compare/v1.2.0...v1.2.1)
