@@ -17,10 +17,27 @@ import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
+import { Chat, ChatCreateParams, StreamChatRequest } from './resources/chat';
 import { CreateEventParams, CreateEventResponse, EventCreateParams, Events } from './resources/events';
+import {
+  AnalysisScores,
+  ConversationMessage,
+  GetInboxItemParams,
+  GetInboxItemResponse,
+  Inbox,
+  InboxItemSummary,
+  InboxListParams,
+  ListInboxParams,
+  ListInboxResponse,
+  ParticipantInfo,
+  TriggerDetail,
+} from './resources/inbox';
 import {
   GetInteractionAnalyticsParams,
   GetInteractionAnalyticsResponse,
+  GetInteractionDetailParams,
+  Interaction,
+  InteractionDetail,
   InteractionGetInteractionAnalyticsParams,
   InteractionListParams,
   Interactions,
@@ -35,6 +52,18 @@ import {
   Messages,
   SystemPrompt,
 } from './resources/messages';
+import {
+  GetModelAnalyticsParams,
+  GetModelAnalyticsResponse,
+  GetModelResponse,
+  ListModelsParams,
+  ListModelsResponse,
+  ModelGetModelAnalyticsParams,
+  ModelListParams,
+  ModelProductUsage,
+  ModelSummary,
+  Models,
+} from './resources/models';
 import {
   CreateOrganizationParams,
   CreateOrganizationResponse,
@@ -52,11 +81,23 @@ import {
   UpdateOrganizationResponse,
 } from './resources/organizations';
 import {
+  GetProductAnalyticsResponse,
+  GetProductResponse,
+  ListProductsParams,
+  ListProductsResponse,
+  ProductListParams,
+  ProductMember,
+  ProductSummary,
+  Products,
+  QualityIndexMetricWeight,
+} from './resources/products';
+import {
   ComponentInput,
   ComponentUpdate,
   CreatePromptParams,
   CreatePromptResponse,
   DeletePromptResponse,
+  GetPromptAnalyticsResponse,
   GetPromptParams,
   GetPromptResponse,
   ListPromptsParams,
@@ -74,10 +115,25 @@ import {
 } from './resources/prompts';
 import { LogRatingParams, LogRatingResponse, RatingLogParams, Ratings } from './resources/ratings';
 import {
+  CreateSegmentParams,
+  CreateSegmentResponse,
+  GetSegmentAnalyticsParams,
+  GetSegmentAnalyticsResponse,
+  GetSegmentResponse,
+  ListSegmentsParams,
+  ListSegmentsResponse,
+  SegmentCreateParams,
+  SegmentGetSegmentAnalyticsParams,
+  SegmentListParams,
+  SegmentSummary,
+  Segments,
+} from './resources/segments';
+import {
   CreateUserParams,
   CreateUserResponse,
   GetUserAnalyticsParams,
   GetUserAnalyticsResponse,
+  GetUserSegmentsResponse,
   ListUsersParams,
   ListUsersResponse,
   Participant,
@@ -86,6 +142,7 @@ import {
   UserCreateParams,
   UserGetUserAnalyticsParams,
   UserListParams,
+  UserSegmentMembership,
   UserUpdateParams,
   Users,
 } from './resources/users';
@@ -820,6 +877,26 @@ export class Greenflash {
    */
   prompts: API.Prompts = new API.Prompts(this);
   /**
+   * Stream chat and agentic conversations
+   */
+  chat: API.Chat = new API.Chat(this);
+  /**
+   * Review flagged conversations
+   */
+  inbox: API.Inbox = new API.Inbox(this);
+  /**
+   * Manage AI models
+   */
+  models: API.Models = new API.Models(this);
+  /**
+   * Manage products
+   */
+  products: API.Products = new API.Products(this);
+  /**
+   * Manage user segments
+   */
+  segments: API.Segments = new API.Segments(this);
+  /**
    * Capture business events
    */
   events: API.Events = new API.Events(this);
@@ -831,6 +908,11 @@ Greenflash.Users = Users;
 Greenflash.Ratings = Ratings;
 Greenflash.Organizations = Organizations;
 Greenflash.Prompts = Prompts;
+Greenflash.Chat = Chat;
+Greenflash.Inbox = Inbox;
+Greenflash.Models = Models;
+Greenflash.Products = Products;
+Greenflash.Segments = Segments;
 Greenflash.Events = Events;
 
 export declare namespace Greenflash {
@@ -849,6 +931,9 @@ export declare namespace Greenflash {
     Interactions as Interactions,
     type GetInteractionAnalyticsParams as GetInteractionAnalyticsParams,
     type GetInteractionAnalyticsResponse as GetInteractionAnalyticsResponse,
+    type GetInteractionDetailParams as GetInteractionDetailParams,
+    type Interaction as Interaction,
+    type InteractionDetail as InteractionDetail,
     type ListInteractionsParams as ListInteractionsParams,
     type ListInteractionsResponse as ListInteractionsResponse,
     type InteractionListParams as InteractionListParams,
@@ -861,11 +946,13 @@ export declare namespace Greenflash {
     type CreateUserResponse as CreateUserResponse,
     type GetUserAnalyticsParams as GetUserAnalyticsParams,
     type GetUserAnalyticsResponse as GetUserAnalyticsResponse,
+    type GetUserSegmentsResponse as GetUserSegmentsResponse,
     type ListUsersParams as ListUsersParams,
     type ListUsersResponse as ListUsersResponse,
     type Participant as Participant,
     type UpdateUserParams as UpdateUserParams,
     type UpdateUserResponse as UpdateUserResponse,
+    type UserSegmentMembership as UserSegmentMembership,
     type UserCreateParams as UserCreateParams,
     type UserUpdateParams as UserUpdateParams,
     type UserListParams as UserListParams,
@@ -903,6 +990,7 @@ export declare namespace Greenflash {
     type CreatePromptParams as CreatePromptParams,
     type CreatePromptResponse as CreatePromptResponse,
     type DeletePromptResponse as DeletePromptResponse,
+    type GetPromptAnalyticsResponse as GetPromptAnalyticsResponse,
     type GetPromptParams as GetPromptParams,
     type GetPromptResponse as GetPromptResponse,
     type ListPromptsParams as ListPromptsParams,
@@ -916,6 +1004,66 @@ export declare namespace Greenflash {
     type PromptCreateParams as PromptCreateParams,
     type PromptUpdateParams as PromptUpdateParams,
     type PromptListParams as PromptListParams,
+  };
+
+  export {
+    Chat as Chat,
+    type StreamChatRequest as StreamChatRequest,
+    type ChatCreateParams as ChatCreateParams,
+  };
+
+  export {
+    Inbox as Inbox,
+    type AnalysisScores as AnalysisScores,
+    type ConversationMessage as ConversationMessage,
+    type GetInboxItemParams as GetInboxItemParams,
+    type GetInboxItemResponse as GetInboxItemResponse,
+    type InboxItemSummary as InboxItemSummary,
+    type ListInboxParams as ListInboxParams,
+    type ListInboxResponse as ListInboxResponse,
+    type ParticipantInfo as ParticipantInfo,
+    type TriggerDetail as TriggerDetail,
+    type InboxListParams as InboxListParams,
+  };
+
+  export {
+    Models as Models,
+    type GetModelAnalyticsParams as GetModelAnalyticsParams,
+    type GetModelAnalyticsResponse as GetModelAnalyticsResponse,
+    type GetModelResponse as GetModelResponse,
+    type ListModelsParams as ListModelsParams,
+    type ListModelsResponse as ListModelsResponse,
+    type ModelProductUsage as ModelProductUsage,
+    type ModelSummary as ModelSummary,
+    type ModelListParams as ModelListParams,
+    type ModelGetModelAnalyticsParams as ModelGetModelAnalyticsParams,
+  };
+
+  export {
+    Products as Products,
+    type GetProductAnalyticsResponse as GetProductAnalyticsResponse,
+    type GetProductResponse as GetProductResponse,
+    type ListProductsParams as ListProductsParams,
+    type ListProductsResponse as ListProductsResponse,
+    type ProductMember as ProductMember,
+    type ProductSummary as ProductSummary,
+    type QualityIndexMetricWeight as QualityIndexMetricWeight,
+    type ProductListParams as ProductListParams,
+  };
+
+  export {
+    Segments as Segments,
+    type CreateSegmentParams as CreateSegmentParams,
+    type CreateSegmentResponse as CreateSegmentResponse,
+    type GetSegmentAnalyticsParams as GetSegmentAnalyticsParams,
+    type GetSegmentAnalyticsResponse as GetSegmentAnalyticsResponse,
+    type GetSegmentResponse as GetSegmentResponse,
+    type ListSegmentsParams as ListSegmentsParams,
+    type ListSegmentsResponse as ListSegmentsResponse,
+    type SegmentSummary as SegmentSummary,
+    type SegmentCreateParams as SegmentCreateParams,
+    type SegmentListParams as SegmentListParams,
+    type SegmentGetSegmentAnalyticsParams as SegmentGetSegmentAnalyticsParams,
   };
 
   export {

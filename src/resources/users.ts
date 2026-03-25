@@ -122,6 +122,25 @@ export class Users extends APIResource {
   ): APIPromise<GetUserAnalyticsResponse> {
     return this._client.get(path`/users/${userID}/analytics`, { query, ...options });
   }
+
+  /**
+   * Find out which segments a user belongs to. Returns segment membership data
+   * including segment ID, name, type, and preset identifier.
+   *
+   * This endpoint returns membership data (not analytics), so it is available on
+   * **all plans** including Free.
+   *
+   * @example
+   * ```ts
+   * const getUserSegmentsResponse =
+   *   await client.users.getUserSegments(
+   *     '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   );
+   * ```
+   */
+  getUserSegments(userID: string, options?: RequestOptions): APIPromise<GetUserSegmentsResponse> {
+    return this._client.get(path`/users/${userID}/segments`, options);
+  }
 }
 
 /**
@@ -437,6 +456,11 @@ export namespace GetUserAnalyticsResponse {
   }
 }
 
+/**
+ * Array of segments the user belongs to.
+ */
+export type GetUserSegmentsResponse = Array<UserSegmentMembership>;
+
 export interface ListUsersParams {
   /**
    * Maximum number of results to return.
@@ -580,6 +604,28 @@ export interface UpdateUserResponse {
   success: boolean;
 }
 
+export interface UserSegmentMembership {
+  /**
+   * The segment ID.
+   */
+  id: string;
+
+  /**
+   * The segment name.
+   */
+  name: string;
+
+  /**
+   * The preset identifier for system segments, or null for custom segments.
+   */
+  presetId: string | null;
+
+  /**
+   * The segment type (system or custom).
+   */
+  type: string;
+}
+
 export interface UserCreateParams {
   /**
    * Your unique identifier for the user. Use this same ID in other API calls to
@@ -709,11 +755,13 @@ export declare namespace Users {
     type CreateUserResponse as CreateUserResponse,
     type GetUserAnalyticsParams as GetUserAnalyticsParams,
     type GetUserAnalyticsResponse as GetUserAnalyticsResponse,
+    type GetUserSegmentsResponse as GetUserSegmentsResponse,
     type ListUsersParams as ListUsersParams,
     type ListUsersResponse as ListUsersResponse,
     type Participant as Participant,
     type UpdateUserParams as UpdateUserParams,
     type UpdateUserResponse as UpdateUserResponse,
+    type UserSegmentMembership as UserSegmentMembership,
     type UserCreateParams as UserCreateParams,
     type UserUpdateParams as UserUpdateParams,
     type UserListParams as UserListParams,
