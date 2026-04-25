@@ -257,6 +257,6 @@ export declare namespace Events {
   export {
     type CreateEventParams as CreateEventParams,
     type CreateEventResponse as CreateEventResponse,
-    type EventCreateParams as EventCreateParams,
+    type EventCreateParams as EventCreateParams
   };
 }

@@ -2,10 +2,7 @@
 
 import Greenflash from 'greenflash';
 
-const client = new Greenflash({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Greenflash({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource models', () => {
   test('list', async () => {
@@ -21,9 +18,9 @@ describe('resource models', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.models.list({ page: 1, pageSize: 1 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Greenflash.NotFoundError);
+    await expect(client.models.list({ page: 1, pageSize: 1 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Greenflash.NotFoundError);
   });
 
   test('get', async () => {
@@ -50,12 +47,8 @@ describe('resource models', () => {
 
   test('getModelAnalytics: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.models.getModelAnalytics(
-        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        { period: '7d' },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Greenflash.NotFoundError);
+    await expect(client.models.getModelAnalytics('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { period: '7d' }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Greenflash.NotFoundError);
   });
 });

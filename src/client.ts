@@ -19,144 +19,21 @@ import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
 import { Chat, ChatCreateParams, StreamChatRequest } from './resources/chat';
 import { CreateEventParams, CreateEventResponse, EventCreateParams, Events } from './resources/events';
-import {
-  AnalysisScores,
-  ConversationMessage,
-  GetInboxItemParams,
-  GetInboxItemResponse,
-  Inbox,
-  InboxItemSummary,
-  InboxListParams,
-  ListInboxParams,
-  ListInboxResponse,
-  ParticipantInfo,
-  TriggerDetail,
-} from './resources/inbox';
-import {
-  GetInteractionAnalyticsParams,
-  GetInteractionAnalyticsResponse,
-  GetInteractionDetailParams,
-  Interaction,
-  InteractionDetail,
-  InteractionGetInteractionAnalyticsParams,
-  InteractionListParams,
-  Interactions,
-  ListInteractionsParams,
-  ListInteractionsResponse,
-} from './resources/interactions';
-import {
-  CreateMessageParams,
-  CreateMessageResponse,
-  MessageCreateParams,
-  MessageItem,
-  Messages,
-  SystemPrompt,
-} from './resources/messages';
-import {
-  GetModelAnalyticsParams,
-  GetModelAnalyticsResponse,
-  GetModelResponse,
-  ListModelsParams,
-  ListModelsResponse,
-  ModelGetModelAnalyticsParams,
-  ModelListParams,
-  ModelProductUsage,
-  ModelSummary,
-  Models,
-} from './resources/models';
-import {
-  CreateOrganizationParams,
-  CreateOrganizationResponse,
-  GetOrganizationAnalyticsParams,
-  GetOrganizationAnalyticsResponse,
-  ListOrganizationsParams,
-  ListOrganizationsResponse,
-  OrganizationCreateParams,
-  OrganizationGetOrganizationAnalyticsParams,
-  OrganizationListParams,
-  OrganizationUpdateParams,
-  Organizations,
-  TenantOrganization,
-  UpdateOrganizationParams,
-  UpdateOrganizationResponse,
-} from './resources/organizations';
-import {
-  GetProductAnalyticsResponse,
-  GetProductResponse,
-  ListProductsParams,
-  ListProductsResponse,
-  ProductListParams,
-  ProductMember,
-  ProductSummary,
-  Products,
-  QualityIndexMetricWeight,
-} from './resources/products';
-import {
-  ComponentInput,
-  ComponentUpdate,
-  CreatePromptParams,
-  CreatePromptResponse,
-  DeletePromptResponse,
-  GetPromptAnalyticsResponse,
-  GetPromptParams,
-  GetPromptResponse,
-  ListPromptsParams,
-  ListPromptsResponse,
-  Prompt,
-  PromptComponent,
-  PromptCreateParams,
-  PromptListParams,
-  PromptUpdateParams,
-  Prompts,
-  SlimPrompt,
-  SlimPromptComponent,
-  UpdatePromptParams,
-  UpdatePromptResponse,
-} from './resources/prompts';
+import { AnalysisScores, ConversationMessage, GetInboxItemParams, GetInboxItemResponse, Inbox, InboxItemSummary, InboxListParams, ListInboxParams, ListInboxResponse, ParticipantInfo, TriggerDetail } from './resources/inbox';
+import { GetInteractionAnalyticsParams, GetInteractionAnalyticsResponse, GetInteractionDetailParams, Interaction, InteractionDetail, InteractionGetInteractionAnalyticsParams, InteractionListParams, Interactions, ListInteractionsParams, ListInteractionsResponse } from './resources/interactions';
+import { CreateMessageParams, CreateMessageResponse, MessageCreateParams, MessageItem, Messages, SystemPrompt } from './resources/messages';
+import { GetModelAnalyticsParams, GetModelAnalyticsResponse, GetModelResponse, ListModelsParams, ListModelsResponse, ModelGetModelAnalyticsParams, ModelListParams, ModelProductUsage, ModelSummary, Models } from './resources/models';
+import { CreateOrganizationParams, CreateOrganizationResponse, GetOrganizationAnalyticsParams, GetOrganizationAnalyticsResponse, ListOrganizationsParams, ListOrganizationsResponse, OrganizationCreateParams, OrganizationGetOrganizationAnalyticsParams, OrganizationListParams, OrganizationUpdateParams, Organizations, TenantOrganization, UpdateOrganizationParams, UpdateOrganizationResponse } from './resources/organizations';
+import { GetProductAnalyticsResponse, GetProductResponse, ListProductsParams, ListProductsResponse, ProductListParams, ProductMember, ProductSummary, Products, QualityIndexMetricWeight } from './resources/products';
+import { ComponentInput, ComponentUpdate, CreatePromptParams, CreatePromptResponse, DeletePromptResponse, GetPromptAnalyticsResponse, GetPromptParams, GetPromptResponse, ListPromptsParams, ListPromptsResponse, Prompt, PromptComponent, PromptCreateParams, PromptListParams, PromptUpdateParams, Prompts, SlimPrompt, SlimPromptComponent, UpdatePromptParams, UpdatePromptResponse } from './resources/prompts';
 import { LogRatingParams, LogRatingResponse, RatingLogParams, Ratings } from './resources/ratings';
-import {
-  CreateSegmentParams,
-  CreateSegmentResponse,
-  GetSegmentAnalyticsParams,
-  GetSegmentAnalyticsResponse,
-  GetSegmentResponse,
-  ListSegmentsParams,
-  ListSegmentsResponse,
-  SegmentCreateParams,
-  SegmentGetSegmentAnalyticsParams,
-  SegmentListParams,
-  SegmentSummary,
-  Segments,
-} from './resources/segments';
-import {
-  CreateUserParams,
-  CreateUserResponse,
-  GetUserAnalyticsParams,
-  GetUserAnalyticsResponse,
-  GetUserSegmentsResponse,
-  ListUsersParams,
-  ListUsersResponse,
-  Participant,
-  UpdateUserParams,
-  UpdateUserResponse,
-  UserCreateParams,
-  UserGetUserAnalyticsParams,
-  UserListParams,
-  UserSegmentMembership,
-  UserUpdateParams,
-  Users,
-} from './resources/users';
+import { CreateSegmentParams, CreateSegmentResponse, GetSegmentAnalyticsParams, GetSegmentAnalyticsResponse, GetSegmentResponse, ListSegmentsParams, ListSegmentsResponse, SegmentCreateParams, SegmentGetSegmentAnalyticsParams, SegmentListParams, SegmentSummary, Segments } from './resources/segments';
+import { CreateUserParams, CreateUserResponse, GetUserAnalyticsParams, GetUserAnalyticsResponse, GetUserSegmentsResponse, ListUsersParams, ListUsersResponse, Participant, UpdateUserParams, UpdateUserResponse, UserCreateParams, UserGetUserAnalyticsParams, UserListParams, UserSegmentMembership, UserUpdateParams, Users } from './resources/users';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
 import { readEnv } from './internal/utils/env';
-import {
-  type LogLevel,
-  type Logger,
-  formatRequestDetails,
-  loggerFor,
-  parseLogLevel,
-} from './internal/utils/log';
+import { type LogLevel, type Logger, formatRequestDetails, loggerFor, parseLogLevel } from './internal/utils/log';
 import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
@@ -235,7 +112,7 @@ export interface ClientOptions {
 }
 
 /**
- * API Client for interfacing with the Greenflash API.
+ * API Client for interfacing with the Greenflash API. 
  */
 export class Greenflash {
   apiKey: string | null;
@@ -269,6 +146,7 @@ export class Greenflash {
     apiKey = readEnv('GREENFLASH_API_KEY') ?? null,
     ...opts
   }: ClientOptions = {}) {
+
     const options: ClientOptions = {
       apiKey,
       ...opts,
@@ -281,10 +159,7 @@ export class Greenflash {
     const defaultLogLevel = 'warn';
     // Set default logLevel early so that we can log a warning in parseLogLevel.
     this.logLevel = defaultLogLevel;
-    this.logLevel =
-      parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ??
-      parseLogLevel(readEnv('GREENFLASH_LOG'), "process.env['GREENFLASH_LOG']", this) ??
-      defaultLogLevel;
+    this.logLevel = parseLogLevel(options.logLevel, 'ClientOptions.logLevel', this) ?? parseLogLevel(readEnv('GREENFLASH_LOG'), 'process.env[\'GREENFLASH_LOG\']', this) ?? defaultLogLevel;
     this.fetchOptions = options.fetchOptions;
     this.maxRetries = options.maxRetries ?? 2;
     this.fetch = options.fetch ?? Shims.getDefaultFetch();
@@ -309,7 +184,7 @@ export class Greenflash {
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
       apiKey: this.apiKey,
-      ...options,
+      ...options
     });
     return client;
   }
@@ -322,7 +197,7 @@ export class Greenflash {
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
-    return this._options.defaultQuery;
+    return this._options.defaultQuery
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
@@ -333,9 +208,7 @@ export class Greenflash {
       return;
     }
 
-    throw new Error(
-      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted',
-    );
+    throw new Error('Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted')
   }
 
   protected async authHeaders(opts: FinalRequestOptions): Promise<NullableHeaders | undefined> {
@@ -369,11 +242,7 @@ export class Greenflash {
     return Errors.APIError.generate(status, error, message, headers);
   }
 
-  buildURL(
-    path: string,
-    query: Record<string, unknown> | null | undefined,
-    defaultBaseURL?: string | undefined,
-  ): string {
+  buildURL(path: string, query: Record<string, unknown> | null | undefined, defaultBaseURL?: string | undefined): string {
     const baseURL = (!this.#baseURLOverridden() && defaultBaseURL) || this.baseURL;
     const url =
       isAbsoluteURL(path) ?
@@ -461,9 +330,7 @@ export class Greenflash {
 
     await this.prepareOptions(options);
 
-    const { req, url, timeout } = await this.buildRequest(options, {
-      retryCount: maxRetries - retriesRemaining,
-    });
+    const { req, url, timeout } = await this.buildRequest(options, { retryCount: maxRetries - retriesRemaining });
 
     await this.prepareRequest(req, { url, options });
 
@@ -472,16 +339,7 @@ export class Greenflash {
     const retryLogStr = retryOfRequestLogID === undefined ? '' : `, retryOf: ${retryOfRequestLogID}`;
     const startTime = Date.now();
 
-    loggerFor(this).debug(
-      `[${requestLogID}] sending request`,
-      formatRequestDetails({
-        retryOfRequestLogID,
-        method: options.method,
-        url,
-        options,
-        headers: req.headers,
-      }),
-    );
+    loggerFor(this).debug(`[${requestLogID}] sending request`, formatRequestDetails({ retryOfRequestLogID, method: options.method, url, options, headers: req.headers }));
 
     if (options.signal?.aborted) {
       throw new Errors.APIUserAbortError();
@@ -500,45 +358,21 @@ export class Greenflash {
       // deno throws "TypeError: error sending request for url (https://example/): client error (Connect): tcp connect error: Operation timed out (os error 60): Operation timed out (os error 60)"
       // undici throws "TypeError: fetch failed" with cause "ConnectTimeoutError: Connect Timeout Error (attempted address: example:443, timeout: 1ms)"
       // others do not provide enough information to distinguish timeouts from other connection errors
-      const isTimeout =
-        isAbortError(response) ||
-        /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''));
+      const isTimeout = isAbortError(response) || /timed? ?out/i.test(String(response) + ('cause' in response ? String(response.cause) : ''))
       if (retriesRemaining) {
-        loggerFor(this).info(
-          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`,
-        );
-        loggerFor(this).debug(
-          `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`,
-          formatRequestDetails({
-            retryOfRequestLogID,
-            url,
-            durationMs: headersTime - startTime,
-            message: response.message,
-          }),
-        );
+        loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - ${retryMessage}`)
+        loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
         return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID);
       }
-      loggerFor(this).info(
-        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`,
-      );
-      loggerFor(this).debug(
-        `[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`,
-        formatRequestDetails({
-          retryOfRequestLogID,
-          url,
-          durationMs: headersTime - startTime,
-          message: response.message,
-        }),
-      );
+      loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} - error; no more retries left`)
+      loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? 'timed out' : 'failed'} (error; no more retries left)`, formatRequestDetails({ retryOfRequestLogID, url, durationMs: headersTime - startTime, message: response.message }));
       if (isTimeout) {
         throw new Errors.APIConnectionTimeoutError();
       }
       throw new Errors.APIConnectionError({ cause: response });
     }
 
-    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${
-      response.ok ? 'succeeded' : 'failed'
-    } with status ${response.status} in ${headersTime - startTime}ms`;
+    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url} ${response.ok ? 'succeeded' : 'failed'} with status ${response.status} in ${headersTime - startTime}ms`;
 
     if (!response.ok) {
       const shouldRetry = await this.shouldRetry(response);
@@ -547,60 +381,27 @@ export class Greenflash {
 
         // We don't need the body of this response.
         await Shims.CancelReadableStream(response.body);
-        loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
-        loggerFor(this).debug(
-          `[${requestLogID}] response error (${retryMessage})`,
-          formatRequestDetails({
-            retryOfRequestLogID,
-            url: response.url,
-            status: response.status,
-            headers: response.headers,
-            durationMs: headersTime - startTime,
-          }),
-        );
-        return this.retryRequest(
-          options,
-          retriesRemaining,
-          retryOfRequestLogID ?? requestLogID,
-          response.headers,
-        );
+        loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
+        loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
+        return this.retryRequest(options, retriesRemaining, retryOfRequestLogID ?? requestLogID, response.headers);
       }
 
       const retryMessage = shouldRetry ? `error; no more retries left` : `error; not retryable`;
 
-      loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
+      loggerFor(this).info(`${responseInfo} - ${retryMessage}`)
 
       const errText = await response.text().catch((err: any) => castToError(err).message);
       const errJSON = safeJSON(errText) as any;
       const errMessage = errJSON ? undefined : errText;
 
-      loggerFor(this).debug(
-        `[${requestLogID}] response error (${retryMessage})`,
-        formatRequestDetails({
-          retryOfRequestLogID,
-          url: response.url,
-          status: response.status,
-          headers: response.headers,
-          message: errMessage,
-          durationMs: Date.now() - startTime,
-        }),
-      );
+      loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, message: errMessage, durationMs: Date.now() - startTime }));
 
       const err = this.makeStatusError(response.status, errJSON, errMessage, response.headers);
       throw err;
     }
 
-    loggerFor(this).info(responseInfo);
-    loggerFor(this).debug(
-      `[${requestLogID}] response start`,
-      formatRequestDetails({
-        retryOfRequestLogID,
-        url: response.url,
-        status: response.status,
-        headers: response.headers,
-        durationMs: headersTime - startTime,
-      }),
-    );
+    loggerFor(this).info(responseInfo)
+    loggerFor(this).debug(`[${requestLogID}] response start`, formatRequestDetails({ retryOfRequestLogID, url: response.url, status: response.status, headers: response.headers, durationMs: headersTime - startTime }));
 
     return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
   }
@@ -617,9 +418,7 @@ export class Greenflash {
 
     const timeout = setTimeout(abort, ms);
 
-    const isReadableBody =
-      ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) ||
-      (typeof options.body === 'object' && options.body !== null && Symbol.asyncIterator in options.body);
+    const isReadableBody = ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) || (typeof options.body === "object" && options.body !== null && Symbol.asyncIterator in options.body);
 
     const fetchOptions: RequestInit = {
       signal: controller.signal as any,
@@ -634,6 +433,7 @@ export class Greenflash {
     }
 
     try {
+
       // use undefined this binding; fetch errors if bound to something else in browser/cloudflare
       return await this.fetch.call(undefined, url, fetchOptions);
     } finally {
@@ -734,12 +534,11 @@ export class Greenflash {
     const req: FinalizedRequestInit = {
       method,
       headers: reqHeaders,
-      ...(options.signal && { signal: options.signal }),
-      ...((globalThis as any).ReadableStream &&
-        body instanceof (globalThis as any).ReadableStream && { duplex: 'half' }),
+      ...(options.signal && { signal: options.signal}),
+      ...((globalThis as any).ReadableStream && body instanceof (globalThis as any).ReadableStream && { duplex: "half" }),
       ...(body && { body }),
-      ...((this.fetchOptions as any) ?? {}),
-      ...((options.fetchOptions as any) ?? {}),
+      ...(this.fetchOptions as any ?? {}),
+      ...(options.fetchOptions as any ?? {}),
     };
 
     return { req, url, timeout: options.timeout };
@@ -764,17 +563,15 @@ export class Greenflash {
 
     const headers = buildHeaders([
       idempotencyHeaders,
-      {
-        Accept: 'application/json',
-        'User-Agent': this.getUserAgent(),
-        'X-Stainless-Retry-Count': String(retryCount),
-        ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
-        ...getPlatformHeaders(),
-      },
+      {Accept: 'application/json',
+      'User-Agent': this.getUserAgent(),
+      'X-Stainless-Retry-Count': String(retryCount),
+      ...(options.timeout ? { 'X-Stainless-Timeout': String(Math.trunc(options.timeout / 1000)) } : {}),
+      ...getPlatformHeaders()},
       await this.authHeaders(options),
       this._options.defaultHeaders,
       bodyHeaders,
-      options.headers,
+      options.headers
     ]);
 
     this.validateHeaders(headers);
@@ -801,9 +598,11 @@ export class Greenflash {
       ArrayBuffer.isView(body) ||
       body instanceof ArrayBuffer ||
       body instanceof DataView ||
-      (typeof body === 'string' &&
+      (
+        typeof body === 'string' &&
         // Preserve legacy string encoding behavior for now
-        headers.values.has('content-type')) ||
+        headers.values.has('content-type')
+      ) ||
       // `Blob` is superset of `File`
       ((globalThis as any).Blob && body instanceof (globalThis as any).Blob) ||
       // `FormData` -> `multipart/form-data`
@@ -834,7 +633,7 @@ export class Greenflash {
   }
 
   static Greenflash = this;
-  static DEFAULT_TIMEOUT = 60000; // 1 minute
+  static DEFAULT_TIMEOUT = 60000 // 1 minute
 
   static GreenflashError = Errors.GreenflashError;
   static APIError = Errors.APIError;
@@ -916,160 +715,160 @@ Greenflash.Segments = Segments;
 Greenflash.Events = Events;
 
 export declare namespace Greenflash {
-  export type RequestOptions = Opts.RequestOptions;
+      export type RequestOptions = Opts.RequestOptions;
 
-  export {
-    Messages as Messages,
-    type CreateMessageParams as CreateMessageParams,
-    type CreateMessageResponse as CreateMessageResponse,
-    type MessageItem as MessageItem,
-    type SystemPrompt as SystemPrompt,
-    type MessageCreateParams as MessageCreateParams,
-  };
+      export {
+  Messages as Messages,
+  type CreateMessageParams as CreateMessageParams,
+  type CreateMessageResponse as CreateMessageResponse,
+  type MessageItem as MessageItem,
+  type SystemPrompt as SystemPrompt,
+  type MessageCreateParams as MessageCreateParams
+};
 
-  export {
-    Interactions as Interactions,
-    type GetInteractionAnalyticsParams as GetInteractionAnalyticsParams,
-    type GetInteractionAnalyticsResponse as GetInteractionAnalyticsResponse,
-    type GetInteractionDetailParams as GetInteractionDetailParams,
-    type Interaction as Interaction,
-    type InteractionDetail as InteractionDetail,
-    type ListInteractionsParams as ListInteractionsParams,
-    type ListInteractionsResponse as ListInteractionsResponse,
-    type InteractionListParams as InteractionListParams,
-    type InteractionGetInteractionAnalyticsParams as InteractionGetInteractionAnalyticsParams,
-  };
+export {
+  Interactions as Interactions,
+  type GetInteractionAnalyticsParams as GetInteractionAnalyticsParams,
+  type GetInteractionAnalyticsResponse as GetInteractionAnalyticsResponse,
+  type GetInteractionDetailParams as GetInteractionDetailParams,
+  type Interaction as Interaction,
+  type InteractionDetail as InteractionDetail,
+  type ListInteractionsParams as ListInteractionsParams,
+  type ListInteractionsResponse as ListInteractionsResponse,
+  type InteractionListParams as InteractionListParams,
+  type InteractionGetInteractionAnalyticsParams as InteractionGetInteractionAnalyticsParams
+};
 
-  export {
-    Users as Users,
-    type CreateUserParams as CreateUserParams,
-    type CreateUserResponse as CreateUserResponse,
-    type GetUserAnalyticsParams as GetUserAnalyticsParams,
-    type GetUserAnalyticsResponse as GetUserAnalyticsResponse,
-    type GetUserSegmentsResponse as GetUserSegmentsResponse,
-    type ListUsersParams as ListUsersParams,
-    type ListUsersResponse as ListUsersResponse,
-    type Participant as Participant,
-    type UpdateUserParams as UpdateUserParams,
-    type UpdateUserResponse as UpdateUserResponse,
-    type UserSegmentMembership as UserSegmentMembership,
-    type UserCreateParams as UserCreateParams,
-    type UserUpdateParams as UserUpdateParams,
-    type UserListParams as UserListParams,
-    type UserGetUserAnalyticsParams as UserGetUserAnalyticsParams,
-  };
+export {
+  Users as Users,
+  type CreateUserParams as CreateUserParams,
+  type CreateUserResponse as CreateUserResponse,
+  type GetUserAnalyticsParams as GetUserAnalyticsParams,
+  type GetUserAnalyticsResponse as GetUserAnalyticsResponse,
+  type GetUserSegmentsResponse as GetUserSegmentsResponse,
+  type ListUsersParams as ListUsersParams,
+  type ListUsersResponse as ListUsersResponse,
+  type Participant as Participant,
+  type UpdateUserParams as UpdateUserParams,
+  type UpdateUserResponse as UpdateUserResponse,
+  type UserSegmentMembership as UserSegmentMembership,
+  type UserCreateParams as UserCreateParams,
+  type UserUpdateParams as UserUpdateParams,
+  type UserListParams as UserListParams,
+  type UserGetUserAnalyticsParams as UserGetUserAnalyticsParams
+};
 
-  export {
-    Ratings as Ratings,
-    type LogRatingParams as LogRatingParams,
-    type LogRatingResponse as LogRatingResponse,
-    type RatingLogParams as RatingLogParams,
-  };
+export {
+  Ratings as Ratings,
+  type LogRatingParams as LogRatingParams,
+  type LogRatingResponse as LogRatingResponse,
+  type RatingLogParams as RatingLogParams
+};
 
-  export {
-    Organizations as Organizations,
-    type CreateOrganizationParams as CreateOrganizationParams,
-    type CreateOrganizationResponse as CreateOrganizationResponse,
-    type GetOrganizationAnalyticsParams as GetOrganizationAnalyticsParams,
-    type GetOrganizationAnalyticsResponse as GetOrganizationAnalyticsResponse,
-    type ListOrganizationsParams as ListOrganizationsParams,
-    type ListOrganizationsResponse as ListOrganizationsResponse,
-    type TenantOrganization as TenantOrganization,
-    type UpdateOrganizationParams as UpdateOrganizationParams,
-    type UpdateOrganizationResponse as UpdateOrganizationResponse,
-    type OrganizationCreateParams as OrganizationCreateParams,
-    type OrganizationUpdateParams as OrganizationUpdateParams,
-    type OrganizationListParams as OrganizationListParams,
-    type OrganizationGetOrganizationAnalyticsParams as OrganizationGetOrganizationAnalyticsParams,
-  };
+export {
+  Organizations as Organizations,
+  type CreateOrganizationParams as CreateOrganizationParams,
+  type CreateOrganizationResponse as CreateOrganizationResponse,
+  type GetOrganizationAnalyticsParams as GetOrganizationAnalyticsParams,
+  type GetOrganizationAnalyticsResponse as GetOrganizationAnalyticsResponse,
+  type ListOrganizationsParams as ListOrganizationsParams,
+  type ListOrganizationsResponse as ListOrganizationsResponse,
+  type TenantOrganization as TenantOrganization,
+  type UpdateOrganizationParams as UpdateOrganizationParams,
+  type UpdateOrganizationResponse as UpdateOrganizationResponse,
+  type OrganizationCreateParams as OrganizationCreateParams,
+  type OrganizationUpdateParams as OrganizationUpdateParams,
+  type OrganizationListParams as OrganizationListParams,
+  type OrganizationGetOrganizationAnalyticsParams as OrganizationGetOrganizationAnalyticsParams
+};
 
-  export {
-    Prompts as Prompts,
-    type ComponentInput as ComponentInput,
-    type ComponentUpdate as ComponentUpdate,
-    type CreatePromptParams as CreatePromptParams,
-    type CreatePromptResponse as CreatePromptResponse,
-    type DeletePromptResponse as DeletePromptResponse,
-    type GetPromptAnalyticsResponse as GetPromptAnalyticsResponse,
-    type GetPromptParams as GetPromptParams,
-    type GetPromptResponse as GetPromptResponse,
-    type ListPromptsParams as ListPromptsParams,
-    type ListPromptsResponse as ListPromptsResponse,
-    type Prompt as Prompt,
-    type PromptComponent as PromptComponent,
-    type SlimPrompt as SlimPrompt,
-    type SlimPromptComponent as SlimPromptComponent,
-    type UpdatePromptParams as UpdatePromptParams,
-    type UpdatePromptResponse as UpdatePromptResponse,
-    type PromptCreateParams as PromptCreateParams,
-    type PromptUpdateParams as PromptUpdateParams,
-    type PromptListParams as PromptListParams,
-  };
+export {
+  Prompts as Prompts,
+  type ComponentInput as ComponentInput,
+  type ComponentUpdate as ComponentUpdate,
+  type CreatePromptParams as CreatePromptParams,
+  type CreatePromptResponse as CreatePromptResponse,
+  type DeletePromptResponse as DeletePromptResponse,
+  type GetPromptAnalyticsResponse as GetPromptAnalyticsResponse,
+  type GetPromptParams as GetPromptParams,
+  type GetPromptResponse as GetPromptResponse,
+  type ListPromptsParams as ListPromptsParams,
+  type ListPromptsResponse as ListPromptsResponse,
+  type Prompt as Prompt,
+  type PromptComponent as PromptComponent,
+  type SlimPrompt as SlimPrompt,
+  type SlimPromptComponent as SlimPromptComponent,
+  type UpdatePromptParams as UpdatePromptParams,
+  type UpdatePromptResponse as UpdatePromptResponse,
+  type PromptCreateParams as PromptCreateParams,
+  type PromptUpdateParams as PromptUpdateParams,
+  type PromptListParams as PromptListParams
+};
 
-  export {
-    Chat as Chat,
-    type StreamChatRequest as StreamChatRequest,
-    type ChatCreateParams as ChatCreateParams,
-  };
+export {
+  Chat as Chat,
+  type StreamChatRequest as StreamChatRequest,
+  type ChatCreateParams as ChatCreateParams
+};
 
-  export {
-    Inbox as Inbox,
-    type AnalysisScores as AnalysisScores,
-    type ConversationMessage as ConversationMessage,
-    type GetInboxItemParams as GetInboxItemParams,
-    type GetInboxItemResponse as GetInboxItemResponse,
-    type InboxItemSummary as InboxItemSummary,
-    type ListInboxParams as ListInboxParams,
-    type ListInboxResponse as ListInboxResponse,
-    type ParticipantInfo as ParticipantInfo,
-    type TriggerDetail as TriggerDetail,
-    type InboxListParams as InboxListParams,
-  };
+export {
+  Inbox as Inbox,
+  type AnalysisScores as AnalysisScores,
+  type ConversationMessage as ConversationMessage,
+  type GetInboxItemParams as GetInboxItemParams,
+  type GetInboxItemResponse as GetInboxItemResponse,
+  type InboxItemSummary as InboxItemSummary,
+  type ListInboxParams as ListInboxParams,
+  type ListInboxResponse as ListInboxResponse,
+  type ParticipantInfo as ParticipantInfo,
+  type TriggerDetail as TriggerDetail,
+  type InboxListParams as InboxListParams
+};
 
-  export {
-    Models as Models,
-    type GetModelAnalyticsParams as GetModelAnalyticsParams,
-    type GetModelAnalyticsResponse as GetModelAnalyticsResponse,
-    type GetModelResponse as GetModelResponse,
-    type ListModelsParams as ListModelsParams,
-    type ListModelsResponse as ListModelsResponse,
-    type ModelProductUsage as ModelProductUsage,
-    type ModelSummary as ModelSummary,
-    type ModelListParams as ModelListParams,
-    type ModelGetModelAnalyticsParams as ModelGetModelAnalyticsParams,
-  };
+export {
+  Models as Models,
+  type GetModelAnalyticsParams as GetModelAnalyticsParams,
+  type GetModelAnalyticsResponse as GetModelAnalyticsResponse,
+  type GetModelResponse as GetModelResponse,
+  type ListModelsParams as ListModelsParams,
+  type ListModelsResponse as ListModelsResponse,
+  type ModelProductUsage as ModelProductUsage,
+  type ModelSummary as ModelSummary,
+  type ModelListParams as ModelListParams,
+  type ModelGetModelAnalyticsParams as ModelGetModelAnalyticsParams
+};
 
-  export {
-    Products as Products,
-    type GetProductAnalyticsResponse as GetProductAnalyticsResponse,
-    type GetProductResponse as GetProductResponse,
-    type ListProductsParams as ListProductsParams,
-    type ListProductsResponse as ListProductsResponse,
-    type ProductMember as ProductMember,
-    type ProductSummary as ProductSummary,
-    type QualityIndexMetricWeight as QualityIndexMetricWeight,
-    type ProductListParams as ProductListParams,
-  };
+export {
+  Products as Products,
+  type GetProductAnalyticsResponse as GetProductAnalyticsResponse,
+  type GetProductResponse as GetProductResponse,
+  type ListProductsParams as ListProductsParams,
+  type ListProductsResponse as ListProductsResponse,
+  type ProductMember as ProductMember,
+  type ProductSummary as ProductSummary,
+  type QualityIndexMetricWeight as QualityIndexMetricWeight,
+  type ProductListParams as ProductListParams
+};
 
-  export {
-    Segments as Segments,
-    type CreateSegmentParams as CreateSegmentParams,
-    type CreateSegmentResponse as CreateSegmentResponse,
-    type GetSegmentAnalyticsParams as GetSegmentAnalyticsParams,
-    type GetSegmentAnalyticsResponse as GetSegmentAnalyticsResponse,
-    type GetSegmentResponse as GetSegmentResponse,
-    type ListSegmentsParams as ListSegmentsParams,
-    type ListSegmentsResponse as ListSegmentsResponse,
-    type SegmentSummary as SegmentSummary,
-    type SegmentCreateParams as SegmentCreateParams,
-    type SegmentListParams as SegmentListParams,
-    type SegmentGetSegmentAnalyticsParams as SegmentGetSegmentAnalyticsParams,
-  };
+export {
+  Segments as Segments,
+  type CreateSegmentParams as CreateSegmentParams,
+  type CreateSegmentResponse as CreateSegmentResponse,
+  type GetSegmentAnalyticsParams as GetSegmentAnalyticsParams,
+  type GetSegmentAnalyticsResponse as GetSegmentAnalyticsResponse,
+  type GetSegmentResponse as GetSegmentResponse,
+  type ListSegmentsParams as ListSegmentsParams,
+  type ListSegmentsResponse as ListSegmentsResponse,
+  type SegmentSummary as SegmentSummary,
+  type SegmentCreateParams as SegmentCreateParams,
+  type SegmentListParams as SegmentListParams,
+  type SegmentGetSegmentAnalyticsParams as SegmentGetSegmentAnalyticsParams
+};
 
-  export {
-    Events as Events,
-    type CreateEventParams as CreateEventParams,
-    type CreateEventResponse as CreateEventResponse,
-    type EventCreateParams as EventCreateParams,
-  };
-}
+export {
+  Events as Events,
+  type CreateEventParams as CreateEventParams,
+  type CreateEventResponse as CreateEventResponse,
+  type EventCreateParams as EventCreateParams
+};
+    }

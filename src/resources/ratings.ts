@@ -164,6 +164,6 @@ export declare namespace Ratings {
   export {
     type LogRatingParams as LogRatingParams,
     type LogRatingResponse as LogRatingResponse,
-    type RatingLogParams as RatingLogParams,
+    type RatingLogParams as RatingLogParams
   };
 }

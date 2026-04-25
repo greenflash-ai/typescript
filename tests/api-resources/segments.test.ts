@@ -2,31 +2,21 @@
 
 import Greenflash from 'greenflash';
 
-const client = new Greenflash({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Greenflash({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource segments', () => {
   test('create: only required params', async () => {
-    const responsePromise = client.segments.create({
-      filters: {
-        rules: [
-          {
-            field: 'commercialIntent',
-            operator: 'gte',
-            type: 'analysis',
-            value: 0.6,
-          },
-          {
-            key: 'plan',
-            operator: 'eq',
-            type: 'property',
-            value: 'enterprise',
-          },
-        ],
-      },
-    });
+    const responsePromise = client.segments.create({ filters: { rules: [{
+    field: 'commercialIntent',
+    operator: 'gte',
+    type: 'analysis',
+    value: 0.6,
+  }, {
+    key: 'plan',
+    operator: 'eq',
+    type: 'property',
+    value: 'enterprise',
+  }] } });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -38,32 +28,29 @@ describe('resource segments', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.segments.create({
-      filters: {
-        rules: [
-          {
-            field: 'commercialIntent',
-            operator: 'gte',
-            type: 'analysis',
-            value: 0.6,
-          },
-          {
-            key: 'plan',
-            operator: 'eq',
-            type: 'property',
-            value: 'enterprise',
-          },
-        ],
-        dateRange: {
-          from: 'from',
-          preset: '7d',
-          to: 'to',
-        },
-        productIds: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
-      },
-      description: 'Users with high commercial intent from the enterprise plan',
-      icon: 'Users',
-      name: 'High-Intent Enterprise Users',
-    });
+    filters: {
+    rules: [{
+    field: 'commercialIntent',
+    operator: 'gte',
+    type: 'analysis',
+    value: 0.6,
+  }, {
+    key: 'plan',
+    operator: 'eq',
+    type: 'property',
+    value: 'enterprise',
+  }],
+    dateRange: {
+    from: 'from',
+    preset: '7d',
+    to: 'to',
+  },
+    productIds: ['182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e'],
+  },
+    description: 'Users with high commercial intent from the enterprise plan',
+    icon: 'Users',
+    name: 'High-Intent Enterprise Users',
+  });
   });
 
   test('list', async () => {
@@ -79,9 +66,9 @@ describe('resource segments', () => {
 
   test('list: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.segments.list({ page: 1, pageSize: 1 }, { path: '/_stainless_unknown_path' }),
-    ).rejects.toThrow(Greenflash.NotFoundError);
+    await expect(client.segments.list({ page: 1, pageSize: 1 }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Greenflash.NotFoundError);
   });
 
   test('get', async () => {
@@ -108,15 +95,8 @@ describe('resource segments', () => {
 
   test('getSegmentAnalytics: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.segments.getSegmentAnalytics(
-        '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        {
-          productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-          versionId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-        },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Greenflash.NotFoundError);
+    await expect(client.segments.getSegmentAnalytics('182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', { productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e', versionId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e' }, { path: '/_stainless_unknown_path' }))
+      .rejects
+      .toThrow(Greenflash.NotFoundError);
   });
 });
