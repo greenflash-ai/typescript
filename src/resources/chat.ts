@@ -65,11 +65,7 @@ export class Chat extends APIResource {
    * ```
    */
   create(body: ChatCreateParams, options?: RequestOptions): APIPromise<void> {
-    return this._client.post('/chat', {
-      body,
-      ...options,
-      headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
-    });
+    return this._client.post('/chat', { body, ...options, headers: buildHeaders([{Accept: '*/*'}, options?.headers]) });
   }
 }
 
@@ -162,5 +158,8 @@ export namespace ChatCreateParams {
 }
 
 export declare namespace Chat {
-  export { type StreamChatRequest as StreamChatRequest, type ChatCreateParams as ChatCreateParams };
+  export {
+    type StreamChatRequest as StreamChatRequest,
+    type ChatCreateParams as ChatCreateParams
+  };
 }

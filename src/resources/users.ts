@@ -82,10 +82,7 @@ export class Users extends APIResource {
    * const listUsersResponse = await client.users.list();
    * ```
    */
-  list(
-    query: UserListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ListUsersResponse> {
+  list(query: UserListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ListUsersResponse> {
     return this._client.get('/users', { query, ...options });
   }
 
@@ -115,11 +112,7 @@ export class Users extends APIResource {
    *   );
    * ```
    */
-  getUserAnalytics(
-    userID: string,
-    query: UserGetUserAnalyticsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<GetUserAnalyticsResponse> {
+  getUserAnalytics(userID: string, query: UserGetUserAnalyticsParams | null | undefined = {}, options?: RequestOptions): APIPromise<GetUserAnalyticsResponse> {
     return this._client.get(path`/users/${userID}/analytics`, { query, ...options });
   }
 
@@ -459,7 +452,7 @@ export namespace GetUserAnalyticsResponse {
 /**
  * Array of segments the user belongs to.
  */
-export type GetUserSegmentsResponse = Array<UserSegmentMembership>;
+export type GetUserSegmentsResponse = Array<UserSegmentMembership>
 
 export interface ListUsersParams {
   /**
@@ -486,7 +479,7 @@ export interface ListUsersParams {
 /**
  * Array of users.
  */
-export type ListUsersResponse = Array<Participant>;
+export type ListUsersResponse = Array<Participant>
 
 /**
  * The user profile.
@@ -765,6 +758,6 @@ export declare namespace Users {
     type UserCreateParams as UserCreateParams,
     type UserUpdateParams as UserUpdateParams,
     type UserListParams as UserListParams,
-    type UserGetUserAnalyticsParams as UserGetUserAnalyticsParams,
+    type UserGetUserAnalyticsParams as UserGetUserAnalyticsParams
   };
 }

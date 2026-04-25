@@ -13,10 +13,7 @@ export class Models extends APIResource {
    * List all AI models in your workspace with summary information including usage
    * counts. Available on all plans.
    */
-  list(
-    query: ModelListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ListModelsResponse> {
+  list(query: ModelListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ListModelsResponse> {
     return this._client.get('/models', { query, ...options });
   }
 
@@ -37,11 +34,7 @@ export class Models extends APIResource {
    *
    * Rate limited based on your plan's `maxAnalysesPerHour`.
    */
-  getModelAnalytics(
-    modelID: string,
-    query: ModelGetModelAnalyticsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<GetModelAnalyticsResponse> {
+  getModelAnalytics(modelID: string, query: ModelGetModelAnalyticsParams | null | undefined = {}, options?: RequestOptions): APIPromise<GetModelAnalyticsResponse> {
     return this._client.get(path`/models/${modelID}/analytics`, { query, ...options });
   }
 }
@@ -505,7 +498,7 @@ export interface ListModelsParams {
 /**
  * Array of model summaries.
  */
-export type ListModelsResponse = Array<ModelSummary>;
+export type ListModelsResponse = Array<ModelSummary>
 
 export interface ModelProductUsage {
   /**
@@ -595,6 +588,6 @@ export declare namespace Models {
     type ModelProductUsage as ModelProductUsage,
     type ModelSummary as ModelSummary,
     type ModelListParams as ModelListParams,
-    type ModelGetModelAnalyticsParams as ModelGetModelAnalyticsParams,
+    type ModelGetModelAnalyticsParams as ModelGetModelAnalyticsParams
   };
 }

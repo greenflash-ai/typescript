@@ -2,18 +2,15 @@
 
 import Greenflash from 'greenflash';
 
-const client = new Greenflash({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Greenflash({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource events', () => {
   test('create: only required params', async () => {
     const responsePromise = client.events.create({
-      eventType: 'x',
-      productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      value: 'value',
-    });
+    eventType: 'x',
+    productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    value: 'value',
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -25,23 +22,23 @@ describe('resource events', () => {
 
   test('create: required and optional params', async () => {
     const response = await client.events.create({
-      eventType: 'x',
-      productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      value: 'value',
-      conversationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      eventAt: '2019-12-27T18:11:19.117Z',
-      externalConversationId: 'externalConversationId',
-      externalOrganizationId: 'externalOrganizationId',
-      externalUserId: 'externalUserId',
-      forceSample: true,
-      influence: 'positive',
-      insertId: 'insertId',
-      organizationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      properties: { foo: 'bar' },
-      qualityImpactScore: -1,
-      sampleRate: 0,
-      userId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-      valueType: 'currency',
-    });
+    eventType: 'x',
+    productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    value: 'value',
+    conversationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    eventAt: '2019-12-27T18:11:19.117Z',
+    externalConversationId: 'externalConversationId',
+    externalOrganizationId: 'externalOrganizationId',
+    externalUserId: 'externalUserId',
+    forceSample: true,
+    influence: 'positive',
+    insertId: 'insertId',
+    organizationId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    properties: { foo: 'bar' },
+    qualityImpactScore: -1,
+    sampleRate: 0,
+    userId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+    valueType: 'currency',
+  });
   });
 });
