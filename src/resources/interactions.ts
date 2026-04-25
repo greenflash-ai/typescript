@@ -14,10 +14,7 @@ export class Interactions extends APIResource {
    * interacting with your AI. Filter by product or version to focus on specific
    * areas of your application.
    */
-  list(
-    query: InteractionListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<ListInteractionsResponse> {
+  list(query: InteractionListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ListInteractionsResponse> {
     return this._client.get('/interactions', { query, ...options });
   }
 
@@ -49,11 +46,7 @@ export class Interactions extends APIResource {
    *
    * Returns 404 if the conversation doesn't exist or hasn't been analyzed yet.
    */
-  getInteractionAnalytics(
-    interactionID: string,
-    query: InteractionGetInteractionAnalyticsParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<GetInteractionAnalyticsResponse> {
+  getInteractionAnalytics(interactionID: string, query: InteractionGetInteractionAnalyticsParams | null | undefined = {}, options?: RequestOptions): APIPromise<GetInteractionAnalyticsResponse> {
     return this._client.get(path`/interactions/${interactionID}/analytics`, { query, ...options });
   }
 }
@@ -431,7 +424,7 @@ export interface ListInteractionsParams {
 /**
  * Array of interactions.
  */
-export type ListInteractionsResponse = Array<Interaction>;
+export type ListInteractionsResponse = Array<Interaction>
 
 export interface InteractionListParams {
   /**
@@ -479,6 +472,6 @@ export declare namespace Interactions {
     type ListInteractionsParams as ListInteractionsParams,
     type ListInteractionsResponse as ListInteractionsResponse,
     type InteractionListParams as InteractionListParams,
-    type InteractionGetInteractionAnalyticsParams as InteractionGetInteractionAnalyticsParams,
+    type InteractionGetInteractionAnalyticsParams as InteractionGetInteractionAnalyticsParams
   };
 }
