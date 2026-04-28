@@ -277,7 +277,25 @@ export interface MessageItem {
    * observation, final_response, retrieval, memory_read, memory_write, chain_start,
    * chain_end, embedding, tool_error, callback, llm, task, workflow
    */
-  messageType?: 'user_message' | 'assistant_message' | 'system_message' | 'thought' | 'tool_call' | 'observation' | 'final_response' | 'retrieval' | 'memory_read' | 'memory_write' | 'chain_start' | 'chain_end' | 'embedding' | 'tool_error' | 'callback' | 'llm' | 'task' | 'workflow';
+  messageType?:
+    | 'user_message'
+    | 'assistant_message'
+    | 'system_message'
+    | 'thought'
+    | 'tool_call'
+    | 'observation'
+    | 'final_response'
+    | 'retrieval'
+    | 'memory_read'
+    | 'memory_write'
+    | 'chain_start'
+    | 'chain_end'
+    | 'embedding'
+    | 'tool_error'
+    | 'callback'
+    | 'llm'
+    | 'task'
+    | 'workflow';
 
   /**
    * The AI model used for this specific message. Use for multi-agent scenarios where
@@ -324,7 +342,7 @@ export interface MessageItem {
  * System prompt for the conversation. Can be a simple string or a prompt object
  * with components.
  */
-export type SystemPrompt = string | SystemPrompt.SystemPromptObject
+export type SystemPrompt = string | SystemPrompt.SystemPromptObject;
 
 export namespace SystemPrompt {
   /**
@@ -436,6 +454,6 @@ export declare namespace Messages {
     type CreateMessageResponse as CreateMessageResponse,
     type MessageItem as MessageItem,
     type SystemPrompt as SystemPrompt,
-    type MessageCreateParams as MessageCreateParams
+    type MessageCreateParams as MessageCreateParams,
   };
 }

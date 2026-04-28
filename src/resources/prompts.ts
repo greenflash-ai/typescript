@@ -107,7 +107,10 @@ export class Prompts extends APIResource {
    * const listPromptsResponse = await client.prompts.list();
    * ```
    */
-  list(query: PromptListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ListPromptsResponse> {
+  list(
+    query: PromptListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ListPromptsResponse> {
     return this._client.get('/prompts', { query, ...options });
   }
 
@@ -379,7 +382,7 @@ export interface GetPromptParams {
    */
   id: string;
 
-[k: string]: string | undefined
+  [k: string]: string | undefined;
 }
 
 export interface GetPromptResponse {
@@ -438,7 +441,7 @@ export interface ListPromptsParams {
 /**
  * Array of prompts.
  */
-export type ListPromptsResponse = Array<SlimPrompt>
+export type ListPromptsResponse = Array<SlimPrompt>;
 
 /**
  * The full prompt object with components.
@@ -773,6 +776,6 @@ export declare namespace Prompts {
     type UpdatePromptResponse as UpdatePromptResponse,
     type PromptCreateParams as PromptCreateParams,
     type PromptUpdateParams as PromptUpdateParams,
-    type PromptListParams as PromptListParams
+    type PromptListParams as PromptListParams,
   };
 }

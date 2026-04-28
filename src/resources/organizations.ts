@@ -59,7 +59,11 @@ export class Organizations extends APIResource {
    *   });
    * ```
    */
-  update(organizationID: string, body: OrganizationUpdateParams, options?: RequestOptions): APIPromise<UpdateOrganizationResponse> {
+  update(
+    organizationID: string,
+    body: OrganizationUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<UpdateOrganizationResponse> {
     return this._client.put(path`/organizations/${organizationID}`, { body, ...options });
   }
 
@@ -77,7 +81,10 @@ export class Organizations extends APIResource {
    *   await client.organizations.list();
    * ```
    */
-  list(query: OrganizationListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ListOrganizationsResponse> {
+  list(
+    query: OrganizationListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ListOrganizationsResponse> {
     return this._client.get('/organizations', { query, ...options });
   }
 
@@ -109,7 +116,11 @@ export class Organizations extends APIResource {
    *   );
    * ```
    */
-  getOrganizationAnalytics(organizationID: string, query: OrganizationGetOrganizationAnalyticsParams | null | undefined = {}, options?: RequestOptions): APIPromise<GetOrganizationAnalyticsResponse> {
+  getOrganizationAnalytics(
+    organizationID: string,
+    query: OrganizationGetOrganizationAnalyticsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<GetOrganizationAnalyticsResponse> {
     return this._client.get(path`/organizations/${organizationID}/analytics`, { query, ...options });
   }
 }
@@ -314,7 +325,7 @@ export interface ListOrganizationsParams {
 /**
  * Array of organizations.
  */
-export type ListOrganizationsResponse = Array<TenantOrganization>
+export type ListOrganizationsResponse = Array<TenantOrganization>;
 
 /**
  * The organization that was created or updated.
@@ -461,6 +472,6 @@ export declare namespace Organizations {
     type OrganizationCreateParams as OrganizationCreateParams,
     type OrganizationUpdateParams as OrganizationUpdateParams,
     type OrganizationListParams as OrganizationListParams,
-    type OrganizationGetOrganizationAnalyticsParams as OrganizationGetOrganizationAnalyticsParams
+    type OrganizationGetOrganizationAnalyticsParams as OrganizationGetOrganizationAnalyticsParams,
   };
 }
