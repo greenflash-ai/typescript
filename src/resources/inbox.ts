@@ -14,7 +14,10 @@ export class Inbox extends APIResource {
    * trigger type, or severity to focus on what matters most. Results are ordered by
    * attention score (unreviewed) or last updated (reviewed/dismissed).
    */
-  list(query: InboxListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ListInboxResponse> {
+  list(
+    query: InboxListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ListInboxResponse> {
     return this._client.get('/inbox', { query, ...options });
   }
 
@@ -219,7 +222,7 @@ export interface ListInboxParams {
 /**
  * Array of inbox items. Pagination via Link header.
  */
-export type ListInboxResponse = Array<InboxItemSummary>
+export type ListInboxResponse = Array<InboxItemSummary>;
 
 /**
  * Participant information.
@@ -301,6 +304,6 @@ export declare namespace Inbox {
     type ListInboxResponse as ListInboxResponse,
     type ParticipantInfo as ParticipantInfo,
     type TriggerDetail as TriggerDetail,
-    type InboxListParams as InboxListParams
+    type InboxListParams as InboxListParams,
   };
 }

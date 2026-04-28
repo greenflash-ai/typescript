@@ -55,7 +55,10 @@ export class Segments extends APIResource {
    * const listSegmentsResponse = await client.segments.list();
    * ```
    */
-  list(query: SegmentListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ListSegmentsResponse> {
+  list(
+    query: SegmentListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ListSegmentsResponse> {
     return this._client.get('/segments', { query, ...options });
   }
 
@@ -92,7 +95,11 @@ export class Segments extends APIResource {
    *   );
    * ```
    */
-  getSegmentAnalytics(segmentID: string, query: SegmentGetSegmentAnalyticsParams | null | undefined = {}, options?: RequestOptions): APIPromise<GetSegmentAnalyticsResponse> {
+  getSegmentAnalytics(
+    segmentID: string,
+    query: SegmentGetSegmentAnalyticsParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<GetSegmentAnalyticsResponse> {
     return this._client.get(path`/segments/${segmentID}/analytics`, { query, ...options });
   }
 }
@@ -127,7 +134,14 @@ export namespace CreateSegmentParams {
     /**
      * Array of filter rules. At least one rule is required.
      */
-    rules: Array<Filters.UnionMember0 | Filters.UnionMember1 | Filters.UnionMember2 | Filters.UnionMember3 | Filters.UnionMember4 | Filters.UnionMember5>;
+    rules: Array<
+      | Filters.UnionMember0
+      | Filters.UnionMember1
+      | Filters.UnionMember2
+      | Filters.UnionMember3
+      | Filters.UnionMember4
+      | Filters.UnionMember5
+    >;
 
     /**
      * Optional date range filter.
@@ -167,7 +181,14 @@ export namespace CreateSegmentParams {
       /**
        * The flag to filter on.
        */
-      field: 'jailbreakDetected' | 'hallucinationDetected' | 'userToxicityDetected' | 'modelToxicityDetected' | 'userBiasDetected' | 'modelBiasDetected' | 'missingCapabilityDetected';
+      field:
+        | 'jailbreakDetected'
+        | 'hallucinationDetected'
+        | 'userToxicityDetected'
+        | 'modelToxicityDetected'
+        | 'userBiasDetected'
+        | 'modelBiasDetected'
+        | 'missingCapabilityDetected';
 
       /**
        * Rule based on detected flags.
@@ -627,7 +648,7 @@ export interface ListSegmentsParams {
 /**
  * Array of segments.
  */
-export type ListSegmentsResponse = Array<SegmentSummary>
+export type ListSegmentsResponse = Array<SegmentSummary>;
 
 export interface SegmentSummary {
   /**
@@ -691,7 +712,14 @@ export namespace SegmentCreateParams {
     /**
      * Array of filter rules. At least one rule is required.
      */
-    rules: Array<Filters.UnionMember0 | Filters.UnionMember1 | Filters.UnionMember2 | Filters.UnionMember3 | Filters.UnionMember4 | Filters.UnionMember5>;
+    rules: Array<
+      | Filters.UnionMember0
+      | Filters.UnionMember1
+      | Filters.UnionMember2
+      | Filters.UnionMember3
+      | Filters.UnionMember4
+      | Filters.UnionMember5
+    >;
 
     /**
      * Optional date range filter.
@@ -731,7 +759,14 @@ export namespace SegmentCreateParams {
       /**
        * The flag to filter on.
        */
-      field: 'jailbreakDetected' | 'hallucinationDetected' | 'userToxicityDetected' | 'modelToxicityDetected' | 'userBiasDetected' | 'modelBiasDetected' | 'missingCapabilityDetected';
+      field:
+        | 'jailbreakDetected'
+        | 'hallucinationDetected'
+        | 'userToxicityDetected'
+        | 'modelToxicityDetected'
+        | 'userBiasDetected'
+        | 'modelBiasDetected'
+        | 'missingCapabilityDetected';
 
       /**
        * Rule based on detected flags.
@@ -880,6 +915,6 @@ export declare namespace Segments {
     type SegmentSummary as SegmentSummary,
     type SegmentCreateParams as SegmentCreateParams,
     type SegmentListParams as SegmentListParams,
-    type SegmentGetSegmentAnalyticsParams as SegmentGetSegmentAnalyticsParams
+    type SegmentGetSegmentAnalyticsParams as SegmentGetSegmentAnalyticsParams,
   };
 }
