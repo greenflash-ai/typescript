@@ -1,14 +1,131 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export { Chat, type StreamChatRequest, type ChatCreateParams } from './chat';;
-export { Events, type CreateEventParams, type CreateEventResponse, type EventCreateParams } from './events';;
-export { Inbox, type AnalysisScores, type ConversationMessage, type GetInboxItemParams, type GetInboxItemResponse, type InboxItemSummary, type ListInboxParams, type ListInboxResponse, type ParticipantInfo, type TriggerDetail, type InboxListParams } from './inbox';;
-export { Interactions, type GetInteractionAnalyticsParams, type GetInteractionAnalyticsResponse, type GetInteractionDetailParams, type Interaction, type InteractionDetail, type ListInteractionsParams, type ListInteractionsResponse, type InteractionListParams, type InteractionGetInteractionAnalyticsParams } from './interactions';;
-export { Messages, type CreateMessageParams, type CreateMessageResponse, type MessageItem, type SystemPrompt, type MessageCreateParams } from './messages';;
-export { Models, type GetModelAnalyticsParams, type GetModelAnalyticsResponse, type GetModelResponse, type ListModelsParams, type ListModelsResponse, type ModelProductUsage, type ModelSummary, type ModelListParams, type ModelGetModelAnalyticsParams } from './models';;
-export { Organizations, type CreateOrganizationParams, type CreateOrganizationResponse, type GetOrganizationAnalyticsParams, type GetOrganizationAnalyticsResponse, type ListOrganizationsParams, type ListOrganizationsResponse, type TenantOrganization, type UpdateOrganizationParams, type UpdateOrganizationResponse, type OrganizationCreateParams, type OrganizationUpdateParams, type OrganizationListParams, type OrganizationGetOrganizationAnalyticsParams } from './organizations';;
-export { Products, type GetProductAnalyticsResponse, type GetProductResponse, type ListProductsParams, type ListProductsResponse, type ProductMember, type ProductSummary, type QualityIndexMetricWeight, type ProductListParams } from './products';;
-export { Prompts, type ComponentInput, type ComponentUpdate, type CreatePromptParams, type CreatePromptResponse, type DeletePromptResponse, type GetPromptAnalyticsResponse, type GetPromptParams, type GetPromptResponse, type ListPromptsParams, type ListPromptsResponse, type Prompt, type PromptComponent, type SlimPrompt, type SlimPromptComponent, type UpdatePromptParams, type UpdatePromptResponse, type PromptCreateParams, type PromptUpdateParams, type PromptListParams } from './prompts';;
-export { Ratings, type LogRatingParams, type LogRatingResponse, type RatingLogParams } from './ratings';;
-export { Segments, type CreateSegmentParams, type CreateSegmentResponse, type GetSegmentAnalyticsParams, type GetSegmentAnalyticsResponse, type GetSegmentResponse, type ListSegmentsParams, type ListSegmentsResponse, type SegmentSummary, type SegmentCreateParams, type SegmentListParams, type SegmentGetSegmentAnalyticsParams } from './segments';;
-export { Users, type CreateUserParams, type CreateUserResponse, type GetUserAnalyticsParams, type GetUserAnalyticsResponse, type GetUserSegmentsResponse, type ListUsersParams, type ListUsersResponse, type Participant, type UpdateUserParams, type UpdateUserResponse, type UserSegmentMembership, type UserCreateParams, type UserUpdateParams, type UserListParams, type UserGetUserAnalyticsParams } from './users';;
+export { Chat, type StreamChatRequest, type ChatCreateParams } from './chat';
+export { Events, type CreateEventParams, type CreateEventResponse, type EventCreateParams } from './events';
+export {
+  Inbox,
+  type AnalysisScores,
+  type ConversationMessage,
+  type GetInboxItemParams,
+  type GetInboxItemResponse,
+  type InboxItemSummary,
+  type ListInboxParams,
+  type ListInboxResponse,
+  type ParticipantInfo,
+  type TriggerDetail,
+  type InboxListParams,
+} from './inbox';
+export {
+  Interactions,
+  type GetInteractionAnalyticsParams,
+  type GetInteractionAnalyticsResponse,
+  type GetInteractionDetailParams,
+  type Interaction,
+  type InteractionDetail,
+  type ListInteractionsParams,
+  type ListInteractionsResponse,
+  type InteractionListParams,
+  type InteractionGetInteractionAnalyticsParams,
+} from './interactions';
+export {
+  Messages,
+  type CreateMessageParams,
+  type CreateMessageResponse,
+  type MessageItem,
+  type SystemPrompt,
+  type MessageCreateParams,
+} from './messages';
+export {
+  Models,
+  type GetModelAnalyticsParams,
+  type GetModelAnalyticsResponse,
+  type GetModelResponse,
+  type ListModelsParams,
+  type ListModelsResponse,
+  type ModelProductUsage,
+  type ModelSummary,
+  type ModelListParams,
+  type ModelGetModelAnalyticsParams,
+} from './models';
+export {
+  Organizations,
+  type CreateOrganizationParams,
+  type CreateOrganizationResponse,
+  type GetOrganizationAnalyticsParams,
+  type GetOrganizationAnalyticsResponse,
+  type ListOrganizationsParams,
+  type ListOrganizationsResponse,
+  type TenantOrganization,
+  type UpdateOrganizationParams,
+  type UpdateOrganizationResponse,
+  type OrganizationCreateParams,
+  type OrganizationUpdateParams,
+  type OrganizationListParams,
+  type OrganizationGetOrganizationAnalyticsParams,
+} from './organizations';
+export {
+  Products,
+  type GetProductAnalyticsResponse,
+  type GetProductResponse,
+  type ListProductsParams,
+  type ListProductsResponse,
+  type ProductMember,
+  type ProductSummary,
+  type QualityIndexMetricWeight,
+  type ProductListParams,
+} from './products';
+export {
+  Prompts,
+  type ComponentInput,
+  type ComponentUpdate,
+  type CreatePromptParams,
+  type CreatePromptResponse,
+  type DeletePromptResponse,
+  type GetPromptAnalyticsResponse,
+  type GetPromptParams,
+  type GetPromptResponse,
+  type ListPromptsParams,
+  type ListPromptsResponse,
+  type Prompt,
+  type PromptComponent,
+  type SlimPrompt,
+  type SlimPromptComponent,
+  type UpdatePromptParams,
+  type UpdatePromptResponse,
+  type PromptCreateParams,
+  type PromptUpdateParams,
+  type PromptListParams,
+} from './prompts';
+export { Ratings, type LogRatingParams, type LogRatingResponse, type RatingLogParams } from './ratings';
+export {
+  Segments,
+  type CreateSegmentParams,
+  type CreateSegmentResponse,
+  type GetSegmentAnalyticsParams,
+  type GetSegmentAnalyticsResponse,
+  type GetSegmentResponse,
+  type ListSegmentsParams,
+  type ListSegmentsResponse,
+  type SegmentSummary,
+  type SegmentCreateParams,
+  type SegmentListParams,
+  type SegmentGetSegmentAnalyticsParams,
+} from './segments';
+export {
+  Users,
+  type CreateUserParams,
+  type CreateUserResponse,
+  type GetUserAnalyticsParams,
+  type GetUserAnalyticsResponse,
+  type GetUserSegmentsResponse,
+  type ListUsersParams,
+  type ListUsersResponse,
+  type Participant,
+  type UpdateUserParams,
+  type UpdateUserResponse,
+  type UserSegmentMembership,
+  type UserCreateParams,
+  type UserUpdateParams,
+  type UserListParams,
+  type UserGetUserAnalyticsParams,
+} from './users';

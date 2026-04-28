@@ -13,7 +13,10 @@ export class Products extends APIResource {
    * List all products in your workspace. Returns a summary view of each product with
    * pagination support. Available on all plans.
    */
-  list(query: ProductListParams | null | undefined = {}, options?: RequestOptions): APIPromise<ListProductsResponse> {
+  list(
+    query: ProductListParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<ListProductsResponse> {
     return this._client.get('/products', { query, ...options });
   }
 
@@ -396,7 +399,7 @@ export interface ListProductsParams {
 /**
  * Array of products.
  */
-export type ListProductsResponse = Array<ProductSummary>
+export type ListProductsResponse = Array<ProductSummary>;
 
 export interface ProductMember {
   /**
@@ -495,6 +498,6 @@ export declare namespace Products {
     type ProductMember as ProductMember,
     type ProductSummary as ProductSummary,
     type QualityIndexMetricWeight as QualityIndexMetricWeight,
-    type ProductListParams as ProductListParams
+    type ProductListParams as ProductListParams,
   };
 }
