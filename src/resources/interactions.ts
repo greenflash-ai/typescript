@@ -367,7 +367,7 @@ export namespace InteractionDetail {
     /**
      * The message role.
      */
-    role: 'user' | 'assistant' | 'system' | 'tool_call' | 'observation';
+    role: 'user' | 'assistant' | 'system' | 'tool_call' | 'observation' | 'final_response';
 
     /**
      * When the message was sent.

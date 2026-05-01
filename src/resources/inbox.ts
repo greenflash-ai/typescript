@@ -200,9 +200,37 @@ export interface InboxItemSummary {
    * Primary trigger type that flagged this conversation.
    */
   triggerType: string | null;
+
+  /**
+   * Top-level axis for this item: attention (risk), opportunity (positive signal),
+   * or manual (team flagged).
+   */
+  axis?: 'attention' | 'opportunity' | 'manual';
+
+  /**
+   * IDs of the other conversations in the cluster.
+   */
+  clusterMemberIds?: Array<string>;
+
+  /**
+   * Root-cause label that anchors the cluster.
+   */
+  clusterRootCause?: string | null;
+
+  /**
+   * When this card represents a root-cause cluster, total number of conversations
+   * sharing the cause.
+   */
+  clusterSize?: number;
 }
 
 export interface ListInboxParams {
+  /**
+   * Filter by axis: "attention" for risk/quality triggers, "opportunity" for
+   * positive business signals.
+   */
+  axis?: 'attention' | 'opportunity';
+
   /**
    * Minimum severity level to include (1-5).
    */
@@ -277,6 +305,12 @@ export interface TriggerDetail {
 }
 
 export interface InboxListParams {
+  /**
+   * Filter by axis: "attention" for risk/quality triggers, "opportunity" for
+   * positive business signals.
+   */
+  axis?: 'attention' | 'opportunity';
+
   /**
    * Minimum severity level to include (1-5).
    */
