@@ -24,6 +24,7 @@ describe('resource inbox', () => {
     await expect(
       client.inbox.list(
         {
+          axis: 'attention',
           minSeverity: 1,
           status: 'unreviewed',
           triggerType: 'guardrail',
