@@ -11,7 +11,7 @@ import { RequestOptions } from '../internal/request-options';
 export class Messages extends APIResource {
   /**
    * Send us your AI conversations so we can analyze them for you. Works with
-   * everything from simple chatbots to complex agentic systems.
+   * everything from simple chatbots to complex agentic systems — text or voice.
    *
    * **Getting Started (Simple Chat):** Just provide the `role` ("user", "assistant",
    * or "system") and `content` for each message, along with an
@@ -21,6 +21,14 @@ export class Messages extends APIResource {
    * AI agents using `messageType` for tool calls, thoughts, observations, and more.
    * Include structured data via `input`/`output` fields to track what your agents
    * are doing.
+   *
+   * **Voice Agents:** For voice conversations, include a `voiceCall` object on the
+   * request (call duration, recording URL, ended reason, latency stats, structured
+   * outputs) and a `voice` object on each message (per-turn timing, ASR confidence,
+   * prosody, interruption signals). Native webhook integrations are available for
+   * Vapi, Retell, ElevenLabs, Bland AI, Synthflow, and Simple.ai — point your
+   * provider at `/v1/integrations/<provider>?productId=<uuid>` and we'll handle the
+   * transform. See the voice example below for the canonical shape.
    *
    * **Key Features:**
    *
@@ -162,6 +170,113 @@ export interface CreateMessageParams {
    * with components.
    */
   systemPrompt?: SystemPrompt;
+
+  /**
+   * Voice-specific signals for the full call/conversation (platform, duration,
+   * latency aggregates, recording URL, etc.). Stored on the conversation alongside
+   * `properties` and analyzed by voice-aware pipelines.
+   */
+  voiceCall?: CreateMessageParams.VoiceCall;
+}
+
+export namespace CreateMessageParams {
+  /**
+   * Voice-specific signals for the full call/conversation (platform, duration,
+   * latency aggregates, recording URL, etc.). Stored on the conversation alongside
+   * `properties` and analyzed by voice-aware pipelines.
+   */
+  export interface VoiceCall {
+    /**
+     * Optional platform-supplied success determination (e.g. Retell’s
+     * `call_successful`).
+     */
+    callSuccessful?: boolean;
+
+    /**
+     * Total call duration in milliseconds.
+     */
+    durationMs?: number;
+
+    /**
+     * How the call ended (platform-specific string, e.g. "user_hangup",
+     * "assistant_hangup", "timeout").
+     */
+    endedReason?: string;
+
+    /**
+     * Number of barge-ins / interruptions detected over the call.
+     */
+    interruptionCount?: number;
+
+    /**
+     * Component and end-to-end latency aggregates for the call.
+     */
+    latency?: VoiceCall.Latency;
+
+    /**
+     * Identifier of the voice platform that produced the call.
+     */
+    platform?:
+      | 'vapi'
+      | 'retell'
+      | 'elevenlabs'
+      | 'openai_realtime'
+      | 'livekit'
+      | 'bland'
+      | 'synthflow'
+      | 'simpleai'
+      | 'other';
+
+    /**
+     * The voice platform’s native call ID. Useful for cross-referencing back to the
+     * source.
+     */
+    platformCallId?: string;
+
+    /**
+     * Optional URL to the full call recording. Greenflash does not store audio; the
+     * URL is embedded in the UI as a pass-through.
+     */
+    recordingUrl?: string;
+
+    /**
+     * Number of long silence segments detected over the call.
+     */
+    silenceCount?: number;
+
+    /**
+     * Optional structured data extracted from the call by the platform (e.g. Vapi
+     * structured outputs, Retell custom analysis data).
+     */
+    structuredOutputs?: { [key: string]: unknown };
+  }
+
+  export namespace VoiceCall {
+    /**
+     * Component and end-to-end latency aggregates for the call.
+     */
+    export interface Latency {
+      /**
+       * Average ASR (speech-to-text) latency in ms.
+       */
+      asrMs?: number;
+
+      /**
+       * Average end-to-end latency from user end-of-turn to agent first audio (ms).
+       */
+      e2eMs?: number;
+
+      /**
+       * Average LLM inference latency in ms.
+       */
+      llmMs?: number;
+
+      /**
+       * Average TTS (text-to-speech) latency in ms.
+       */
+      ttsMs?: number;
+    }
+  }
 }
 
 /**
@@ -255,10 +370,13 @@ export interface MessageItem {
   context?: string | null;
 
   /**
-   * When this message was created. If not provided, messages get sequential
-   * timestamps. Use for importing historical data.
+   * When this message was created. Accepts a Date or an ISO-8601 string. If not
+   * provided, messages get sequential timestamps. Use for importing historical data
+   * — and required when you want the voice analysis pipeline to derive
+   * response-latency / silence-before signals from inter-message gaps on
+   * uninstrumented voice transcripts.
    */
-  createdAt?: string;
+  createdAt?: string | null;
 
   /**
    * Your external identifier for this message. Used to reference the message in
@@ -273,18 +391,18 @@ export interface MessageItem {
 
   /**
    * Detailed message type for agentic workflows. Cannot be used with role. Available
-   * types: user_message, assistant_message, system_message, thought, tool_call,
-   * observation, final_response, retrieval, memory_read, memory_write, chain_start,
+   * types: user_message, assistant_message, system_message, final_response, thought,
+   * tool_call, observation, retrieval, memory_read, memory_write, chain_start,
    * chain_end, embedding, tool_error, callback, llm, task, workflow
    */
   messageType?:
     | 'user_message'
     | 'assistant_message'
     | 'system_message'
+    | 'final_response'
     | 'thought'
     | 'tool_call'
     | 'observation'
-    | 'final_response'
     | 'retrieval'
     | 'memory_read'
     | 'memory_write'
@@ -336,6 +454,112 @@ export interface MessageItem {
    * Name of the tool being called. Required for tool_call messages.
    */
   toolName?: string;
+
+  /**
+   * Voice-specific signals for this turn (latency, interruption, ASR confidence,
+   * prosody, etc.). Stored alongside `properties` and analyzed by voice-aware
+   * pipelines.
+   */
+  voice?: MessageItem.Voice;
+}
+
+export namespace MessageItem {
+  /**
+   * Voice-specific signals for this turn (latency, interruption, ASR confidence,
+   * prosody, etc.). Stored alongside `properties` and analyzed by voice-aware
+   * pipelines.
+   */
+  export interface Voice {
+    /**
+     * ASR transcription confidence for this turn, 0 (uncertain) to 1 (fully
+     * confident).
+     */
+    asrConfidence?: number;
+
+    /**
+     * Optional URL to the audio segment for this turn. Greenflash does not store
+     * audio; the URL is embedded in the UI as a pass-through.
+     */
+    audioUrl?: string;
+
+    /**
+     * True when this turn began while the other speaker was still talking (a barge-in
+     * / overlap).
+     */
+    bargeIn?: boolean;
+
+    /**
+     * Length of this turn in milliseconds.
+     */
+    durationMs?: number;
+
+    /**
+     * When this turn finished speaking, as Unix epoch milliseconds.
+     */
+    endedAt?: number;
+
+    /**
+     * Optional prosody / tone signals from upstream voice infrastructure (Deepgram,
+     * Hume, Retell, etc.).
+     */
+    prosody?: Voice.Prosody;
+
+    /**
+     * Time between the previous speaker ending and this turn starting (ms). Useful for
+     * measuring agent response latency.
+     */
+    responseLatencyMs?: number;
+
+    /**
+     * Silence duration immediately before this turn (ms).
+     */
+    silenceBeforeMs?: number;
+
+    /**
+     * Optional speaker label (e.g. "agent", "user", or a diarization-assigned ID like
+     * "Speaker 0").
+     */
+    speaker?: string;
+
+    /**
+     * When this turn started speaking, as Unix epoch milliseconds.
+     */
+    startedAt?: number;
+
+    /**
+     * True when this turn was cut off by the other speaker.
+     */
+    wasInterrupted?: boolean;
+  }
+
+  export namespace Voice {
+    /**
+     * Optional prosody / tone signals from upstream voice infrastructure (Deepgram,
+     * Hume, Retell, etc.).
+     */
+    export interface Prosody {
+      /**
+       * Vocal energy / intensity, 0 (calm) to 1 (highly energetic).
+       */
+      arousal?: number;
+
+      /**
+       * Optional fine-grained emotion label provided by an upstream prosody model.
+       */
+      emotion?: string;
+
+      /**
+       * Prosody-derived sentiment label.
+       */
+      sentimentLabel?: 'positive' | 'neutral' | 'negative';
+
+      /**
+       * Prosody-derived sentiment score from -1 (negative) to 1 (positive). Distinct
+       * from text-derived sentiment — captures tone/intonation rather than word choice.
+       */
+      sentimentScore?: number;
+    }
+  }
 }
 
 /**
@@ -446,6 +670,113 @@ export interface MessageCreateParams {
    * with components.
    */
   systemPrompt?: SystemPrompt;
+
+  /**
+   * Voice-specific signals for the full call/conversation (platform, duration,
+   * latency aggregates, recording URL, etc.). Stored on the conversation alongside
+   * `properties` and analyzed by voice-aware pipelines.
+   */
+  voiceCall?: MessageCreateParams.VoiceCall;
+}
+
+export namespace MessageCreateParams {
+  /**
+   * Voice-specific signals for the full call/conversation (platform, duration,
+   * latency aggregates, recording URL, etc.). Stored on the conversation alongside
+   * `properties` and analyzed by voice-aware pipelines.
+   */
+  export interface VoiceCall {
+    /**
+     * Optional platform-supplied success determination (e.g. Retell’s
+     * `call_successful`).
+     */
+    callSuccessful?: boolean;
+
+    /**
+     * Total call duration in milliseconds.
+     */
+    durationMs?: number;
+
+    /**
+     * How the call ended (platform-specific string, e.g. "user_hangup",
+     * "assistant_hangup", "timeout").
+     */
+    endedReason?: string;
+
+    /**
+     * Number of barge-ins / interruptions detected over the call.
+     */
+    interruptionCount?: number;
+
+    /**
+     * Component and end-to-end latency aggregates for the call.
+     */
+    latency?: VoiceCall.Latency;
+
+    /**
+     * Identifier of the voice platform that produced the call.
+     */
+    platform?:
+      | 'vapi'
+      | 'retell'
+      | 'elevenlabs'
+      | 'openai_realtime'
+      | 'livekit'
+      | 'bland'
+      | 'synthflow'
+      | 'simpleai'
+      | 'other';
+
+    /**
+     * The voice platform’s native call ID. Useful for cross-referencing back to the
+     * source.
+     */
+    platformCallId?: string;
+
+    /**
+     * Optional URL to the full call recording. Greenflash does not store audio; the
+     * URL is embedded in the UI as a pass-through.
+     */
+    recordingUrl?: string;
+
+    /**
+     * Number of long silence segments detected over the call.
+     */
+    silenceCount?: number;
+
+    /**
+     * Optional structured data extracted from the call by the platform (e.g. Vapi
+     * structured outputs, Retell custom analysis data).
+     */
+    structuredOutputs?: { [key: string]: unknown };
+  }
+
+  export namespace VoiceCall {
+    /**
+     * Component and end-to-end latency aggregates for the call.
+     */
+    export interface Latency {
+      /**
+       * Average ASR (speech-to-text) latency in ms.
+       */
+      asrMs?: number;
+
+      /**
+       * Average end-to-end latency from user end-of-turn to agent first audio (ms).
+       */
+      e2eMs?: number;
+
+      /**
+       * Average LLM inference latency in ms.
+       */
+      llmMs?: number;
+
+      /**
+       * Average TTS (text-to-speech) latency in ms.
+       */
+      ttsMs?: number;
+    }
+  }
 }
 
 export declare namespace Messages {
