@@ -22,6 +22,17 @@ export class Interactions extends APIResource {
   }
 
   /**
+   * Get full interaction detail including the conversation transcript, participant
+   * info, and metadata. Returns all message types including tool calls and
+   * observations for complete diagnostic visibility.
+   *
+   * Available on all plans.
+   */
+  get(interactionID: string, options?: RequestOptions): APIPromise<InteractionDetail> {
+    return this._client.get(path`/interactions/${interactionID}`, options);
+  }
+
+  /**
    * Understand what happened in a specific conversation with AI-powered analysis.
    * See sentiment shifts, detect frustration, identify commercial intent, and get
    * actionable insights.
@@ -165,6 +176,231 @@ export namespace GetInteractionAnalyticsResponse {
   }
 }
 
+export interface GetInteractionDetailParams {
+  /**
+   * The interaction ID.
+   */
+  interactionId: string;
+}
+
+export interface Interaction {
+  /**
+   * The interaction ID.
+   */
+  id: string;
+
+  /**
+   * When the interaction was created.
+   */
+  createdAt: string;
+
+  /**
+   * Your external identifier for the interaction.
+   */
+  externalId: string | null;
+
+  /**
+   * Your external identifier for the participant.
+   */
+  externalParticipantId: string | null;
+
+  /**
+   * User feedback text.
+   */
+  feedback: string | null;
+
+  /**
+   * The AI model used.
+   */
+  model: string | null;
+
+  /**
+   * Your external identifier for the organization.
+   */
+  organizationExternalId: string | null;
+
+  /**
+   * The organization ID.
+   */
+  organizationId: string | null;
+
+  /**
+   * The user who participated in this interaction.
+   */
+  participantId: string;
+
+  /**
+   * The product ID.
+   */
+  productId: string;
+
+  /**
+   * User rating for this interaction.
+   */
+  rating: number | null;
+
+  /**
+   * Maximum rating value.
+   */
+  ratingMax: number | null;
+
+  /**
+   * Minimum rating value.
+   */
+  ratingMin: number | null;
+
+  /**
+   * When the interaction was last updated.
+   */
+  updatedAt: string;
+
+  /**
+   * The version ID.
+   */
+  versionId: string;
+
+  /**
+   * Custom interaction properties.
+   */
+  properties?: { [key: string]: unknown };
+}
+
+export interface InteractionDetail {
+  /**
+   * The interaction ID.
+   */
+  id: string;
+
+  /**
+   * When the interaction was created.
+   */
+  createdAt: string;
+
+  /**
+   * Your external identifier for the interaction.
+   */
+  externalId: string | null;
+
+  /**
+   * Your external identifier for the participant.
+   */
+  externalParticipantId: string | null;
+
+  /**
+   * User feedback text.
+   */
+  feedback: string | null;
+
+  /**
+   * Conversation messages in chronological order.
+   */
+  messages: Array<InteractionDetail.Message>;
+
+  /**
+   * The AI model used.
+   */
+  model: string | null;
+
+  /**
+   * Your external identifier for the organization.
+   */
+  organizationExternalId: string | null;
+
+  /**
+   * The organization ID.
+   */
+  organizationId: string | null;
+
+  /**
+   * Resolved participant details.
+   */
+  participant: InteractionDetail.Participant | null;
+
+  /**
+   * The user who participated in this interaction.
+   */
+  participantId: string;
+
+  /**
+   * The product ID.
+   */
+  productId: string;
+
+  /**
+   * User rating for this interaction.
+   */
+  rating: number | null;
+
+  /**
+   * Maximum rating value.
+   */
+  ratingMax: number | null;
+
+  /**
+   * Minimum rating value.
+   */
+  ratingMin: number | null;
+
+  /**
+   * When the interaction was last updated.
+   */
+  updatedAt: string;
+
+  /**
+   * The version ID.
+   */
+  versionId: string;
+
+  /**
+   * Custom interaction properties.
+   */
+  properties?: { [key: string]: unknown };
+}
+
+export namespace InteractionDetail {
+  export interface Message {
+    /**
+     * The message content.
+     */
+    content: string;
+
+    /**
+     * The message role.
+     */
+    role: 'user' | 'assistant' | 'system' | 'tool_call' | 'observation';
+
+    /**
+     * When the message was sent.
+     */
+    timestamp: string | null;
+  }
+
+  /**
+   * Resolved participant details.
+   */
+  export interface Participant {
+    /**
+     * The participant ID.
+     */
+    id: string;
+
+    /**
+     * The participant email.
+     */
+    email: string | null;
+
+    /**
+     * Your external identifier for the participant.
+     */
+    externalId: string | null;
+
+    /**
+     * The participant name.
+     */
+    name: string | null;
+  }
+}
+
 export interface ListInteractionsParams {
   /**
    * Maximum number of results to return.
@@ -195,91 +431,7 @@ export interface ListInteractionsParams {
 /**
  * Array of interactions.
  */
-export type ListInteractionsResponse = Array<ListInteractionsResponse.ListInteractionsResponseItem>;
-
-export namespace ListInteractionsResponse {
-  export interface ListInteractionsResponseItem {
-    /**
-     * The interaction ID.
-     */
-    id: string;
-
-    /**
-     * When the interaction was created.
-     */
-    createdAt: string;
-
-    /**
-     * Your external identifier for the interaction.
-     */
-    externalId: string | null;
-
-    /**
-     * Your external identifier for the participant.
-     */
-    externalParticipantId: string | null;
-
-    /**
-     * User feedback text.
-     */
-    feedback: string | null;
-
-    /**
-     * The AI model used.
-     */
-    model: string | null;
-
-    /**
-     * Your external identifier for the organization.
-     */
-    organizationExternalId: string | null;
-
-    /**
-     * The organization ID.
-     */
-    organizationId: string | null;
-
-    /**
-     * The user who participated in this interaction.
-     */
-    participantId: string;
-
-    /**
-     * The product ID.
-     */
-    productId: string;
-
-    /**
-     * User rating for this interaction.
-     */
-    rating: number | null;
-
-    /**
-     * Maximum rating value.
-     */
-    ratingMax: number | null;
-
-    /**
-     * Minimum rating value.
-     */
-    ratingMin: number | null;
-
-    /**
-     * When the interaction was last updated.
-     */
-    updatedAt: string;
-
-    /**
-     * The version ID.
-     */
-    versionId: string;
-
-    /**
-     * Custom interaction properties.
-     */
-    properties?: { [key: string]: unknown };
-  }
-}
+export type ListInteractionsResponse = Array<Interaction>;
 
 export interface InteractionListParams {
   /**
@@ -321,6 +473,9 @@ export declare namespace Interactions {
   export {
     type GetInteractionAnalyticsParams as GetInteractionAnalyticsParams,
     type GetInteractionAnalyticsResponse as GetInteractionAnalyticsResponse,
+    type GetInteractionDetailParams as GetInteractionDetailParams,
+    type Interaction as Interaction,
+    type InteractionDetail as InteractionDetail,
     type ListInteractionsParams as ListInteractionsParams,
     type ListInteractionsResponse as ListInteractionsResponse,
     type InteractionListParams as InteractionListParams,

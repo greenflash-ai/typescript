@@ -31,27 +31,19 @@ The full API of this library can be found in [api.md](api.md).
 ```js
 import Greenflash from 'greenflash';
 
-const client = new Greenflash({ apiKey: process.env['GREENFLASH_API_KEY'] });
+const client = new Greenflash({
+  apiKey: process.env['GREENFLASH_API_KEY'], // This is the default and can be omitted
+});
 
 const createMessageResponse = await client.messages.create({
+  externalUserId: 'externalUserId',
+  messages: [{}],
+  externalConversationId: 'externalConversationId',
   productId: '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
-  externalUserId: 'externalUserId',
-  externalConversationId: 'externalConversationId',
-  externalUserId: 'externalUserId',
-  externalConversationId: 'externalConversationId',
-  messages: [
-    {
-      role: 'user',
-      content: 'Hello, how can you help me today?'
-    },
-    {
-      role: 'assistant',
-      content: 'I can answer any questions you have!'
-    }
-  ],
 });
 
 console.log(createMessageResponse.conversationId);
+```
 
 ### Request & Response types
 
@@ -62,7 +54,7 @@ This library includes TypeScript definitions for all request params and response
 import Greenflash from 'greenflash';
 
 const client = new Greenflash({
-  apiKey: process.env['GREENFLASH_API_KEY'],
+  apiKey: process.env['GREENFLASH_API_KEY'], // This is the default and can be omitted
 });
 
 const params: Greenflash.MessageCreateParams = {
@@ -133,7 +125,7 @@ const client = new Greenflash({
 });
 
 // Or, configure per-request:
- client.messages.create({
+await client.messages.create({
   externalUserId: 'externalUserId',
   messages: [{}],
   externalConversationId: 'externalConversationId',
@@ -155,7 +147,7 @@ const client = new Greenflash({
 });
 
 // Override per-request:
-client.messages.create({
+await client.messages.create({
   externalUserId: 'externalUserId',
   messages: [{}],
   externalConversationId: 'externalConversationId',
@@ -270,7 +262,7 @@ To make requests to undocumented endpoints, you can use `client.get`, `client.po
 Options on the client, such as retries, will be respected when making these requests.
 
 ```ts
-client.post('/some/path', {
+await client.post('/some/path', {
   body: { some_prop: 'foo' },
   query: { some_query_arg: 'bar' },
 });
