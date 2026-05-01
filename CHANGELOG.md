@@ -1,5 +1,44 @@
 # Changelog
 
+## 1.3.0 (2026-05-01)
+
+Full Changelog: [v1.2.2...v1.3.0](https://github.com/greenflash-ai/typescript/compare/v1.2.2...v1.3.0)
+
+### Features
+
+* **api:** manual updates ([ac65ef0](https://github.com/greenflash-ai/typescript/commit/ac65ef03de9ad00ce6fdcc79117eb3651c34cd06))
+* support setting headers via env ([10f8dcb](https://github.com/greenflash-ai/typescript/commit/10f8dcb1449dc1d0d11a2d4cd95a155f5dadf7a6))
+
+
+### Bug Fixes
+
+* **client:** fix type bug with streaming methods with root-level unions ([19f2fa5](https://github.com/greenflash-ai/typescript/commit/19f2fa5f8bedfbaac37b3fa704a1ddf6b951445a))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([0e1072a](https://github.com/greenflash-ai/typescript/commit/0e1072a4573261332dcb9ca3da6851a7a6fc9443))
+* **internal:** codegen related update ([9488f17](https://github.com/greenflash-ai/typescript/commit/9488f17c9bd92238095d32c62e661c53fb6d71e9))
+* **internal:** codegen related update ([177943c](https://github.com/greenflash-ai/typescript/commit/177943cd2d6cd35d58513620254bcc44c8703279))
+* **internal:** codegen related update ([f345f9b](https://github.com/greenflash-ai/typescript/commit/f345f9b6bf8ec2c83b17436396600db010a7ae4a))
+* **internal:** codegen related update ([f9cef6a](https://github.com/greenflash-ai/typescript/commit/f9cef6abd3758a87b7e17922f1c1ef72fd167fe8))
+* **internal:** codegen related update ([b8e3507](https://github.com/greenflash-ai/typescript/commit/b8e3507ebaf4af8336fd34a7fbdcdedcb89d7e12))
+* **internal:** codegen related update ([d7ff569](https://github.com/greenflash-ai/typescript/commit/d7ff5694a26df9d80a2feadb49ae5de47535fc60))
+* **internal:** fix MCP server TS errors that occur with required client options ([ced1fc1](https://github.com/greenflash-ai/typescript/commit/ced1fc17ef523ca4c2c7c89e1ae9e20f3f74913d))
+* **internal:** update gitignore ([901a6dd](https://github.com/greenflash-ai/typescript/commit/901a6dd772d405a6f60149286f9db06af69572bb))
+* **internal:** update multipart form array serialization ([7f7f1eb](https://github.com/greenflash-ai/typescript/commit/7f7f1eb92465c6b085b58f5b78de0694fc66b5e4))
+* **tests:** bump steady to v0.19.4 ([f380c93](https://github.com/greenflash-ai/typescript/commit/f380c93c5de7ee2a35627c61958ee96374191d6a))
+* **tests:** bump steady to v0.19.5 ([69f71c7](https://github.com/greenflash-ai/typescript/commit/69f71c7662ad9e38b4973245cfdc187902e20cc7))
+* **tests:** bump steady to v0.19.6 ([23037ee](https://github.com/greenflash-ai/typescript/commit/23037eecfedc73eda63e7d437d1d6762c26b26d5))
+* **tests:** bump steady to v0.19.7 ([ebced59](https://github.com/greenflash-ai/typescript/commit/ebced59890dbaa08030c8f7ec7f0035230fd9241))
+* **tests:** bump steady to v0.20.1 ([4c1fdf6](https://github.com/greenflash-ai/typescript/commit/4c1fdf6499f5306228bc0ad04adb4afc857d469e))
+* **tests:** bump steady to v0.20.2 ([271a372](https://github.com/greenflash-ai/typescript/commit/271a372dde0bb45cbeca5d100050d8a523b08121))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([b338aa2](https://github.com/greenflash-ai/typescript/commit/b338aa25af5c0b67528cab3b3b6e2c758ea66570))
+
 ## 1.2.2 (2026-03-17)
 
 Full Changelog: [v1.2.1...v1.2.2](https://github.com/greenflash-ai/typescript/compare/v1.2.1...v1.2.2)
