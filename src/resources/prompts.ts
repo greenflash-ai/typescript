@@ -156,6 +156,33 @@ export class Prompts extends APIResource {
   get(id: string, options?: RequestOptions): APIPromise<GetPromptResponse> {
     return this._client.get(path`/prompts/${id}`, options);
   }
+
+  /**
+   * Get computed analytics for a specific prompt, including quality metrics, usage
+   * statistics, and suggestion data.
+   *
+   * **Requires Growth+ plan or higher.**
+   *
+   * Returns:
+   *
+   * - **Quality**: Average conversation quality index
+   * - **Usage**: Total conversations and last used timestamp
+   * - **Suggestions**: Suggestion count, effective suggestion count (active versions
+   *   only), and needs-review flag
+   *
+   * Rate limited based on your plan's `maxAnalysesPerHour`.
+   *
+   * @example
+   * ```ts
+   * const getPromptAnalyticsResponse =
+   *   await client.prompts.getPromptAnalytics(
+   *     '182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e',
+   *   );
+   * ```
+   */
+  getPromptAnalytics(id: string, options?: RequestOptions): APIPromise<GetPromptAnalyticsResponse> {
+    return this._client.get(path`/prompts/${id}/analytics`, options);
+  }
 }
 
 export interface ComponentInput {
@@ -309,6 +336,39 @@ export interface DeletePromptResponse {
    * The external prompt ID.
    */
   externalPromptId?: string;
+}
+
+export interface GetPromptAnalyticsResponse {
+  /**
+   * Average conversation quality index across all conversations using this prompt.
+   */
+  avgQualityIndex: number | null;
+
+  /**
+   * Suggestion count scoped to active versions only. Zero if the prompt is not part
+   * of an active version.
+   */
+  effectiveSuggestionCount: number;
+
+  /**
+   * ISO 8601 timestamp of the most recent conversation using this prompt.
+   */
+  lastUsedAt: string | null;
+
+  /**
+   * Whether the prompt has effective suggestions that need review.
+   */
+  needsReview: boolean;
+
+  /**
+   * Total number of suggestions from prompt analyses.
+   */
+  suggestionCount: number;
+
+  /**
+   * Total number of conversations using this prompt.
+   */
+  totalConversations: number;
 }
 
 /**
@@ -703,6 +763,7 @@ export declare namespace Prompts {
     type CreatePromptParams as CreatePromptParams,
     type CreatePromptResponse as CreatePromptResponse,
     type DeletePromptResponse as DeletePromptResponse,
+    type GetPromptAnalyticsResponse as GetPromptAnalyticsResponse,
     type GetPromptParams as GetPromptParams,
     type GetPromptResponse as GetPromptResponse,
     type ListPromptsParams as ListPromptsParams,

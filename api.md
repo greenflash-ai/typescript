@@ -17,12 +17,16 @@ Types:
 
 - <code><a href="./src/resources/interactions.ts">GetInteractionAnalyticsParams</a></code>
 - <code><a href="./src/resources/interactions.ts">GetInteractionAnalyticsResponse</a></code>
+- <code><a href="./src/resources/interactions.ts">GetInteractionDetailParams</a></code>
+- <code><a href="./src/resources/interactions.ts">Interaction</a></code>
+- <code><a href="./src/resources/interactions.ts">InteractionDetail</a></code>
 - <code><a href="./src/resources/interactions.ts">ListInteractionsParams</a></code>
 - <code><a href="./src/resources/interactions.ts">ListInteractionsResponse</a></code>
 
 Methods:
 
 - <code title="get /interactions">client.interactions.<a href="./src/resources/interactions.ts">list</a>({ ...params }) -> ListInteractionsResponse</code>
+- <code title="get /interactions/{interactionId}">client.interactions.<a href="./src/resources/interactions.ts">get</a>(interactionID) -> InteractionDetail</code>
 - <code title="get /interactions/{interactionId}/analytics">client.interactions.<a href="./src/resources/interactions.ts">getInteractionAnalytics</a>(interactionID, { ...params }) -> GetInteractionAnalyticsResponse</code>
 
 # Users
@@ -33,11 +37,13 @@ Types:
 - <code><a href="./src/resources/users.ts">CreateUserResponse</a></code>
 - <code><a href="./src/resources/users.ts">GetUserAnalyticsParams</a></code>
 - <code><a href="./src/resources/users.ts">GetUserAnalyticsResponse</a></code>
+- <code><a href="./src/resources/users.ts">GetUserSegmentsResponse</a></code>
 - <code><a href="./src/resources/users.ts">ListUsersParams</a></code>
 - <code><a href="./src/resources/users.ts">ListUsersResponse</a></code>
 - <code><a href="./src/resources/users.ts">Participant</a></code>
 - <code><a href="./src/resources/users.ts">UpdateUserParams</a></code>
 - <code><a href="./src/resources/users.ts">UpdateUserResponse</a></code>
+- <code><a href="./src/resources/users.ts">UserSegmentMembership</a></code>
 
 Methods:
 
@@ -45,6 +51,7 @@ Methods:
 - <code title="put /users/{userId}">client.users.<a href="./src/resources/users.ts">update</a>(userID, { ...params }) -> UpdateUserResponse</code>
 - <code title="get /users">client.users.<a href="./src/resources/users.ts">list</a>({ ...params }) -> ListUsersResponse</code>
 - <code title="get /users/{userId}/analytics">client.users.<a href="./src/resources/users.ts">getUserAnalytics</a>(userID, { ...params }) -> GetUserAnalyticsResponse</code>
+- <code title="get /users/{userId}/segments">client.users.<a href="./src/resources/users.ts">getUserSegments</a>(userID) -> GetUserSegmentsResponse</code>
 
 # Ratings
 
@@ -87,6 +94,7 @@ Types:
 - <code><a href="./src/resources/prompts.ts">CreatePromptParams</a></code>
 - <code><a href="./src/resources/prompts.ts">CreatePromptResponse</a></code>
 - <code><a href="./src/resources/prompts.ts">DeletePromptResponse</a></code>
+- <code><a href="./src/resources/prompts.ts">GetPromptAnalyticsResponse</a></code>
 - <code><a href="./src/resources/prompts.ts">GetPromptParams</a></code>
 - <code><a href="./src/resources/prompts.ts">GetPromptResponse</a></code>
 - <code><a href="./src/resources/prompts.ts">ListPromptsParams</a></code>
@@ -105,6 +113,92 @@ Methods:
 - <code title="get /prompts">client.prompts.<a href="./src/resources/prompts.ts">list</a>({ ...params }) -> ListPromptsResponse</code>
 - <code title="delete /prompts/{id}">client.prompts.<a href="./src/resources/prompts.ts">delete</a>(id) -> DeletePromptResponse</code>
 - <code title="get /prompts/{id}">client.prompts.<a href="./src/resources/prompts.ts">get</a>(id) -> GetPromptResponse</code>
+- <code title="get /prompts/{id}/analytics">client.prompts.<a href="./src/resources/prompts.ts">getPromptAnalytics</a>(id) -> GetPromptAnalyticsResponse</code>
+
+# Chat
+
+Types:
+
+- <code><a href="./src/resources/chat.ts">StreamChatRequest</a></code>
+
+Methods:
+
+- <code title="post /chat">client.chat.<a href="./src/resources/chat.ts">create</a>({ ...params }) -> void</code>
+
+# Inbox
+
+Types:
+
+- <code><a href="./src/resources/inbox.ts">AnalysisScores</a></code>
+- <code><a href="./src/resources/inbox.ts">ConversationMessage</a></code>
+- <code><a href="./src/resources/inbox.ts">GetInboxItemParams</a></code>
+- <code><a href="./src/resources/inbox.ts">GetInboxItemResponse</a></code>
+- <code><a href="./src/resources/inbox.ts">InboxItemSummary</a></code>
+- <code><a href="./src/resources/inbox.ts">ListInboxParams</a></code>
+- <code><a href="./src/resources/inbox.ts">ListInboxResponse</a></code>
+- <code><a href="./src/resources/inbox.ts">ParticipantInfo</a></code>
+- <code><a href="./src/resources/inbox.ts">TriggerDetail</a></code>
+
+Methods:
+
+- <code title="get /inbox">client.inbox.<a href="./src/resources/inbox.ts">list</a>({ ...params }) -> ListInboxResponse</code>
+- <code title="get /inbox/{conversationId}">client.inbox.<a href="./src/resources/inbox.ts">get</a>(conversationID) -> GetInboxItemResponse</code>
+
+# Models
+
+Types:
+
+- <code><a href="./src/resources/models.ts">GetModelAnalyticsParams</a></code>
+- <code><a href="./src/resources/models.ts">GetModelAnalyticsResponse</a></code>
+- <code><a href="./src/resources/models.ts">GetModelResponse</a></code>
+- <code><a href="./src/resources/models.ts">ListModelsParams</a></code>
+- <code><a href="./src/resources/models.ts">ListModelsResponse</a></code>
+- <code><a href="./src/resources/models.ts">ModelProductUsage</a></code>
+- <code><a href="./src/resources/models.ts">ModelSummary</a></code>
+
+Methods:
+
+- <code title="get /models">client.models.<a href="./src/resources/models.ts">list</a>({ ...params }) -> ListModelsResponse</code>
+- <code title="get /models/{modelId}">client.models.<a href="./src/resources/models.ts">get</a>(modelID) -> GetModelResponse</code>
+- <code title="get /models/{modelId}/analytics">client.models.<a href="./src/resources/models.ts">getModelAnalytics</a>(modelID, { ...params }) -> GetModelAnalyticsResponse</code>
+
+# Products
+
+Types:
+
+- <code><a href="./src/resources/products.ts">GetProductAnalyticsResponse</a></code>
+- <code><a href="./src/resources/products.ts">GetProductResponse</a></code>
+- <code><a href="./src/resources/products.ts">ListProductsParams</a></code>
+- <code><a href="./src/resources/products.ts">ListProductsResponse</a></code>
+- <code><a href="./src/resources/products.ts">ProductMember</a></code>
+- <code><a href="./src/resources/products.ts">ProductSummary</a></code>
+- <code><a href="./src/resources/products.ts">QualityIndexMetricWeight</a></code>
+
+Methods:
+
+- <code title="get /products">client.products.<a href="./src/resources/products.ts">list</a>({ ...params }) -> ListProductsResponse</code>
+- <code title="get /products/{productId}">client.products.<a href="./src/resources/products.ts">get</a>(productID) -> GetProductResponse</code>
+- <code title="get /products/{productId}/analytics">client.products.<a href="./src/resources/products.ts">getProductAnalytics</a>(productID) -> GetProductAnalyticsResponse</code>
+
+# Segments
+
+Types:
+
+- <code><a href="./src/resources/segments.ts">CreateSegmentParams</a></code>
+- <code><a href="./src/resources/segments.ts">CreateSegmentResponse</a></code>
+- <code><a href="./src/resources/segments.ts">GetSegmentAnalyticsParams</a></code>
+- <code><a href="./src/resources/segments.ts">GetSegmentAnalyticsResponse</a></code>
+- <code><a href="./src/resources/segments.ts">GetSegmentResponse</a></code>
+- <code><a href="./src/resources/segments.ts">ListSegmentsParams</a></code>
+- <code><a href="./src/resources/segments.ts">ListSegmentsResponse</a></code>
+- <code><a href="./src/resources/segments.ts">SegmentSummary</a></code>
+
+Methods:
+
+- <code title="post /segments">client.segments.<a href="./src/resources/segments.ts">create</a>({ ...params }) -> CreateSegmentResponse</code>
+- <code title="get /segments">client.segments.<a href="./src/resources/segments.ts">list</a>({ ...params }) -> ListSegmentsResponse</code>
+- <code title="get /segments/{segmentId}">client.segments.<a href="./src/resources/segments.ts">get</a>(segmentID) -> GetSegmentResponse</code>
+- <code title="get /segments/{segmentId}/analytics">client.segments.<a href="./src/resources/segments.ts">getSegmentAnalytics</a>(segmentID, { ...params }) -> GetSegmentAnalyticsResponse</code>
 
 # Events
 
