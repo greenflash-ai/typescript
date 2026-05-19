@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.4.1 (2026-05-19)
+
+Full Changelog: [v1.4.0...v1.4.1](https://github.com/greenflash-ai/typescript/compare/v1.4.0...v1.4.1)
+
+### Chores
+
+* **internal:** codegen related update ([6e37482](https://github.com/greenflash-ai/typescript/commit/6e37482695b8feadfdc508a9496b22bd96b7f7d8))
+* redact api-key headers in debug logs ([808c063](https://github.com/greenflash-ai/typescript/commit/808c06336487855d30fbcb775313cba988522435))
+
 ## 1.4.0 (2026-05-01)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/greenflash-ai/typescript/compare/v1.3.0...v1.4.0)
