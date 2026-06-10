@@ -1,7 +1,6 @@
 import fs from 'fs';
 import type { ResponseLike } from 'greenflash/internal/to-file';
 import { toFile } from 'greenflash/core/uploads';
-import { File } from 'node:buffer';
 
 class MyClass {
   name: string = 'foo';
