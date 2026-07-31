@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.5.0 (2026-07-31)
+
+Full Changelog: [v1.4.1...v1.5.0](https://github.com/greenflash-ai/typescript/compare/v1.4.1...v1.5.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([81d0d8b](https://github.com/greenflash-ai/typescript/commit/81d0d8bf14ae4279419d6247286678601858b838))
+
+
+### Bug Fixes
+
+* **ci:** bump @arethetypeswrong/cli to ^0.18.0 and run CI workflows on Node 24 ([09d1c65](https://github.com/greenflash-ai/typescript/commit/09d1c6538c6fa46ee728b6e03af5ae7a7a3f1742))
+* **client:** send content-type header for requests with an omitted optional body ([60b0e07](https://github.com/greenflash-ai/typescript/commit/60b0e07e1d9326589788aec73a1ebdabde359efc))
+* **stlc:** stop hand-edited CI workflows from blocking seals and builds ([39d4d5c](https://github.com/greenflash-ai/typescript/commit/39d4d5c3d82f763c5c53d9158a0866864000eb01))
+
+
+### Chores
+
+* **internal:** codegen related update ([d58569b](https://github.com/greenflash-ai/typescript/commit/d58569bb83d48113915ab2a5e5721d5232f76083))
+* **internal:** codegen related update ([c666801](https://github.com/greenflash-ai/typescript/commit/c666801793d7be84add402047c6cc99b6635f54d))
+
 ## 1.4.1 (2026-05-28)
 
 Full Changelog: [v1.4.0...v1.4.1](https://github.com/greenflash-ai/typescript/compare/v1.4.0...v1.4.1)
